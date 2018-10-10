@@ -1,20 +1,14 @@
 
 package simulador.de.procesos;
 
-/**
- *
- * @author fvg
- */
+import javax.swing.JOptionPane;
 public class SimuladorDeProcesos {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        System.out.println("Hola mundo");
-        String texto;
-        texto="Lucas";
-        System.out.println("Yo soy "+texto);
+        
+        String dato = JOptionPane.showInputDialog(null, "Ingresa el dato");
+        
+        JOptionPane.showMessageDialog(null, "Hola "+dato);
     }
     
 }
