@@ -1,4 +1,5 @@
-# Simulador de Planificación de Procesos, Universidad Tecnológica Nacional-Facultad Regional Resistencia-2018
+# Simulador de Planificación de Procesos En java
+# Universidad Tecnológica Nacional-Facultad Regional Resistencia 2018
 Diseño y construcción de un planificador de procesos a corto plazo para la materia Sistemas Operativos UTN-FRRe 2018
 El lenguaje de desarrollo es Java.
 
