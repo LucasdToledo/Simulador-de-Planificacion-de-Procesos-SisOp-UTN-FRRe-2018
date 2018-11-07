@@ -13,3 +13,5 @@ Particiones fijas o variables y algoritmo de asignación de espacios libres (bes
 Gráfica de Gantt
 Gráfico de asignación de memoria
 Estados de procesos, transiciones y tiempos
+
+Fecha de entrega: 22 de Noviembre
