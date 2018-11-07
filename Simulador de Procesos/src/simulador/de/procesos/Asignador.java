@@ -38,8 +38,7 @@ public class Asignador {
         }
         //Si la persona pone un valor muy alto ponemos lo máximo que tengamos
         if(_mem.getTamaño() < _tamParticion){
-            JOptionPane.showMessageDialog(null,"Excedió el tamaño de la memoria. Pondremos el máximo disponible de" + 
-                    _mem.getTamaño()); 
+            JOptionPane.showMessageDialog(null,"Excedió el tamaño de la memoria."); 
             //Hace falta un método en la clase memoria que diga memoria disponible.
         }        
         return NuevaListaParticiones;
