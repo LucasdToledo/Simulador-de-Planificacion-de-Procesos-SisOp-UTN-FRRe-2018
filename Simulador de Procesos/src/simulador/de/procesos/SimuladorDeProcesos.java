@@ -1,6 +1,7 @@
 
 package simulador.de.procesos;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -56,21 +57,46 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         //Esqueleto
+        
+        //Creamos una particion y una memoria
         Particion particion = new Particion();
         Memoria mem = new Memoria();
-       
+        
+        //Creamos un asignador
+        Asignador asignador = new Asignador();
+        
+       //Pedimos al usuario que ingrese el tamaño de la memoria
         int tam = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el tamaño de la memoria"));
-        String aux = "";
-        aux = JOptionPane.showInputDialog("Ingrese el tipo de memoria, 'fija' o 'variable'");
-        aux = aux.toUpperCase();
-        switch (aux){
-            case("VARIABLE"): 
-                mem.CrearMemoria(tam,true); 
-            break;
-            case ("FIJO"):
-                mem.CrearMemoria(tam,false);
-            break;
+        
+        //Con este bucle nos aseguramos de que el usuario ingrese correctamente el string     
+        boolean flag = true;
+        String aux = "";   
+        while (flag){
+            
+            aux = JOptionPane.showInputDialog("Ingrese el tipo de memoria, 'FIJA' o 'VARIABLE'");
+            aux = aux.toUpperCase();
+            switch (aux){
+                case("VARIABLE"): 
+                    mem.CrearMemoria(tam,true);
+                    flag =false;
+                break;
+                case ("FIJA"):
+                    mem.CrearMemoria(tam,false); 
+                    int resp = JOptionPane.showConfirmDialog(null, "¿Desea crear las particiones o nos encargamos de eso?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                    //Si el usuario elige que sí
+                    if (resp == 0){
+                        ArrayList<Particion> listaux;
+                        listaux = asignador.Particionar(mem, Integer.parseInt(JOptionPane.showInputDialog("Ingrese el tamaño de la partición")));
+                        mem.setListaParticiones(listaux);
+                    }
+                    flag =false;
+                break;
+                default:
+                    JOptionPane.showMessageDialog(null, "404: Not found inteligencia en ti, vuelve a intentar");
+                break;
+            }
         }
+        mem.Mostrar();
 
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
