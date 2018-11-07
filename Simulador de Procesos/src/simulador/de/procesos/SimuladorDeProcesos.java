@@ -57,7 +57,7 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         //Esqueleto
-        
+       
         //Creamos una particion y una memoria
         Particion particion = new Particion();
         Memoria mem = new Memoria();
@@ -115,8 +115,41 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
                 break;
             }
         }
-        mem.Mostrar();
+        mem.Mostrar();// ACA TERMINA LA CREACION DE MEMORIA
+        
+       
+        
 
+    //CARGA DE PROCESOS
+      String asig;
+     //Ciclo for
+     // for (inicializacion; condicion; aumento o decremento){instrucciones;}
+           Proceso proceso1 = new Proceso();
+           proceso1.CrearProceso(1, 0, 5, "hola", 0, 512);
+           Proceso proceso2 = new Proceso();
+           proceso2.CrearProceso(2, 0, 10, "hola", 0, 256);
+           Proceso proceso3 = new Proceso();
+           proceso3.CrearProceso(3, 0, 2, "hola", 0, 256);
+           
+           asig = JOptionPane.showInputDialog("ingrese el tipo de asignador. bf, ff, wf");
+           
+           switch (aux){
+                case("ff"): 
+                   
+                break;
+                case ("bf"):
+                    
+                break;
+                case ("wf"):
+                    
+                break;
+                default:
+                    JOptionPane.showMessageDialog(null, "404: Not found inteligencia en ti, vuelve a intentar");
+                break;
+            }
+       
+        
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

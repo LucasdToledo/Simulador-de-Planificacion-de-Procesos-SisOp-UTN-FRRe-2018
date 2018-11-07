@@ -53,4 +53,5 @@ public class Asignador {
         
     }
     //Acá van los algoritmos BESTFIT, WORSTFIT Y FIRSTFIT como métodos
+    
 }
