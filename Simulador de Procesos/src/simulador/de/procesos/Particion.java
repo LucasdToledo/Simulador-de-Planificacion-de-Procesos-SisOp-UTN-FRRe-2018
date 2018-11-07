@@ -29,6 +29,10 @@ public class Particion {
         this.estado = estado;
     }
     
+    public int Tamaño() {
+        return fin-inicio;
+    }
+    
     public void CrearParticion (int _inicio, int _fin,boolean _estado) {
         inicio = _inicio;
         fin = _fin;
