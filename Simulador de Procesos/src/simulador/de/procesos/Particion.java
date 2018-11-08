@@ -4,6 +4,17 @@ public class Particion {
     private int inicio;
     private int fin;
     private boolean estado;
+    private Proceso proces;
+    //True es vacio y false ocupado
+
+    public Proceso getProces() {
+        return proces;
+    }
+
+    public void setProces(Proceso proces) {
+        estado = false;
+        this.proces = proces;
+    }
 
     public int getInicio() {
         return inicio;
@@ -38,4 +49,11 @@ public class Particion {
         fin = _fin;
         estado = _estado;
     }
+
+    //Cambiamos el comportamiento de clase indicando la manera de mostrar los datos si se usa un Print
+    @Override
+    public String toString() {
+        return "Tamaño="+(fin-inicio) + " Estado =" + estado;
+    }
+   
 }

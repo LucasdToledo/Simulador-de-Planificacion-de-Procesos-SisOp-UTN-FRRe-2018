@@ -1,8 +1,12 @@
 package simulador.de.procesos;
 
+import java.util.ArrayList;
+
+
 public class Proceso {
     private int numero; 
     private int prioridad;
+    private ArrayList rafaga; //Ciclos de CPU y E-S
     private int duracion;
     private String descripcion;
     private int tarribo;
@@ -25,6 +29,14 @@ public class Proceso {
 
     public void setPrioridad(int prioridad) {
         this.prioridad = prioridad;
+    }
+
+    public ArrayList getRafaga() {
+        return rafaga;
+    }
+
+    public void setRafaga(ArrayList rafaga) {
+        this.rafaga = rafaga;
     }
 
     public int getDuracion() {
@@ -59,13 +71,18 @@ public class Proceso {
         this.tamaño = tamaño;
     }
     
-    public void CrearProceso(int _num,int _prior,int _dur,String _des,int _tarribo,int _tam){
-        numero = _num;
+    public void CrearProceso(int _prior,int _dur,String _des,int _tarribo,int _tam){
         prioridad = _prior;
         duracion = _dur;
         descripcion = _des;
         tarribo = _tarribo;
         tamaño = _tam;
+        //agregar los que faltan para los planificadores
+    }
+
+    @Override
+    public String toString() {
+        return descripcion + ", prioridad=" + prioridad + ", duracion=" + duracion+ ", tarribo=" + tarribo + ", tamaño=" + tamaño + '}';
     }
     
     
