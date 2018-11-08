@@ -50,7 +50,20 @@ public class Asignador {
     }
     //Asigna un proceso a una partición creada
     public void Asignar (Memoria _mem, Proceso _proceso){
-        
+         switch (algoritmo){
+                case(1): 
+                   
+                break;
+                case (2):
+                    
+                break;
+                case (3):
+                    
+                break;
+                default:
+                    JOptionPane.showMessageDialog(null, "404: Not found inteligencia en ti, vuelve a intentar");
+                break;
+            }
     }
     //Acá van los algoritmos BESTFIT, WORSTFIT Y FIRSTFIT como métodos
     

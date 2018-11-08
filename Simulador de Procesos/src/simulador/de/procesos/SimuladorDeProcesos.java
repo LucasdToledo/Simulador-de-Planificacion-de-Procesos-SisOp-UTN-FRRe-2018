@@ -58,6 +58,9 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
     public static void main(String args[]) {
         //Esqueleto
        
+        //Creamos las listas de procesos
+        ArrayList ColaNuevo, ColaListos, ColaBloqueados = new ArrayList();
+        
         //Creamos una particion y una memoria
         Particion particion = new Particion();
         Memoria mem = new Memoria();
@@ -99,7 +102,9 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
                                 mem.setListaParticiones(listaux);
                             }
                              if(contador > mem.getTamaño()){ //no tengo espacio y no puede ingresar la particion
-                                 System.out.println("Excedio el tamaño de la memoria vuelva a ingresar la particion");}
+                                 JOptionPane.showMessageDialog(null,"Excedio el tamaño de la memoria vuelva a ingresar la particion");
+                                 contador = contador - part;
+                             }
                              if(contador == mem.getTamaño()){ // cuando el contador es igual a la memoria significa que es la ultima particion que puede ingresar
                                 listaux = asignador.Particionar(mem, part);
                                  mem.setListaParticiones(listaux);
@@ -133,15 +138,15 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
            
            asig = JOptionPane.showInputDialog("ingrese el tipo de asignador. bf, ff, wf");
            
-           switch (aux){
+           switch (asig){
                 case("ff"): 
-                   
+                   asignador.setAlgoritmo(1);
                 break;
                 case ("bf"):
-                    
+                    asignador.setAlgoritmo(2);
                 break;
                 case ("wf"):
-                    
+                    asignador.setAlgoritmo(3);
                 break;
                 default:
                     JOptionPane.showMessageDialog(null, "404: Not found inteligencia en ti, vuelve a intentar");
