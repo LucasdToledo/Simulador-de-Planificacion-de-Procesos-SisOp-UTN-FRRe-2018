@@ -2,6 +2,7 @@
 package simulador.de.procesos;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 
@@ -49,9 +50,20 @@ public class Asignador {
         
     }
     //Asigna un proceso a una partición creada
-    public void Asignar (Memoria _mem, Proceso _proceso){
+    Memoria Asignar (Memoria _mem, Proceso _proceso){
+        Memoria memoria = new Memoria();
          switch (algoritmo){
-                case(1): 
+                case(1): //Algoritmos FF
+                    Iterator<Particion> it = _mem.getListaParticiones().iterator();
+                    while (it.hasNext()) {
+                       if(it.next().isEstado()){
+                           if(it.next().Tamaño()>= _proceso.getTamaño()){
+                               it.next().setProces(_proceso);   
+                           }
+                       }
+                     } 
+                    memoria = _mem;
+                   
                    
                 break;
                 case (2):
@@ -64,7 +76,8 @@ public class Asignador {
                     JOptionPane.showMessageDialog(null, "404: Not found inteligencia en ti, vuelve a intentar");
                 break;
             }
+        return memoria;
     }
     //Acá van los algoritmos BESTFIT, WORSTFIT Y FIRSTFIT como métodos
-    
+        
 }
