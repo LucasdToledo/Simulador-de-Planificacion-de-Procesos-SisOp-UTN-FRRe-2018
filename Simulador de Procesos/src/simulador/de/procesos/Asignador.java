@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 
 public class Asignador {
     private int algoritmo;
+     int finalparticion =0;
+     int cont =0;
 
     public int getAlgoritmo() {
         return algoritmo;
@@ -53,8 +55,7 @@ public class Asignador {
     //Asigna un proceso a una partición creada
     Memoria Asignar (Memoria _mem, Proceso _proceso){
         Memoria memoria = new Memoria();
-        int finalparticion =0;
-        int cont =0;
+        
          switch (algoritmo){
                 case(1): //Algoritmos FF
                     Iterator<Particion> it = _mem.getListaParticiones().iterator();
@@ -69,11 +70,11 @@ public class Asignador {
                             }
                             else{
                                 if((cont + _proceso.getTamaño()) <= _mem.getTamaño()){
-                                    it.next().CrearParticion(finalparticion, _proceso.getTamaño(), true);
+                                    it.next().CrearParticion(finalparticion+1, finalparticion + _proceso.getTamaño(), true);
                                     _mem.getListaParticiones().add(it.next());
                                     it.next().setProces(_proceso);
                                     finalparticion = it.next().getFin();
-                                    cont = cont + finalparticion;
+                                    cont = cont + _proceso.getTamaño();
                                 }
                              }
                         }    

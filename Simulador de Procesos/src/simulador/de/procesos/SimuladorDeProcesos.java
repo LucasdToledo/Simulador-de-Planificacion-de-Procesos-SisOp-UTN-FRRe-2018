@@ -2,6 +2,8 @@
 package simulador.de.procesos;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
@@ -60,7 +62,7 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
         //Esqueleto
        
         //Creamos e inicializamos las listas de procesos
-       ArrayList ColaNuevo = new ArrayList();
+       ArrayList<Proceso> ColaNuevo = new ArrayList();
        
         
         //Creamos una particion y una memoria
@@ -87,6 +89,9 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
                 bandera = false;
             }
         }
+        //Aca va el algoritmo que ordena la COLANUEVO por Tiempo de Arribo
+        Collections.sort(ColaNuevo, (Proceso p1, Proceso p2) -> new Integer(p1.getTarribo()).compareTo(p2.getTarribo()));
+
         Iterator<Proceso> it = ColaNuevo.iterator();
         String enLista = "";
         int i = 0;
@@ -157,15 +162,14 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
       String asig; 
            
       asig = JOptionPane.showInputDialog("ingrese el tipo de asignador. bf, ff, wf");
-           
+          
            switch (asig){
                 case("ff"): 
                    asignador.setAlgoritmo(1);
-                   //El código de abajo no va acá
-                   /*Iterator<Proceso> ite = ColaNuevo.iterator();
-                    while (ite.hasNext()) {
-                        asignador.Asignar(mem, ite.next());
-                    }     */
+                   for(int in=0; in<=ColaNuevo.size()-1;i++){
+                   asignador.Asignar(mem, ColaNuevo.get(in));
+                   }
+                   
                 break;
                 case ("bf"):
                     asignador.setAlgoritmo(2);
@@ -177,7 +181,7 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "404: Not found inteligencia en ti, vuelve a intentar");
                 break;
             }
-       
+       mem.Mostrar();
         
         
         /* Set the Nimbus look and feel */
