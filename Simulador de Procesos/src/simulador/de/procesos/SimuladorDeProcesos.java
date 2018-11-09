@@ -153,26 +153,19 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
        
         
 
-    //CARGA DE PROCESOS
+    //ELECCIÓN DE ALGORITMO ASIGNADOR DE HUECOS
       String asig; 
-     //Ciclo for
-     // for (inicializacion; condicion; aumento o decremento){instrucciones;}
-           
            
       asig = JOptionPane.showInputDialog("ingrese el tipo de asignador. bf, ff, wf");
            
            switch (asig){
                 case("ff"): 
                    asignador.setAlgoritmo(1);
-                   Iterator<ArrayList> ite = ColaNuevo.iterator();
-                   String enListas = "";
-                   int e = 0;
+                   //El código de abajo no va acá
+                   /*Iterator<Proceso> ite = ColaNuevo.iterator();
                     while (ite.hasNext()) {
-                        asignador.Asignar(mem, (ite.next().get()));//HAY QUE PASARLE UN PROCESO PERO NO SE COMOSS
-                        enLista = enLista +"\n"+ "Partición: "+ e + "  " +ite.next();
-                        e++;
-                    }     
-                 mem.Mostrar();
+                        asignador.Asignar(mem, ite.next());
+                    }     */
                 break;
                 case ("bf"):
                     asignador.setAlgoritmo(2);

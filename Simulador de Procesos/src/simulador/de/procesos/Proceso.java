@@ -12,9 +12,6 @@ public class Proceso {
     private int tarribo;
     private int tamaño;
     
-    //Falta agregar un arreglo de 3 elementos para definir el ciclo CPU-E/S-CPU
-    //No sé todavía cómo se definen los arreglos por eso no está aún
-    
     public int getNumero() {
         return numero;
     }

@@ -33,6 +33,14 @@ public class Particion {
     }
 
     public boolean isEstado() {
+        //Si exite un proceso cargado
+        if (proces != null){
+                //Y si duración es 0, significa que el proceso termino y la partición estará vacía
+                //El proceso no se borra sino que se sobreescribe como en las memorias reales.
+                if (proces.getDuracion() == 0){
+                    estado = true;
+                }
+        }
         return estado;
     }
 
@@ -44,9 +52,9 @@ public class Particion {
         return fin-inicio;
     }
     
-    public void CrearParticion (int _inicio, int _fin,boolean _estado) {
+    public void CrearParticion (int _inicio, int _tam_proces,boolean _estado) {
         inicio = _inicio;
-        fin = _fin;
+        fin = _inicio + _tam_proces;
         estado = _estado;
     }
 

@@ -13,6 +13,9 @@ public class Memoria {
     private boolean tipo;
     //Lista de particiones
     private ArrayList<Particion> ListaParticiones;
+    //Fragmentación
+    private ArrayList frag_interna;
+    private int frag_externa;
 
     public int getTamaño() {
         return tamaño;
@@ -35,6 +38,60 @@ public class Memoria {
     
     public void setListaParticiones(ArrayList<Particion> ListaParticiones) {
         this.ListaParticiones = ListaParticiones;
+    }
+
+    public ArrayList getFrag_interna() {
+        //En el caso de que no exista, se crea
+        if (frag_interna == null){
+            Iterator<Particion> ite = ListaParticiones.iterator();
+            //Creamos un acumulador para saber el espacio libre entre particiones contínuas
+            int acum= 0;
+            //Creamos una bandera para guardar el estado de la particion anterior
+            boolean flag = false;
+            //Creamos una lista para guardar las secciones libres
+            ArrayList zonasLibres;
+            zonasLibres = new ArrayList();
+            while (ite.hasNext()) {
+                //Si la partición actual esta vacia
+                if (ite.next().isEstado()){
+                    //Si la partición anterior estaba ocupada 
+                    if (flag == false){
+                        //se guarda el valor de esta partición
+                        flag = true;
+                        //Y se guarda su tamaño en el acumulador
+                        acum= ite.next().Tamaño();
+                    }
+                    //Si la partición anterior estaba vacía
+                    else{
+                        //Se acumula el tamaño
+                        acum = acum + ite.next().Tamaño();
+                    }
+                }
+                //Si la partición actual esta ocupada
+                else {
+                    //Si la particion anterior estaba vacía
+                    if (flag == true){
+                        //Se guarda el tamaño
+                        zonasLibres.add(acum);
+                        //Se guarda el estado de la partición actual
+                        flag = false;
+                    }                
+                }
+            }
+            frag_interna = zonasLibres;
+        }
+        return frag_interna;
+    }
+
+    public int getFrag_externa() {
+        Iterator<Particion> ite = ListaParticiones.iterator();
+        int acum= 0;
+        while (ite.hasNext()) {
+            if (ite.next().isEstado()){
+                acum= acum + ite.next().Tamaño();
+            }
+        }  
+        return frag_externa;
     }
     
     //Este es el constructor

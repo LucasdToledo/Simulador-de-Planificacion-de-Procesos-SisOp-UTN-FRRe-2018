@@ -41,7 +41,7 @@ public class Asignador {
         if(_mem.getTamaño() < _tamParticion){
             JOptionPane.showMessageDialog(null,"Excedió el tamaño de la memoria."); 
             //Hace falta un método en la clase memoria que diga memoria disponible.
-        }        
+        }
         return NuevaListaParticiones;
     }
     //Desfragmentar: las particiones vacías consecutivas se convierten en una sola
@@ -49,6 +49,7 @@ public class Asignador {
     public void Desfragmentar (Memoria _mem){
         
     }
+    
     //Asigna un proceso a una partición creada
     Memoria Asignar (Memoria _mem, Proceso _proceso){
         Memoria memoria = new Memoria();
