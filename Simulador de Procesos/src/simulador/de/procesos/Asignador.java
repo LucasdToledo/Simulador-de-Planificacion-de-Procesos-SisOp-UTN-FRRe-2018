@@ -52,19 +52,41 @@ public class Asignador {
     //Asigna un proceso a una partición creada
     Memoria Asignar (Memoria _mem, Proceso _proceso){
         Memoria memoria = new Memoria();
+        int finalparticion =0;
+        int cont =0;
          switch (algoritmo){
                 case(1): //Algoritmos FF
                     Iterator<Particion> it = _mem.getListaParticiones().iterator();
                     while (it.hasNext()) {
-                       if(it.next().isEstado()){
-                           if(it.next().Tamaño()>= _proceso.getTamaño()){
-                               it.next().setProces(_proceso);   
-                           }
-                       }
-                     } 
+                       if(_mem.isTipo()){ //Si es Variable
+                            if(_mem.getListaParticiones().isEmpty()){ //La primera vez cuando no hay particiones
+                                it.next().CrearParticion(0, _proceso.getTamaño(), true);
+                                _mem.getListaParticiones().add(it.next());
+                                it.next().setProces(_proceso);
+                                finalparticion = it.next().getFin();
+                                cont = cont + finalparticion;
+                            }
+                            else{
+                                if((cont + _proceso.getTamaño()) <= _mem.getTamaño()){
+                                    it.next().CrearParticion(finalparticion, _proceso.getTamaño(), true);
+                                    _mem.getListaParticiones().add(it.next());
+                                    it.next().setProces(_proceso);
+                                    finalparticion = it.next().getFin();
+                                    cont = cont + finalparticion;
+                                }
+                             }
+                        }    
+                       else{ //Si es Fija
+                            if(it.next().isEstado()){
+                               if(it.next().Tamaño()>= _proceso.getTamaño()){
+                                   it.next().setProces(_proceso);
+                                }
+                            }    
+                        } 
+                    }
+                
                     memoria = _mem;
-                   
-                   
+                    
                 break;
                 case (2):
                     

@@ -45,9 +45,9 @@ public class Memoria {
         ListaParticiones = ListadeParticiones;
         //Se crea la primera partición, sea fijo o dinámico debe existir
         Particion part = new Particion();
-        part.CrearParticion(0, tamaño, true);
+        //part.CrearParticion(0, tamaño, true);
         //Agregamos la partición creada a la lista
-        ListaParticiones.add(part);
+        //ListaParticiones.add(part);
         if(tipo){
             JOptionPane.showMessageDialog(null,"Memoria creada exitosamente. "
                     + "El tipo de la memoria es Dinamica");  
