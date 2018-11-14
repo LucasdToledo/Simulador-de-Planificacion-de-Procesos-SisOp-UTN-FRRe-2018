@@ -206,8 +206,10 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
             Iterator<Proceso> ite = ColaNuevo.iterator();
             //Mientras que existan procesos en la cola
             //Asigno los primeros procesos a un espacio de memoria
+            Proceso pro;
             while (ite.hasNext()){
-                asignador.Asignar(mem, ite.next());
+                pro = ite.next();
+                asignador.Asignar(mem, pro);
             }
             mem.Mostrar();
             seguirSimulación = false;

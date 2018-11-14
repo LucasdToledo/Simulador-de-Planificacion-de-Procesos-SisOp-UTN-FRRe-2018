@@ -58,7 +58,13 @@ public class Asignador {
         
          switch (algoritmo){
                 case(1): //Algoritmos FF
-                    Iterator<Particion> it = _mem.getListaParticiones().iterator();
+                    //Creo variables de trabajo
+                    ArrayList <Particion> listaParticionesNueva;
+                    listaParticionesNueva = _mem.getListaParticiones();
+                    
+                    //Bucle de selección de algoritmo según elección del usuario
+                    Iterator<Particion> it = listaParticionesNueva.iterator();
+                    int posicion = 0;
                     while (it.hasNext()) {
                        if(_mem.isTipo()){ //Si es Variable
                             if(_mem.getListaParticiones().isEmpty()){ //La primera vez cuando no hay particiones
@@ -79,10 +85,12 @@ public class Asignador {
                              }
                         }    
                        else{ //Si es Fija
-                            if(it.next().isEstado()&& it.next().Tamaño()>= _proceso.getTamaño()){
-                                it.next().setProces(_proceso);
-                            }    
-                        } 
+                           Particion partaux = it.next();
+                           posicion ++;
+                            if(partaux.isEstado()&& partaux.Tamaño()>= _proceso.getTamaño()){
+                                listaParticionesNueva.get(posicion).setProces(_proceso);
+                            }
+                        }
                     }
                 
                     memoria = _mem;

@@ -32,7 +32,7 @@ public class Memoria {
         this.tipo = tipo;
     }
     
-    public List<Particion> getListaParticiones() {
+    public ArrayList<Particion> getListaParticiones() {
         return ListaParticiones;
     }
     
