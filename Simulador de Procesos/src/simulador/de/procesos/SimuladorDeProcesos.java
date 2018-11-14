@@ -3,7 +3,6 @@ package simulador.de.procesos;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
@@ -62,15 +61,16 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
         //Esqueleto
        
         //Creamos e inicializamos las listas de procesos
-       ArrayList<Proceso> ColaNuevo = new ArrayList();
+        ArrayList<Proceso> ColaNuevo = new ArrayList();
        
-        
         //Creamos una particion y una memoria
         Particion particion = new Particion();
         Memoria mem = new Memoria();
         
         //Creamos un asignador
         Asignador asignador = new Asignador();
+        //Creamos un planificador
+        Planificador planificador = new Planificador();
         
         //Carga de procesos
         boolean bandera = true;
@@ -107,9 +107,8 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
         //Con este bucle nos aseguramos de que el usuario ingrese correctamente el string     
         boolean flag = true;
         boolean flag2 = true;
-        String aux = ""; 
+        String aux; 
         int contador = 0;
-        int part = 0;
         while (flag){
             
             aux = JOptionPane.showInputDialog("Ingrese el tipo de memoria, 'FIJA' o 'VARIABLE'");
@@ -128,7 +127,7 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
                         ArrayList<Particion> listaux;
                         //Esto hace que se puedan ingresar particiones hasta que ocupe toda la memoria
                         while(flag2){ //bandera para saber cuando salir del mientras y no agregar mas particiones
-                        part = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el tamaño de la partición"));//variable donde guardo el tamaño de la particion ingresada
+                        int part = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el tamaño de la partición"));//variable donde guardo el tamaño de la particion ingresada
                         contador = contador + part;//contador que acumula los tamanos de la sparticiones apra saber cuando sobrepasa la memoria
                             if(contador < mem.getTamaño()){  //si mi contador es mas chico que la memoria significa que tengo espacio para crear
                                 listaux = asignador.Particionar(mem, part); //crea las particiones en la lsita de particiones
@@ -158,30 +157,65 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
        
         
 
-    //ELECCIÓN DE ALGORITMO ASIGNADOR DE HUECOS
-      String asig; 
+        //ELECCIÓN DE ALGORITMO ASIGNADOR DE HUECOS
+        String asig; 
            
-      asig = JOptionPane.showInputDialog("ingrese el tipo de asignador. bf, ff, wf");
+        asig = JOptionPane.showInputDialog("ingrese el tipo de asignador. bf, ff, wf");
           
-           switch (asig){
-                case("ff"): 
-                   asignador.setAlgoritmo(1);
-                   for(int in=0; in<=ColaNuevo.size()-1;i++){
-                   asignador.Asignar(mem, ColaNuevo.get(in));
-                   }
-                   
+        switch (asig){
+            case("ff"): 
+                asignador.setAlgoritmo(1);
                 break;
-                case ("bf"):
-                    asignador.setAlgoritmo(2);
+            case ("bf"):
+                asignador.setAlgoritmo(2);
                 break;
-                case ("wf"):
-                    asignador.setAlgoritmo(3);
+            case ("wf"):
+                asignador.setAlgoritmo(3);
                 break;
-                default:
-                    JOptionPane.showMessageDialog(null, "404: Not found inteligencia en ti, vuelve a intentar");
+            default:
+                JOptionPane.showMessageDialog(null, "404: Not found inteligencia en ti, vuelve a intentar");
                 break;
+        }
+        int asignar = Integer.parseInt(JOptionPane.showInputDialog("ingrese el planificador a usar. "
+                + "1-RR, 2-FCFS, 3-SJF, 4-SRTF"));
+        //Selección del algoritmo de planificación
+        switch (asignar){
+            case(1): 
+                planificador.setAlgorit(1);
+                break;
+            case (2):
+                planificador.setAlgorit(2);
+                break;
+            case (3):
+                planificador.setAlgorit(3);
+                break;
+            case (4):
+                planificador.setAlgorit(4);
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "404: Not found inteligencia en ti, vuelve a intentar");
+                break;
+        }
+        JOptionPane.showMessageDialog(null, "Todos los datos han sido ingresados, iniciaremos la simulación");
+        
+        //Acá arranca la simulación
+        int timer = 0;
+        boolean seguirSimulación = true;
+        //Bucle principal
+        while (seguirSimulación){
+            Iterator<Proceso> ite = ColaNuevo.iterator();
+            //Mientras que existan procesos en la cola
+            //Asigno los primeros procesos a un espacio de memoria
+            while (ite.hasNext()){
+                asignador.Asignar(mem, ite.next());
             }
-       mem.Mostrar();
+            mem.Mostrar();
+            seguirSimulación = false;
+        }
+        
+        
+        
+        JOptionPane.showMessageDialog(null, "¡Gracias, vuelva prontos!");
         
         
         /* Set the Nimbus look and feel */
@@ -208,11 +242,9 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SimuladorDeProcesos().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> {
+            new SimuladorDeProcesos().setVisible(true);
+       });
     }
 
     // Variables declaration - do not modify                     

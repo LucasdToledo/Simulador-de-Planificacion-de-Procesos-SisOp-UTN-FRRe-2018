@@ -44,6 +44,7 @@ public class Particion {
         return estado;
     }
 
+    //En teoría no se debería usar este método porque al asignar un proceso se actualiza el estado automáticamente.
     public void setEstado(boolean estado) {
         this.estado = estado;
     }

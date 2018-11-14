@@ -79,10 +79,8 @@ public class Asignador {
                              }
                         }    
                        else{ //Si es Fija
-                            if(it.next().isEstado()){
-                               if(it.next().Tamaño()>= _proceso.getTamaño()){
-                                   it.next().setProces(_proceso);
-                                }
+                            if(it.next().isEstado()&& it.next().Tamaño()>= _proceso.getTamaño()){
+                                it.next().setProces(_proceso);
                             }    
                         } 
                     }
