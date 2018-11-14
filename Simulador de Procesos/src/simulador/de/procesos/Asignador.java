@@ -55,17 +55,21 @@ public class Asignador {
     //Asigna un proceso a una partición creada
     Memoria Asignar (Memoria _mem, Proceso _proceso){
         Memoria memoria = new Memoria();
-        
-         switch (algoritmo){
-                case(1): //Algoritmos FF
-                    //Creo variables de trabajo
-                    ArrayList <Particion> listaParticionesNueva;
+        ArrayList <Particion> listaParticionesNueva;
                     listaParticionesNueva = _mem.getListaParticiones();
                     
                     //Bucle de selección de algoritmo según elección del usuario
                     Iterator<Particion> it = listaParticionesNueva.iterator();
                     int posicion = 0;//POSICION DE LA LISTA DE PARTICIONES
                     boolean banderita = true;//bandera para controlar el while
+                    boolean banderaBF = true;
+                    int resg1 = 99999;
+                    int resg2 = 99999;
+                    
+         switch (algoritmo){
+                case(1): //Algoritmos FF
+                    //Creo variables de trabajo
+                    
                     while (it.hasNext() && (banderita) ) {
                        if(_mem.isTipo()){ //Si es Variable
                             if(_mem.getListaParticiones().isEmpty()){ //La primera vez cuando no hay particiones
@@ -89,18 +93,64 @@ public class Asignador {
                            Particion partaux = it.next(); //particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
                            
                             if(partaux.isEstado()&& partaux.Tamaño()>= _proceso.getTamaño()){ //Si la particion esta vacia, y el proceso entra ahi hace lo siguiente
-                                
+                                if(banderaBF){
+                                    resg1= partaux.Tamaño();
+                                    resg2= posicion;
+                                    banderaBF = false;
+                                }
+                                else{
+                                    if(partaux.Tamaño()<resg1){
+                                        resg1= partaux.Tamaño();
+                                        resg2= posicion;
+                                    }
+                                } 
+                               
+                            }
+                        }
+                       posicion ++; //aumentamos la variable que indica en que posicion de la lista de particiones asignar el proceso
+                    }
+                    listaParticionesNueva.get(resg2).setProces(_proceso); //Pone el proceso en la lista de particiones
+                    //Pone el proceso en la lista de particiones
+                    banderita = false; //bandera para que no vuelva a entrar en el while
+                    memoria = _mem;
+                    
+                break;
+                case (2)://bf
+                    while (it.hasNext() && (banderita) ) {
+                       if(_mem.isTipo()){ //Si es Variable
+                            if(_mem.getListaParticiones().isEmpty()){ //La primera vez cuando no hay particiones
+                                it.next().CrearParticion(0, _proceso.getTamaño(), true);
+                                _mem.getListaParticiones().add(it.next());
+                                it.next().setProces(_proceso);
+                                finalparticion = it.next().getFin();
+                                cont = cont + finalparticion;
+                            }
+                            else{
+                                if((cont + _proceso.getTamaño()) <= _mem.getTamaño()){
+                                    it.next().CrearParticion(finalparticion+1, finalparticion + _proceso.getTamaño(), true);
+                                    _mem.getListaParticiones().add(it.next());
+                                    it.next().setProces(_proceso);
+                                    finalparticion = it.next().getFin();
+                                    cont = cont + _proceso.getTamaño();
+                                }
+                             }
+                        }    
+                       else{ //Si es Fija
+                           
+                           Particion partaux = it.next(); //particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
+                           
+                            if(partaux.isEstado()&& partaux.Tamaño()>= _proceso.getTamaño()){ //Si la particion esta vacia, y el proceso entra ahi hace lo siguiente
+                                //aca preguntamos si lo que tenemos en el resguardo, es de tamaño mayor a la actual
                                 listaParticionesNueva.get(posicion).setProces(_proceso); //Pone el proceso en la lista de particiones
                                 banderita = false; //bandera para que no vuelva a entrar en el while
                             }
                         }
                        posicion ++; //aumentamos la variable que indica en que posicion de la lista de particiones asignar el proceso
+                       
                     }
-                
+                    
                     memoria = _mem;
                     
-                break;
-                case (2):
                     
                 break;
                 case (3):

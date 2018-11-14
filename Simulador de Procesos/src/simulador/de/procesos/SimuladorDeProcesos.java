@@ -160,7 +160,7 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
         //ELECCIÓN DE ALGORITMO ASIGNADOR DE HUECOS
         String asig; 
            
-        asig = JOptionPane.showInputDialog("ingrese el tipo de asignador. bf, ff, wf");
+        asig = JOptionPane.showInputDialog("ingrese el tipo de asignador. ff, bf, wf");
           
         switch (asig){
             case("ff"): 
@@ -217,7 +217,7 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
         
         
         
-        JOptionPane.showMessageDialog(null, "¡Gracias, vuelva prontos!");
+        JOptionPane.showMessageDialog(null, "¡Gracias, vuelva pronto!");
         
         
         /* Set the Nimbus look and feel */
