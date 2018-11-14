@@ -64,8 +64,9 @@ public class Asignador {
                     
                     //Bucle de selección de algoritmo según elección del usuario
                     Iterator<Particion> it = listaParticionesNueva.iterator();
-                    int posicion = 0;
-                    while (it.hasNext()) {
+                    int posicion = 0;//POSICION DE LA LISTA DE PARTICIONES
+                    boolean banderita = true;
+                    while (it.hasNext() && (banderita) ) {
                        if(_mem.isTipo()){ //Si es Variable
                             if(_mem.getListaParticiones().isEmpty()){ //La primera vez cuando no hay particiones
                                 it.next().CrearParticion(0, _proceso.getTamaño(), true);
@@ -86,11 +87,14 @@ public class Asignador {
                         }    
                        else{ //Si es Fija
                            Particion partaux = it.next();
-                           posicion ++;
+                           //posicion ++;
                             if(partaux.isEstado()&& partaux.Tamaño()>= _proceso.getTamaño()){
+                                
                                 listaParticionesNueva.get(posicion).setProces(_proceso);
+                                banderita = false;
                             }
                         }
+                       posicion ++;
                     }
                 
                     memoria = _mem;
