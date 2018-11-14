@@ -65,7 +65,7 @@ public class Asignador {
                     //Bucle de selección de algoritmo según elección del usuario
                     Iterator<Particion> it = listaParticionesNueva.iterator();
                     int posicion = 0;//POSICION DE LA LISTA DE PARTICIONES
-                    boolean banderita = true;
+                    boolean banderita = true;//bandera para controlar el while
                     while (it.hasNext() && (banderita) ) {
                        if(_mem.isTipo()){ //Si es Variable
                             if(_mem.getListaParticiones().isEmpty()){ //La primera vez cuando no hay particiones
@@ -86,15 +86,15 @@ public class Asignador {
                              }
                         }    
                        else{ //Si es Fija
-                           Particion partaux = it.next();
-                           //posicion ++;
-                            if(partaux.isEstado()&& partaux.Tamaño()>= _proceso.getTamaño()){
+                           Particion partaux = it.next(); //particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
+                           
+                            if(partaux.isEstado()&& partaux.Tamaño()>= _proceso.getTamaño()){ //Si la particion esta vacia, y el proceso entra ahi hace lo siguiente
                                 
-                                listaParticionesNueva.get(posicion).setProces(_proceso);
-                                banderita = false;
+                                listaParticionesNueva.get(posicion).setProces(_proceso); //Pone el proceso en la lista de particiones
+                                banderita = false; //bandera para que no vuelva a entrar en el while
                             }
                         }
-                       posicion ++;
+                       posicion ++; //aumentamos la variable que indica en que posicion de la lista de particiones asignar el proceso
                     }
                 
                     memoria = _mem;
