@@ -163,10 +163,10 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
         asig = JOptionPane.showInputDialog("ingrese el tipo de asignador. ff, bf, wf");
           
         switch (asig){
-            case("ff"): 
+            case("bf"): 
                 asignador.setAlgoritmo(1);
                 break;
-            case ("bf"):
+            case ("ff"):
                 asignador.setAlgoritmo(2);
                 break;
             case ("wf"):

@@ -67,7 +67,7 @@ public class Asignador {
                     int resg2 = 99999;
                     
          switch (algoritmo){
-                case(1): //Algoritmos FF
+                case(1): //Algoritmos bf
                     //Creo variables de trabajo
                     
                     while (it.hasNext() && (banderita) ) {
@@ -112,13 +112,12 @@ public class Asignador {
                     if(resg1!=99999) {
                       listaParticionesNueva.get(resg2).setProces(_proceso); //Pone el proceso en la lista de particiones
                      //Pone el proceso en la lista de particiones
-                     //Pone el proceso en la lista de particiones
                      banderita = false; //bandera para que no vuelva a entrar en el while
                     }
                     memoria = _mem;
                     
                 break;
-                case (2)://bf
+                case (2)://ff
                     while (it.hasNext() && (banderita) ) {
                        if(_mem.isTipo()){ //Si es Variable
                             if(_mem.getListaParticiones().isEmpty()){ //La primera vez cuando no hay particiones
@@ -156,8 +155,52 @@ public class Asignador {
                     
                     
                 break;
-                case (3):
-                    
+                case (3): //WF
+                    while (it.hasNext() && (banderita) ) {
+                       if(_mem.isTipo()){ //Si es Variable
+                            if(_mem.getListaParticiones().isEmpty()){ //La primera vez cuando no hay particiones
+                                it.next().CrearParticion(0, _proceso.getTamaño(), true);
+                                _mem.getListaParticiones().add(it.next());
+                                it.next().setProces(_proceso);
+                                finalparticion = it.next().getFin();
+                                cont = cont + finalparticion;
+                            }
+                            else{
+                                if((cont + _proceso.getTamaño()) <= _mem.getTamaño()){
+                                    it.next().CrearParticion(finalparticion+1, finalparticion + _proceso.getTamaño(), true);
+                                    _mem.getListaParticiones().add(it.next());
+                                    it.next().setProces(_proceso);
+                                    finalparticion = it.next().getFin();
+                                    cont = cont + _proceso.getTamaño();
+                                }
+                             }
+                        }    
+                       else{ //Si es Fija
+                           Particion partaux = it.next(); //particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
+                           
+                            if(partaux.isEstado()&& partaux.Tamaño()>= _proceso.getTamaño()){ //Si la particion esta vacia, y el proceso entra ahi hace lo siguiente
+                                if(banderaBF){
+                                    resg1= partaux.Tamaño();
+                                    resg2= posicion;
+                                    banderaBF = false;
+                                }
+                                else{
+                                    if(partaux.Tamaño()>resg1){
+                                        resg1= partaux.Tamaño();
+                                        resg2= posicion;
+                                    }
+                                } 
+                               
+                            }
+                        }
+                       posicion ++; //aumentamos la variable que indica en que posicion de la lista de particiones asignar el proceso
+                    }
+                    if(resg1!=99999) {
+                      listaParticionesNueva.get(resg2).setProces(_proceso); //Pone el proceso en la lista de particiones
+                     //Pone el proceso en la lista de particiones
+                     banderita = false; //bandera para que no vuelva a entrar en el while
+                    }
+                    memoria = _mem;
                 break;
                 default:
                     JOptionPane.showMessageDialog(null, "404: Not found inteligencia en ti, vuelve a intentar");
