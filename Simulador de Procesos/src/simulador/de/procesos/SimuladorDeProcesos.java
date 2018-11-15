@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
+import Interfaz.UIEntrada;
 
 /**
  *
@@ -76,6 +77,9 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
         boolean bandera = true;
         int opcionProcesos;
         while(bandera) {
+            UIEntrada interfazEntrada;
+            interfazEntrada = new UIEntrada();
+            
             String descripcion = JOptionPane.showInputDialog("¿Cuál es el nombre del proceso?");
             int prioridad = Integer.parseInt(JOptionPane.showInputDialog("Prioridad"));
             int duracion = Integer.parseInt(JOptionPane.showInputDialog("Duración total del proceso"));
