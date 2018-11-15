@@ -161,40 +161,52 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
         String asig; 
            
         asig = JOptionPane.showInputDialog("ingrese el tipo de asignador. ff, bf, wf");
-          
-        switch (asig){
-            case("bf"): 
-                asignador.setAlgoritmo(1);
-                break;
-            case ("ff"):
-                asignador.setAlgoritmo(2);
-                break;
-            case ("wf"):
-                asignador.setAlgoritmo(3);
-                break;
-            default:
-                JOptionPane.showMessageDialog(null, "404: Not found inteligencia en ti, vuelve a intentar");
-                break;
+        boolean flagAlgoritmos = true;
+        while (flagAlgoritmos){
+            switch (asig){
+                case("bf"): 
+                    asignador.setAlgoritmo(1);
+                    flagAlgoritmos = false;
+                    break;
+                case ("ff"):
+                    asignador.setAlgoritmo(2);
+                    flagAlgoritmos = false;
+                    break;
+                case ("wf"):
+                    asignador.setAlgoritmo(3);
+                    flagAlgoritmos = false;
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "404: Not found inteligencia en ti, vuelve a intentar");
+                    break;
+            }
         }
         int asignar = Integer.parseInt(JOptionPane.showInputDialog("ingrese el planificador a usar. "
                 + "1-RR, 2-FCFS, 3-SJF, 4-SRTF"));
         //Selección del algoritmo de planificación
-        switch (asignar){
-            case(1): 
-                planificador.setAlgorit(1);
-                break;
-            case (2):
-                planificador.setAlgorit(2);
-                break;
-            case (3):
-                planificador.setAlgorit(3);
-                break;
-            case (4):
-                planificador.setAlgorit(4);
-                break;
-            default:
-                JOptionPane.showMessageDialog(null, "404: Not found inteligencia en ti, vuelve a intentar");
-                break;
+        flagAlgoritmos = true;
+        while (flagAlgoritmos){
+            switch (asignar){
+                case(1): 
+                    planificador.setAlgorit(1);
+                    flagAlgoritmos = false;
+                    break;
+                case (2):
+                    planificador.setAlgorit(2);
+                    flagAlgoritmos = false;
+                    break;
+                case (3):
+                    planificador.setAlgorit(3);
+                    flagAlgoritmos = false;
+                    break;
+                case (4):
+                    planificador.setAlgorit(4);
+                    flagAlgoritmos = false;
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "404: Not found inteligencia en ti, vuelve a intentar");
+                    break;
+            }
         }
         JOptionPane.showMessageDialog(null, "Todos los datos han sido ingresados, iniciaremos la simulación");
         
