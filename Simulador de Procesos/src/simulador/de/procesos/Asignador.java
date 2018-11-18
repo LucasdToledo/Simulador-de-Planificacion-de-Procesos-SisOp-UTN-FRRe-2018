@@ -127,15 +127,15 @@ public class Asignador {
                            while (it.hasNext() && (banderita) ) {
                                 Particion partaux = it.next();
                                 Particion Nuevaparticion = new Particion();//particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
-                                if(partaux.isEstado()&& partaux.Tamaño()>= _proceso.getTamaño()){
-                                       memdisp = _mem.getTamaño()-_proceso.getTamaño();
-                                       partaux.setFin(_proceso.getTamaño());
+                                if(partaux.isEstado()&& partaux.Tamaño()>= _proceso.getTamaño()){//pregunta si la particion de 1024 esta vacia y si entra el proceso
+                                       memdisp = _mem.getTamaño()-_proceso.getTamaño(); //memdisp posee la resta entre 1024 y el tamaño del proceso
+                                       partaux.setFin(_proceso.getTamaño()); //modifico el tamaño de la particion original
                                        
-                                       listaParticionesNueva.get(posicion).setProces(_proceso);
-                                       Nuevaparticion.CrearParticion(partaux.getFin()+1, memdisp, true);
-                                       listaParticionesNueva.add(Nuevaparticion);
-                                       listaParticionesNueva.get(posicion).setProces(_proceso);
-                                       banderita = false;
+                                       listaParticionesNueva.get(posicion).setProces(_proceso); //meto el proceso en la particion
+                                       Nuevaparticion.CrearParticion(partaux.getFin()+1, memdisp, true); //creo una nueva particion con el sobrante de memoria
+                                       listaParticionesNueva.add(Nuevaparticion); //añado esa particion a la lista de particiones
+                                       
+                                       banderita = false;//para que no vuelva a entrar al while
                                 } 
                                posicion ++;        
                              }        
