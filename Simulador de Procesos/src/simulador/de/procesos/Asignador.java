@@ -65,8 +65,10 @@ public class Asignador {
                     int posicion = 0;//POSICION DE LA LISTA DE PARTICIONES
                     boolean banderita = true;//bandera para controlar el while, para que una vez que entre el proceso no siga ejecutandose
                     boolean banderaBF = true;
+                    boolean banderaV = true;
                     int resg1 = 99999;
                     int resg2 = 99999;
+                    int memdisp = 0;
                     
          switch (algoritmo){
                 case(1): //Algoritmos bf
@@ -120,28 +122,26 @@ public class Asignador {
                     
                 break;
                 case (2)://ff
-                    while (it.hasNext() && (banderita) ) {
+                   
                        if(_mem.isTipo()){ //Si es Variable
-                           
-                            if(_mem.getListaParticiones().isEmpty()){ //La primera vez cuando no hay particiones
-                                it.next().CrearParticion(0, _proceso.getTamaño(), true);
-                                _mem.getListaParticiones().add(it.next());
-                                it.next().setProces(_proceso);
-                                finalparticion = it.next().getFin();
-                                cont = cont + finalparticion;
-                            }
-                            else{
-                                if((cont + _proceso.getTamaño()) <= _mem.getTamaño()){
-                                    it.next().CrearParticion(finalparticion+1, finalparticion + _proceso.getTamaño(), true);
-                                    _mem.getListaParticiones().add(it.next());
-                                    it.next().setProces(_proceso);
-                                    finalparticion = it.next().getFin();
-                                    cont = cont + _proceso.getTamaño();
-                                }
-                             }
+                           while (it.hasNext() && (banderita) ) {
+                                Particion partaux = it.next();
+                                Particion Nuevaparticion = new Particion();//particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
+                                if(partaux.isEstado()&& partaux.Tamaño()>= _proceso.getTamaño()){
+                                       memdisp = _mem.getTamaño()-_proceso.getTamaño();
+                                       partaux.setFin(_proceso.getTamaño());
+                                       
+                                       listaParticionesNueva.get(posicion).setProces(_proceso);
+                                       Nuevaparticion.CrearParticion(partaux.getFin()+1, memdisp, true);
+                                       listaParticionesNueva.add(Nuevaparticion);
+                                       listaParticionesNueva.get(posicion).setProces(_proceso);
+                                       banderita = false;
+                                } 
+                               posicion ++;        
+                             }        
                         }    
                        else{ //Si es Fija
-                           
+                            while (it.hasNext() && (banderita) ) {
                            Particion partaux = it.next(); //particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
                            
                             if(partaux.isEstado()&& partaux.Tamaño()>= _proceso.getTamaño()){ //Si la particion esta vacia, y el proceso entra ahi hace lo siguiente
@@ -149,8 +149,9 @@ public class Asignador {
                                 listaParticionesNueva.get(posicion).setProces(_proceso); //Pone el proceso en la lista de particiones
                                 banderita = false; //bandera para que no vuelva a entrar en el while
                             }
+                            posicion ++; //aumentamos la variable que indica en que posicion de la lista de particiones asignar el proceso
+                       
                         }
-                       posicion ++; //aumentamos la variable que indica en que posicion de la lista de particiones asignar el proceso
                        
                     }
                     

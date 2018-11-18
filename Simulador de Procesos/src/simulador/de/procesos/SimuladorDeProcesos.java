@@ -119,7 +119,11 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
             aux = aux.toUpperCase();
             switch (aux){
                 case("VARIABLE"): 
+                    ArrayList<Particion> listauxv;
                     mem.CrearMemoria(tam,true);
+                    int partv = mem.getTamaño();
+                    listauxv = asignador.Particionar(mem, partv); //crea las particiones en la lsita de particiones
+                    mem.setListaParticiones(listauxv);
                     flag =false;
                 break;
                 case ("FIJA"):
@@ -227,6 +231,8 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
                 pro = ite.next();
                 asignador.Asignar(mem, pro);
             }
+            
+          //aca va el gatillo de juan, que pasa a FASE 2 en variable
             mem.Mostrar();
             seguirSimulación = false;
         }

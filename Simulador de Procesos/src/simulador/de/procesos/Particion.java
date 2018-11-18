@@ -62,7 +62,7 @@ public class Particion {
     //Cambiamos el comportamiento de clase indicando la manera de mostrar los datos si se usa un Print
     @Override
     public String toString() {
-        return "Tamaño="+(fin-inicio) + " Estado =" + estado;
+        return "Tamaño="+(fin-inicio) + " Estado= " + estado + "Proceso= " + proces;
     }
    
 }
