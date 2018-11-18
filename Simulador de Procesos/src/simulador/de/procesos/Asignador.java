@@ -56,19 +56,21 @@ public class Asignador {
     Memoria Asignar (Memoria _mem, Proceso _proceso){
         Memoria memoria = new Memoria();
         ArrayList <Particion> listaParticionesNueva;
-                    listaParticionesNueva = _mem.getListaParticiones();
+                    listaParticionesNueva = _mem.getListaParticiones();//auxiliar de la lista de particion, creada porque saltaba errores. 
                     
                     //Bucle de selección de algoritmo según elección del usuario
                     Iterator<Particion> it = listaParticionesNueva.iterator();
+                    
+                    //crea variables que utilizaremos mas abajo. 
                     int posicion = 0;//POSICION DE LA LISTA DE PARTICIONES
-                    boolean banderita = true;//bandera para controlar el while
+                    boolean banderita = true;//bandera para controlar el while, para que una vez que entre el proceso no siga ejecutandose
                     boolean banderaBF = true;
                     int resg1 = 99999;
                     int resg2 = 99999;
                     
          switch (algoritmo){
                 case(1): //Algoritmos bf
-                    //Creo variables de trabajo
+                    
                     
                     while (it.hasNext() && (banderita) ) {
                        if(_mem.isTipo()){ //Si es Variable
@@ -93,13 +95,13 @@ public class Asignador {
                            Particion partaux = it.next(); //particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
                            
                             if(partaux.isEstado()&& partaux.Tamaño()>= _proceso.getTamaño()){ //Si la particion esta vacia, y el proceso entra ahi hace lo siguiente
-                                if(banderaBF){
+                                if(banderaBF){//aca solo va a entrar la primera vez, es para darnos cuenta de que encontro por lo menos 1 lugar disponible
                                     resg1= partaux.Tamaño();
                                     resg2= posicion;
                                     banderaBF = false;
                                 }
                                 else{
-                                    if(partaux.Tamaño()<resg1){
+                                    if(partaux.Tamaño()<resg1){//aca entrara cada vez que encuentre un lugar mejor, es decir, mas ajustado-
                                         resg1= partaux.Tamaño();
                                         resg2= posicion;
                                     }
@@ -109,7 +111,7 @@ public class Asignador {
                         }
                        posicion ++; //aumentamos la variable que indica en que posicion de la lista de particiones asignar el proceso
                     }
-                    if(resg1!=99999) {
+                    if(resg1!=99999) {//aca entra solo si encontro un lugar.
                       listaParticionesNueva.get(resg2).setProces(_proceso); //Pone el proceso en la lista de particiones
                      //Pone el proceso en la lista de particiones
                      banderita = false; //bandera para que no vuelva a entrar en el while
@@ -120,6 +122,7 @@ public class Asignador {
                 case (2)://ff
                     while (it.hasNext() && (banderita) ) {
                        if(_mem.isTipo()){ //Si es Variable
+                           
                             if(_mem.getListaParticiones().isEmpty()){ //La primera vez cuando no hay particiones
                                 it.next().CrearParticion(0, _proceso.getTamaño(), true);
                                 _mem.getListaParticiones().add(it.next());
@@ -185,7 +188,7 @@ public class Asignador {
                                     banderaBF = false;
                                 }
                                 else{
-                                    if(partaux.Tamaño()>resg1){
+                                    if(partaux.Tamaño()>resg1){//aca preguntamos si la particion libre contiene un lugar aun mayor al que estaba por entrar. 
                                         resg1= partaux.Tamaño();
                                         resg2= posicion;
                                     }
@@ -208,6 +211,6 @@ public class Asignador {
             }
         return memoria;
     }
-    //Acá van los algoritmos BESTFIT, WORSTFIT Y FIRSTFIT como métodos
+    
         
 }
