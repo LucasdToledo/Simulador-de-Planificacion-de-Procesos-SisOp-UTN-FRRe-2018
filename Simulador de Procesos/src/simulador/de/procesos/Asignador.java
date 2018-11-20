@@ -134,12 +134,15 @@ public class Asignador {
                                 Particion partaux = it.next();
                                 Particion Nuevaparticion = new Particion();//particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
                                 if(partaux.isEstado()&& partaux.Tamaño()> _proceso.getTamaño()){//pregunta si la particion de 1024 esta vacia y si entra el proceso
-                                       cont = cont + _proceso.getTamaño(); //en el atributo contador, acumulo los tamaños de los procesos
-                                       
+                                       //NODARBOLA A ESTO.cont = cont + _proceso.getTamaño(); //en el atributo contador, acumulo los tamaños de los procesos
+                                      cont=partaux.Tamaño();
                                        partaux.setFin(partaux.getInicio()+_proceso.getTamaño()); //modifico el tamaño de la particion original
                                        
                                        listaParticionesNueva.get(posicion).setProces(_proceso); //meto el proceso en la particion
-                                       Nuevaparticion.CrearParticion(partaux.getFin(),_mem.getTamaño()-cont , true); //creo una nueva particion con el sobrante de memoria
+                                       
+                                       
+                                       Nuevaparticion.CrearParticion(partaux.getFin(),cont - _proceso.getTamaño() , true); //creo una nueva particion con el sobrante de memoria
+                                       
                                        listaParticionesNueva.add(Nuevaparticion); //añado esa particion a la lista de particiones
                                        
                                        banderita = false;//para que no vuelva a entrar al while
