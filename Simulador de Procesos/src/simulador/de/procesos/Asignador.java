@@ -102,13 +102,14 @@ public class Asignador {
                     
                      
                         if(_mem.isTipo()){ //Si es Variable
-                            while (it3.hasNext() && (banderita) ){
+                            while (it3.hasNext() /*&& (banderita) */){
                            Particion partaux = it3.next(); //particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
                            
-                            if(partaux.isEstado()&& partaux.Tamaño()>= _proceso.getTamaño()){ //Si la particion esta vacia, y el proceso entra ahi hace lo siguiente
+                            if(partaux.isEstado()&& ( partaux.Tamaño()>= _proceso.getTamaño())){ //Si la particion esta vacia, y el proceso entra ahi hace lo siguiente
                                 if(banderaBF){//aca solo va a entrar la primera vez, es para darnos cuenta de que encontro por lo menos 1 lugar disponible
                                     resg1= partaux.Tamaño();
                                     resg2= posicion;
+                                    resg3 = partaux;
                                     banderaBF = false;
                                 }
                                 else{
@@ -125,15 +126,15 @@ public class Asignador {
                             //--------------------------- SUPONGATRES QUE FUNCIONA
                           if(resg1!=99999) {  
                             Particion Nuevaparticion = new Particion();
-                            cont=resg3.Tamaño();
+                                        cont=resg3.Tamaño();
                                        resg3.setFin(resg3.getInicio()+_proceso.getTamaño()); //modifico el tamaño de la particion original
                                        
-                                       listaParticionesNueva.get(posicion).setProces(_proceso); //meto el proceso en la particion
+                                       listaParticionesNueva.get(resg2).setProces(_proceso); //meto el proceso en la particion
                                        
                                        
                                        Nuevaparticion.CrearParticion(resg3.getFin(),cont - _proceso.getTamaño() , true); //creo una nueva particion con el sobrante de memoria
                                        
-                                       listaParticionesNueva.add(posicion+1,Nuevaparticion); //añado esa particion a la lista de particiones
+                                       listaParticionesNueva.add(resg2+1,Nuevaparticion); //añado esa particion a la lista de particiones
                                        
                                        banderita = false;
                           }
@@ -218,30 +219,46 @@ public class Asignador {
                     
                 break;
                 case (3): //WF
-                    if(_mem.isTipo()){ //Si es Variable
-                           while (it.hasNext() && (banderita) ) {
-                                Particion partaux = it.next();
-                                Particion Nuevaparticion = new Particion();//particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
-                                if(partaux.isEstado()&& partaux.Tamaño()> _proceso.getTamaño()){//pregunta si la particion de 1024 esta vacia y si entra el proceso
-                                       //NODARBOLA A ESTO.cont = cont + _proceso.getTamaño(); //en el atributo contador, acumulo los tamaños de los procesos
-                                      cont=partaux.Tamaño();
-                                       partaux.setFin(partaux.getInicio()+_proceso.getTamaño()); //modifico el tamaño de la particion original
-                                       
-                                       listaParticionesNueva.get(posicion).setProces(_proceso); //meto el proceso en la particion
-                                       
-                                       
-                                       Nuevaparticion.CrearParticion(partaux.getFin(),cont - _proceso.getTamaño() , true); //creo una nueva particion con el sobrante de memoria
-                                       
-                                       listaParticionesNueva.add(posicion+1,Nuevaparticion); //añado esa particion a la lista de particiones
-                                       
-                                       banderita = false;//para que no vuelva a entrar al while
+                   if(_mem.isTipo()){ //Si es Variable
+                            while (it3.hasNext() /*&& (banderita) */){
+                           Particion partaux = it3.next(); //particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
+                           
+                            if(partaux.isEstado()&& ( partaux.Tamaño()>= _proceso.getTamaño())){ //Si la particion esta vacia, y el proceso entra ahi hace lo siguiente
+                                if(banderaBF){//aca solo va a entrar la primera vez, es para darnos cuenta de que encontro por lo menos 1 lugar disponible
+                                    resg1= partaux.Tamaño();
+                                    resg2= posicion;
+                                    resg3 = partaux;
+                                    banderaBF = false;
                                 }
-                                 if(partaux.isEstado()&& partaux.Tamaño()== _proceso.getTamaño()){ //si la particion esta vacia y el proceso entra ahi
-                                    listaParticionesNueva.get(posicion).setProces(_proceso); //mete el proceso en la particion
-                                }
-                               posicion ++;        
-                             }        
-                        }    
+                                else{
+                                    if(partaux.Tamaño()>resg1){//aca entrara cada vez que encuentre un lugar mejor, es decir, mas ajustado-
+                                        resg1= partaux.Tamaño();
+                                        resg2= posicion;
+                                        resg3 = partaux;
+                                    }
+                                } 
+                               
+                            }
+                            posicion ++; //aumentamos la variable que indica en que posicion de la lista de particiones asignar el proceso
+                           }
+                            //--------------------------- SUPONGATRES QUE FUNCIONA
+                          if(resg1!=99999) {  
+                            Particion Nuevaparticion = new Particion();
+                                        cont=resg3.Tamaño();
+                                       resg3.setFin(resg3.getInicio()+_proceso.getTamaño()); //modifico el tamaño de la particion original
+                                       
+                                       listaParticionesNueva.get(resg2).setProces(_proceso); //meto el proceso en la particion
+                                       
+                                       
+                                       Nuevaparticion.CrearParticion(resg3.getFin(),cont - _proceso.getTamaño() , true); //creo una nueva particion con el sobrante de memoria
+                                       
+                                       listaParticionesNueva.add(resg2+1,Nuevaparticion); //añado esa particion a la lista de particiones
+                                       
+                                       banderita = false;
+                          }
+                           //------------------------------- //Podria no funcar al angau anda
+                                   
+                        } 
                        else{ //Si es Fija
                            while (it.hasNext() && (banderita) ){
                            Particion partaux = it.next(); //particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
