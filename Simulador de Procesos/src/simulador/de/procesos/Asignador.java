@@ -69,6 +69,30 @@ public class Asignador {
                     int resg1 = 99999;
                     int resg2 = 99999;
                     int memdisp = 0;
+                   
+                    //Este codigo verifica si hay particiones contiguas libres en memoria VARIABLE para juntarlas
+                    if(_mem.isTipo()){ //Si es Variable
+                        boolean flag = true; //Bandera para saber cuando es la primera vez que entra al codigo
+                        Particion resguardo = null; //resguardo de la particion
+                        int contpos =0; //contador para saber la posicion de la particion de memoria
+                        while (it.hasNext()) { //Mientras que no se acabe la memoria
+                            Particion partaux = it.next(); //particion auxliar en la que estoy parado actualmente
+                            if(flag){ //si es la primera vez que entra, no hace nada, solo el resguardo
+                               flag = false;
+                            }
+                            else{
+                               if(resguardo.isEstado() && partaux.isEstado()){ //si la particion anterior estuvo libre y la actual tambien
+                                 partaux.setInicio(resguardo.getInicio()); //modificamos el inicio de la aprticion actual con el inicio de la particion anterior
+                                 listaParticionesNueva.remove(contpos); // eliminamos la particion anterior, la cual sabemos la posicion gracias al contador
+                                 contpos = contpos -1; // como eliminamos una particion, actualizamos el contador
+                                 listaParticionesNueva.add(contpos, partaux); //añadimos la particion actual a la lista de particiones original
+                               }
+                               
+                            } 
+                         resguardo = it.next();//resguardamos la particion actual antes de que termine el ciclo while
+                         contpos= contpos +1;    //actualizamos el contador con la posicion del siguiente nodo   
+                        }
+                    }
                     
          switch (algoritmo){
                 case(1): //Algoritmos bf
@@ -229,6 +253,9 @@ public class Asignador {
             }
         return memoria;
     }
+}
+    
+
     
         
-}
+
