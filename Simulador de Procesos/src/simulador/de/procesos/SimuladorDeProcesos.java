@@ -74,28 +74,9 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
         Planificador planificador = new Planificador();
         
         //Carga de procesos
-        boolean bandera = true;
-        int opcionProcesos;
-        while(bandera) {
-            UIEntrada interfazEntrada;
-            interfazEntrada = new UIEntrada();
-            
-            String descripcion = JOptionPane.showInputDialog("¿Cuál es el nombre del proceso?");
-            int prioridad = Integer.parseInt(JOptionPane.showInputDialog("Prioridad"));
-            int duracion = Integer.parseInt(JOptionPane.showInputDialog("Duración total del proceso"));
-            int tarribo = Integer.parseInt(JOptionPane.showInputDialog("Tiempo de arribo"));
-            int tam = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el tamaño"));
-            Proceso nuevoproceso = new Proceso();
-            nuevoproceso.CrearProceso(prioridad, duracion, descripcion, tarribo, tam);
-            ColaNuevo.add(nuevoproceso);
-            opcionProcesos = JOptionPane.showConfirmDialog(null, "¿Desea crear otro proceso?", "Alerta!", JOptionPane.YES_NO_OPTION);
-            if (opcionProcesos == 1) {
-                bandera = false;
-            }
-        }
-        //Aca va el algoritmo que ordena la COLANUEVO por Tiempo de Arribo
-        Collections.sort(ColaNuevo, (Proceso p1, Proceso p2) -> new Integer(p1.getTarribo()).compareTo(p2.getTarribo()));
-
+        
+        
+    
         Iterator<Proceso> it = ColaNuevo.iterator();
         String enLista = "";
         int i = 0;

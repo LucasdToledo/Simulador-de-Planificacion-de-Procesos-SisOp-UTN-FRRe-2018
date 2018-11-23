@@ -6,8 +6,10 @@
 package Interfaz;
 
 import java.awt.Color;
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.table.DefaultTableModel;
+import simulador.de.procesos.Proceso;
 
 /**
  *
@@ -15,11 +17,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class UIEntrada extends javax.swing.JFrame {
     int Contador;
+    public ArrayList<Proceso> colaProcesos;
 
     /**
      * Creates new form UIEntrada
      */
     public UIEntrada() {
+        colaProcesos = new ArrayList();
         this.Contador = 0;
         initComponents();
         miTabla.setBackground(Color.white);
@@ -265,7 +269,7 @@ public class UIEntrada extends javax.swing.JFrame {
 
     private void botonAgregarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarEntradaActionPerformed
         // TODO add your handling code here:
-            Ingresar();
+        Ingresar();
     }//GEN-LAST:event_botonAgregarEntradaActionPerformed
 
     private void botonInicialEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInicialEntradaActionPerformed
@@ -281,11 +285,6 @@ public class UIEntrada extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -293,29 +292,25 @@ public class UIEntrada extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UIEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UIEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UIEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(UIEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UIEntrada().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new UIEntrada().setVisible(true);
         });
     }
+    
+
     public void Ingresar(){ //Ingresar proceso a la tabla
     DefaultTableModel modelo=(DefaultTableModel) miTabla.getModel();
-
     Contador ++;
     Object[] tabla = new Object[6];
+    //Creo un nuevo proceso con los datos ingresados
+    Proceso proceso;
+    proceso = new Proceso();
     tabla[0]= Contador;
     tabla[1]= NOM.getText();
     tabla[2]= cicloES.getText();
@@ -325,6 +320,12 @@ public class UIEntrada extends javax.swing.JFrame {
     //tabla[6]= "Listo";
     modelo.addRow(tabla);
     //miTabla.setModel(modelo);
+    proceso.CrearProceso(Integer.parseInt(ciclodeCPU.getText()), Integer.parseInt(cicloES.getText()), NOM.getText(), Integer.parseInt(tarribo.getText()), Integer.parseInt(tam.getText()));
+    //Guardo el nuevo proceso en la cola de procesos
+    colaProcesos.add(proceso);
+    //Ordeno los procesos por tiempo de arribo en la lista
+    Collections.sort(colaProcesos, (Proceso p1, Proceso p2) -> new Integer(p1.getTarribo()).compareTo(p2.getTarribo()));
+    //Pongo en blanco todos los espacios para que se pueda ingresar un nuevo proceso
     NOM.setText(null);
     NOM.grabFocus();
     cicloES.setText(null);
@@ -336,6 +337,7 @@ public class UIEntrada extends javax.swing.JFrame {
     ciclodeCPU.setText(null);
     ciclodeCPU.grabFocus();
 }
+    
     public void Iniciar(){ //Inicia la secuencia de procesos
         NOM.setVisible(false);
         cicloES.setVisible(false);
