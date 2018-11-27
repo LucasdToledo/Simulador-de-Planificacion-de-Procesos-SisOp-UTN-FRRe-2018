@@ -343,14 +343,14 @@ public class UIEntrada extends javax.swing.JFrame {
     proceso = new Proceso();
     tabla[0]= Contador;
     tabla[1]= NOM.getText();
-    tabla[2]= cicloES.getText();
+    tabla[2]= tam.getText();
     tabla[3]= tarribo.getText();
-    tabla[4]=tam.getText();
-    tabla[5]=ciclodeCPU.getText();
+    tabla[4]= cicloES.getText();
+    tabla[5]= ciclodeCPU.getText();
     //tabla[6]= "Listo";
     modelo.addRow(tabla);
     //miTabla.setModel(modelo);
-    proceso.CrearProceso(Integer.parseInt(ciclodeCPU.getText()), Integer.parseInt(cicloES.getText()), NOM.getText(), Integer.parseInt(tarribo.getText()), Integer.parseInt(tam.getText()));
+    proceso.CrearProceso(NOM.getText(), Integer.parseInt(tarribo.getText()), Integer.parseInt(tam.getText()), Integer.parseInt(cicloES.getText()), Integer.parseInt(ciclodeCPU.getText()));
     
     //Guardo el nuevo proceso en la cola de procesos
     colaProcesos.add(proceso);

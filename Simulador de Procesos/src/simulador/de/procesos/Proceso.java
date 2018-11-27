@@ -6,7 +6,8 @@ import java.util.ArrayList;
 public class Proceso {
     private int numero; 
     private int prioridad;
-    private ArrayList rafaga; //Ciclos de CPU y E-S
+    private int cicloES; //Ciclos de CPU y E-S
+    private int cicloCPU;
     private int duracion;
     private String descripcion;
     private int tarribo;
@@ -28,12 +29,20 @@ public class Proceso {
         this.prioridad = prioridad;
     }
 
-    public ArrayList getRafaga() {
-        return rafaga;
+    public int getCicloES() {
+        return cicloES;
     }
 
-    public void setRafaga(ArrayList rafaga) {
-        this.rafaga = rafaga;
+    public void setCicloES(int cicloES) {
+        this.cicloES = cicloES;
+    }
+
+    public int getCicloCPU() {
+        return cicloCPU;
+    }
+
+    public void setCicloCPU(int cicloCPU) {
+        this.cicloCPU = cicloCPU;
     }
 
     public int getDuracion() {
@@ -68,13 +77,13 @@ public class Proceso {
         this.tamaño = tamaño;
     }
     
-    public void CrearProceso(int _prior,int _dur,String _des,int _tarribo,int _tam){
-        prioridad = _prior;
-        duracion = _dur;
+    public void CrearProceso(String _des,int _tarribo,int _tam, int _es, int _cpu){
+        cicloES = _es;
+        cicloCPU = _cpu;
         descripcion = _des;
         tarribo = _tarribo;
         tamaño = _tam;
-        //agregar los que faltan para los planificadores
+        duracion = cicloES+cicloCPU;
     }
 
     @Override
