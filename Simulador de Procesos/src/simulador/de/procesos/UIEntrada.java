@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaz;
+package simulador.de.procesos;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import simulador.de.procesos.Proceso;
 
 /**
  *
@@ -18,6 +19,9 @@ import simulador.de.procesos.Proceso;
 public class UIEntrada extends javax.swing.JFrame {
     int Contador;
     public ArrayList<Proceso> colaProcesos;
+    public ArrayList<Particion> mem;
+    public Asignador asignador;
+    public Planificador planificador;
 
     /**
      * Creates new form UIEntrada
@@ -278,7 +282,7 @@ public class UIEntrada extends javax.swing.JFrame {
     }//GEN-LAST:event_botonInicialEntradaActionPerformed
 
     private void boxParticionamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxParticionamientoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_boxParticionamientoActionPerformed
 
     /**
@@ -321,8 +325,10 @@ public class UIEntrada extends javax.swing.JFrame {
     modelo.addRow(tabla);
     //miTabla.setModel(modelo);
     proceso.CrearProceso(Integer.parseInt(ciclodeCPU.getText()), Integer.parseInt(cicloES.getText()), NOM.getText(), Integer.parseInt(tarribo.getText()), Integer.parseInt(tam.getText()));
+    
     //Guardo el nuevo proceso en la cola de procesos
     colaProcesos.add(proceso);
+    
     //Ordeno los procesos por tiempo de arribo en la lista
     Collections.sort(colaProcesos, (Proceso p1, Proceso p2) -> new Integer(p1.getTarribo()).compareTo(p2.getTarribo()));
     //Pongo en blanco todos los espacios para que se pueda ingresar un nuevo proceso
@@ -346,6 +352,18 @@ public class UIEntrada extends javax.swing.JFrame {
         ciclodeCPU.setVisible(false);
         botonAgregarEntrada.setVisible(false);
         botonInicialEntrada.setVisible(false);
+        
+        //Mostramos los procesos cargados en la lista
+        Iterator<Proceso> it = colaProcesos.iterator();
+        String enLista = "";
+        int i = 0;
+        while (it.hasNext()) {
+            enLista = enLista +"\n"+ "Proceso: "+ i + "  " +it.next();
+            i++;
+        } 
+        JOptionPane.showMessageDialog(null,enLista);
+        JOptionPane.showMessageDialog(null,null);
+        JOptionPane.showMessageDialog(null,null);
 }
     public void Borrar(int c){ //Elimina los registros de la tabla procesos
         miTabla.setValueAt(0,c,0);

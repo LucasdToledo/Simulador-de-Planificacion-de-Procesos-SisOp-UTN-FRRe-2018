@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-import Interfaz.UIEntrada;
 
 /**
  *
@@ -76,7 +75,7 @@ public class SimuladorDeProcesos extends javax.swing.JFrame {
         //Carga de procesos
         
         
-    
+        
         Iterator<Proceso> it = ColaNuevo.iterator();
         String enLista = "";
         int i = 0;
