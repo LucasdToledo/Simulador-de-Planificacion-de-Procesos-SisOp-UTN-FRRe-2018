@@ -22,6 +22,7 @@ public class UIEntrada extends javax.swing.JFrame {
     public Memoria mem;
     public Asignador asignador;
     public Planificador planificador;
+    public boolean tipoMemoria;
 
     /**
      * Creates new form UIEntrada
@@ -294,17 +295,22 @@ public class UIEntrada extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAgregarEntradaActionPerformed
 
     private void botonInicialEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInicialEntradaActionPerformed
-       
-        Iniciar();
-        UIMemoria a = new UIMemoria();
-       a.setVisible(true);
+       Iniciar();
+       if (tipoMemoria ==true){ 
+           UIFinal b = new UIFinal();
+           b.setVisible(true);
+       }
+       else{
+           UIMemoria a = new UIMemoria();
+           a.setVisible(true);  
+       }
        this.setVisible(false);
     }//GEN-LAST:event_botonInicialEntradaActionPerformed
 
     private void boxParticionamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxParticionamientoActionPerformed
         String algoritmoParticionamiento = (String) boxParticionamiento.getSelectedItem();
-        JOptionPane.showMessageDialog(null,algoritmoParticionamiento);
-        
+        algoritmoParticionamiento = algoritmoParticionamiento.toUpperCase();
+        tipoMemoria = "VARIABLE".equals(algoritmoParticionamiento);
     }//GEN-LAST:event_boxParticionamientoActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -388,7 +394,6 @@ public class UIEntrada extends javax.swing.JFrame {
             i++;
         } 
         JOptionPane.showMessageDialog(null,enLista);
-        JOptionPane.showMessageDialog(null,null);
 }
     public void Borrar(int c){ //Elimina los registros de la tabla procesos
         miTabla.setValueAt(0,c,0);
