@@ -2,7 +2,6 @@
 package simulador.de.procesos;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 

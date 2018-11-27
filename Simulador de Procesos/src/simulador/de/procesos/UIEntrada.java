@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class UIEntrada extends javax.swing.JFrame {
     int Contador;
     public ArrayList<Proceso> colaProcesos;
-    public ArrayList<Particion> mem;
+    public Memoria mem;
     public Asignador asignador;
     public Planificador planificador;
 
@@ -282,6 +282,8 @@ public class UIEntrada extends javax.swing.JFrame {
     }//GEN-LAST:event_botonInicialEntradaActionPerformed
 
     private void boxParticionamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxParticionamientoActionPerformed
+        String algoritmoParticionamiento = (String) boxParticionamiento.getSelectedItem();
+        JOptionPane.showMessageDialog(null,algoritmoParticionamiento);
         
     }//GEN-LAST:event_boxParticionamientoActionPerformed
 
@@ -362,7 +364,6 @@ public class UIEntrada extends javax.swing.JFrame {
             i++;
         } 
         JOptionPane.showMessageDialog(null,enLista);
-        JOptionPane.showMessageDialog(null,null);
         JOptionPane.showMessageDialog(null,null);
 }
     public void Borrar(int c){ //Elimina los registros de la tabla procesos
