@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Sole
  */
 public class UIMemoria extends javax.swing.JFrame {
+    int Cont = 0;
 
     /**
      * Creates new form UIMemoria
@@ -37,8 +38,7 @@ public class UIMemoria extends javax.swing.JFrame {
         agregarTam = new javax.swing.JButton();
         label2 = new java.awt.Label();
         label3 = new java.awt.Label();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        Memor = new javax.swing.JTextArea();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,11 +54,11 @@ public class UIMemoria extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Particón"
+                "Lugar", "Particón"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -89,10 +89,6 @@ public class UIMemoria extends javax.swing.JFrame {
         label3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label3.setText("Total de Memoria");
 
-        Memor.setColumns(20);
-        Memor.setRows(5);
-        jScrollPane2.setViewportView(Memor);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,15 +106,12 @@ public class UIMemoria extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
                             .addComponent(SiguienteMem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField1)
+                            .addComponent(label3, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,8 +128,8 @@ public class UIMemoria extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(SiguienteMem)
@@ -194,13 +187,32 @@ public class UIMemoria extends javax.swing.JFrame {
             }
         });
     }
+    public  void IngresarParti() {  
+        DefaultTableModel modelo=(DefaultTableModel) tablaParti.getModel();
+    Cont ++; 
+    Object[] tabla = new Object[6];
+  
+      tabla[0]= Cont;
+      tabla[1]= tamParti.getText()
+    
+    modelo.addRow(tabla);
+    }
+    
+    
+    public void Borrar(int c){
+        tablaParti.setValueAt(0,c,0);
+        tablaParti.setValueAt("0",c,1);
+        tablaParti.setValueAt("0",c,2);
+        tablaParti.setValueAt("0",c,3);
+        tablaParti.setValueAt("******",c,4);
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea Memor;
     private javax.swing.JButton SiguienteMem;
     private javax.swing.JButton agregarTam;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
@@ -208,14 +220,7 @@ public class UIMemoria extends javax.swing.JFrame {
     private javax.swing.JTextField tamParti;
     // End of variables declaration//GEN-END:variables
 
-    private void IngresarParti() { 
-    DefaultTableModel modelo=(DefaultTableModel) tablaParti.getModel();
-    
-    Object[] tabla = new Object[6];
-  
-      tabla[0]= tamParti.getText();
     
     
-    modelo.addRow(tabla);//To change body of generated methods, choose Tools | Templates.
-    }
 }
+
