@@ -193,7 +193,7 @@ public class UIMemoria extends javax.swing.JFrame {
     Object[] tabla = new Object[6];
   
       tabla[0]= Cont;
-      tabla[1]= tamParti.getText()
+      tabla[1]= tamParti.getText();
     
     modelo.addRow(tabla);
     }
