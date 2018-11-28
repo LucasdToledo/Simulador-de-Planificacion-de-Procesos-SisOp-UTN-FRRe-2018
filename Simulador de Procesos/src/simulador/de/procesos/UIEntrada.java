@@ -383,7 +383,7 @@ public class UIEntrada extends javax.swing.JFrame {
     public void Ingresar(){ //Ingresar proceso a la tabla
     DefaultTableModel modelo=(DefaultTableModel) miTabla.getModel();
     Contador ++;
-    Object[] tabla = new Object[6];
+    Object[] tabla = new Object[7];
     //Creo un nuevo proceso con los datos ingresados
     Proceso proceso;
     proceso = new Proceso();
@@ -394,6 +394,7 @@ public class UIEntrada extends javax.swing.JFrame {
     tabla[4]= tarribo.getText();
     tabla[5]= cicloES.getText();
     tabla[6]= ciclodeCPU.getText();
+    
     //tabla[6]= "Listo";
     modelo.addRow(tabla);
     //miTabla.setModel(modelo);
