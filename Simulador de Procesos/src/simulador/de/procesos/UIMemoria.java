@@ -5,6 +5,8 @@
  */
 package simulador.de.procesos;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Sole
@@ -75,6 +77,11 @@ public class UIMemoria extends javax.swing.JFrame {
         });
 
         agregarTam.setText("Agregar");
+        agregarTam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarTamActionPerformed(evt);
+            }
+        });
 
         label2.setFont(new java.awt.Font("Eras Bold ITC", 1, 24)); // NOI18N
         label2.setText("Particionamiento de Memoria ");
@@ -111,12 +118,12 @@ public class UIMemoria extends javax.swing.JFrame {
                                 .addGap(36, 36, 36)
                                 .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -149,9 +156,13 @@ public class UIMemoria extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tamPartiActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void agregarTamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarTamActionPerformed
+       IngresarParti();
+       
+    }//GEN-LAST:event_agregarTamActionPerformed
+
+   
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -196,4 +207,15 @@ public class UIMemoria extends javax.swing.JFrame {
     private javax.swing.JTable tablaParti;
     private javax.swing.JTextField tamParti;
     // End of variables declaration//GEN-END:variables
+
+    private void IngresarParti() { 
+    DefaultTableModel modelo=(DefaultTableModel) tablaParti.getModel();
+    
+    Object[] tabla = new Object[6];
+  
+      tabla[0]= tamParti.getText();
+    
+    
+    modelo.addRow(tabla);//To change body of generated methods, choose Tools | Templates.
+    }
 }

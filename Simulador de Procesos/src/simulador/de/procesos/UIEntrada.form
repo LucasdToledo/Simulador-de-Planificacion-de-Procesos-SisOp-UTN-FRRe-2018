@@ -28,80 +28,89 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="NOM" min="-2" pref="54" max="-2" attributes="0"/>
-                          <Component id="Nombre" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tam" min="-2" pref="54" max="-2" attributes="0"/>
-                          <Component id="label3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="label2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="label6" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                      <Component id="label7" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                      <Component id="label9" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                              <Component id="tarribo" min="-2" pref="54" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                              <Component id="label5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="boxPlanificador" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Component id="boxParticionamiento" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Component id="boxAsignacion" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Component id="jTextField1" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="label3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="label10" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="label2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label8" min="-2" pref="305" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="label1" min="-2" max="-2" attributes="0"/>
-                          <Component id="cicloES" min="-2" pref="54" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="label4" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                              <Component id="ciclodeCPU" min="-2" pref="55" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="botonInicialEntrada" min="-2" pref="62" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="label6" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                  <Component id="label7" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="Nombre" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="NOM" min="-2" pref="54" max="-2" attributes="0"/>
+                                      <EmptySpace pref="41" max="32767" attributes="0"/>
+                                      <Component id="tam" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                                  <Component id="label9" min="-2" max="-2" attributes="0"/>
+                              <Component id="quantum" min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <Component id="tarribo" min="-2" pref="54" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="cicloES" min="-2" pref="54" max="-2" attributes="0"/>
+                                  <Component id="label1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                          <Component id="label8" min="-2" pref="305" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="botonAgregarEntrada" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="label5" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="boxPlanificador" min="-2" pref="210" max="-2" attributes="0"/>
-                                      <Component id="boxParticionamiento" min="-2" pref="210" max="-2" attributes="0"/>
-                                      <Component id="boxAsignacion" min="-2" pref="210" max="-2" attributes="0"/>
-                                      <Component id="jTextField1" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="label4" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace pref="23" max="32767" attributes="0"/>
+                                      <Component id="botonAgregarEntrada" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="ciclodeCPU" min="-2" pref="55" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="botonInicialEntrada" min="-2" pref="62" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -128,33 +137,45 @@
                   <Component id="label5" min="-2" max="-2" attributes="0"/>
                   <Component id="boxPlanificador" min="-2" pref="28" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" pref="18" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Component id="label8" min="-2" pref="39" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="label2" min="-2" max="-2" attributes="0"/>
-                      <Component id="label1" min="-2" max="-2" attributes="0"/>
-                      <Component id="label3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="Nombre" min="-2" max="-2" attributes="0"/>
-                      <Component id="label4" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="botonAgregarEntrada" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="NOM" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tarribo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tam" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="label1" alignment="1" max="32767" attributes="0"/>
+                          <Component id="label3" alignment="1" max="32767" attributes="0"/>
+                          <Component id="Nombre" alignment="1" max="32767" attributes="0"/>
+                          <Component id="label10" alignment="1" max="32767" attributes="0"/>
+                          <Component id="label2" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="cicloES" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="ciclodeCPU" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="label4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="botonAgregarEntrada" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="NOM" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tam" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="quantum" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="tarribo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cicloES" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ciclodeCPU" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="124" max="-2" attributes="0"/>
+                  </Group>
                   <Component id="botonInicialEntrada" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="124" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+              <EmptySpace pref="76" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -170,13 +191,14 @@
         <Component class="javax.swing.JTable" name="miTabla">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="0">
-                <Column editable="false" title="ID" type="java.lang.Object"/>
-                <Column editable="false" title="Nombre" type="java.lang.Object"/>
-                <Column editable="false" title="Tama&#xf1;o" type="java.lang.Object"/>
-                <Column editable="false" title="Tiempo de Arribo" type="java.lang.Object"/>
-                <Column editable="false" title="Ciclo de E/S" type="java.lang.Object"/>
-                <Column editable="false" title="Ciclo de CPU" type="java.lang.Object"/>
+              <Table columnCount="7" rowCount="0">
+                <Column editable="true" title="ID" type="java.lang.Object"/>
+                <Column editable="true" title="Nombre" type="java.lang.Object"/>
+                <Column editable="true" title="Tama&#xf1;o" type="java.lang.Object"/>
+                <Column editable="true" title="Quantum" type="java.lang.Object"/>
+                <Column editable="true" title="Tiempo de Aribo" type="java.lang.Object"/>
+                <Column editable="true" title="Ciclo deE/S" type="java.lang.Object"/>
+                <Column editable="true" title="Ciclo de CPU" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>
@@ -197,6 +219,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="cicloES">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cicloESActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tarribo">
       <Events>
@@ -204,8 +229,14 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tam">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tamActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="ciclodeCPU">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ciclodeCPUActionPerformed"/>
+      </Events>
     </Component>
     <Component class="java.awt.Label" name="label1">
       <Properties>
@@ -353,6 +384,16 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="java.awt.Label" name="label10">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Quantum"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="quantum">
     </Component>
   </SubComponents>
 </Form>
