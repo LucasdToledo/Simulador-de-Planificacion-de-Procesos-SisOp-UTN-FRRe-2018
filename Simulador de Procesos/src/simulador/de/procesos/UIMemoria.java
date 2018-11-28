@@ -27,7 +27,7 @@ public class UIMemoria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        SiguienteMem = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaParti = new javax.swing.JTable();
         label1 = new java.awt.Label();
@@ -36,14 +36,14 @@ public class UIMemoria extends javax.swing.JFrame {
         label2 = new java.awt.Label();
         label3 = new java.awt.Label();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        Memor = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Siguiente");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        SiguienteMem.setText("Siguiente");
+        SiguienteMem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SiguienteMemActionPerformed(evt);
             }
         });
 
@@ -82,9 +82,9 @@ public class UIMemoria extends javax.swing.JFrame {
         label3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label3.setText("Total de Memoria");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        Memor.setColumns(20);
+        Memor.setRows(5);
+        jScrollPane2.setViewportView(Memor);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,7 +102,7 @@ public class UIMemoria extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                                 .addComponent(agregarTam))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(SiguienteMem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -132,18 +132,18 @@ public class UIMemoria extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26)
-                .addComponent(jButton1)
+                .addComponent(SiguienteMem)
                 .addGap(26, 26, 26))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SiguienteMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteMemActionPerformed
         UIFinal b = new UIFinal();
        b.setVisible(true);
        this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_SiguienteMemActionPerformed
 
     private void tamPartiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tamPartiActionPerformed
         // TODO add your handling code here:
@@ -185,11 +185,11 @@ public class UIMemoria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea Memor;
+    private javax.swing.JButton SiguienteMem;
     private javax.swing.JButton agregarTam;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
