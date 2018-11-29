@@ -384,7 +384,25 @@ public class UIEntrada extends javax.swing.JFrame {
     }//GEN-LAST:event_quantumActionPerformed
 
     private void boxPlanificadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxPlanificadorActionPerformed
-       // TODO add your handling code here:
+        String asing;
+        asing= (String) boxPlanificador.getSelectedItem();
+        switch (asing){
+                case("RoundRobin+Q"): 
+                    planificador.setAlgorit(1);
+                    break;
+                case ("SRTF"):
+                    planificador.setAlgorit(2);
+                    break;
+                case ("SJF"):
+                    planificador.setAlgorit(3);
+                    break;
+                case ("FCFS"):
+                    planificador.setAlgorit(4);
+                    break;
+                default:
+                    planificador.setAlgorit(4);
+                    break;
+            }
     }//GEN-LAST:event_boxPlanificadorActionPerformed
 
     private void boxAsignacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxAsignacionActionPerformed
