@@ -23,7 +23,8 @@ public class UIEntrada extends javax.swing.JFrame {
     public Asignador asignador;
     public Planificador planificador;
     public boolean tipoMemoria;
-
+    public int tamMemoria;
+    
     /**
      *
      */
@@ -36,6 +37,7 @@ public class UIEntrada extends javax.swing.JFrame {
         colaProcesos = new ArrayList();
         this.Contador = 0;
         tipoParticionamiento=null;
+        tamMemoria=1024;
         initComponents();
         miTabla.setBackground(Color.white);
         miTabla.setForeground(Color.blue);
@@ -305,9 +307,9 @@ public class UIEntrada extends javax.swing.JFrame {
                                 .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tarribo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(tam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tarribo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(cicloES, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(ciclodeCPU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(NOM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -338,6 +340,7 @@ public class UIEntrada extends javax.swing.JFrame {
 
     private void botonInicialEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInicialEntradaActionPerformed
        Iniciar();
+       mem.CrearMemoria(tamMemoria, tipoMemoria);
        if (tipoMemoria ==true){ 
            UIFinal b = new UIFinal();
            b.setVisible(true);
