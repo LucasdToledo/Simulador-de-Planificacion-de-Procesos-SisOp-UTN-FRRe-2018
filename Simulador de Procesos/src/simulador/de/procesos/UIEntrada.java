@@ -177,11 +177,6 @@ public class UIEntrada extends javax.swing.JFrame {
         });
 
         boxAsignacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "WorstFit", "FirstFiT", "BestFit" }));
-        boxAsignacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxAsignacionActionPerformed(evt);
-            }
-        });
 
         label7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         label7.setText("Particionamiento");
@@ -387,22 +382,6 @@ public class UIEntrada extends javax.swing.JFrame {
     private void boxPlanificadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxPlanificadorActionPerformed
        // TODO add your handling code here:
     }//GEN-LAST:event_boxPlanificadorActionPerformed
-
-    private void boxAsignacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxAsignacionActionPerformed
-        String asig;
-        asig = (String) boxAsignacion.getSelectedItem();
-        switch (asig){
-            case("BestFit"):
-                asignador.setAlgoritmo(1);
-                break;
-            case ("FirstFIT"):
-                asignador.setAlgoritmo(2);
-                break;
-            case ("WorstFit"):
-                asignador.setAlgoritmo(3);
-                break;
-            }
-    }//GEN-LAST:event_boxAsignacionActionPerformed
 
     /**
      * @param args the command line arguments
