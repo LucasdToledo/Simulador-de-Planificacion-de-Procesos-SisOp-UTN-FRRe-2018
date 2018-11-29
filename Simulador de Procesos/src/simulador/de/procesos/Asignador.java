@@ -36,7 +36,7 @@ public class Asignador {
         fin=_tamParticion;
         if (_mem.getTamaño() >= _tamParticion){
             Particion particion = new Particion();
-            particion.CrearParticion(inicio, fin, true,0);
+            particion.CrearParticion(inicio, fin, true);
             NuevaListaParticiones.add(particion);
         }
         //Si la persona pone un valor muy alto ponemos lo máximo que tengamos
@@ -59,8 +59,8 @@ public class Asignador {
                     listaParticionesNueva = _mem.getListaParticiones();//auxiliar de la lista de particion, creada porque saltaba errores. 
                     
                     //Bucle de selección de algoritmo según elección del usuario
-                    
-                    
+                    Iterator<Particion> it = listaParticionesNueva.iterator();
+                     Iterator<Particion> it2 = listaParticionesNueva.iterator();//este iterador es para la aprte de defragmentar
                     Iterator<Particion> it3 = listaParticionesNueva.iterator();
                     //crea variables que utilizaremos mas abajo. 
                     int posicion = 0;//POSICION DE LA LISTA DE PARTICIONES
@@ -70,33 +70,24 @@ public class Asignador {
                     int resg1 = 99999;
                     int resg2 = 99999;
                     Particion resg3 = null;
-                    
+                    int memdisp = 0;
                    
                     //Este codigo verifica si hay particiones contiguas libres en memoria VARIABLE para juntarlas
                     if(_mem.isTipo()){ //Si es Variable
-                         Iterator<Particion> it2 = listaParticionesNueva.iterator();//este iterador es para la aprte de defragmentar
                         boolean flag = true; //Bandera para saber cuando es la primera vez que entra al codigo
-                        boolean YaJuntoEspacio = true;
                         Particion resguardo = null; //resguardo de la particion
                         int contpos =0; //contador para saber la posicion de la particion de memoria
-                        while (it2.hasNext() && YaJuntoEspacio ) { //Mientras que no se acabe la memoria
+                        while (it2.hasNext()) { //Mientras que no se acabe la memoria
                             Particion partaux = it2.next(); //particion auxliar en la que estoy parado actualmente
                             if(flag){ //si es la primera vez que entra, no hace nada, solo el resguardo
                                flag = false;
-                                
                             }
                             else{
-                                
                                if(resguardo.isEstado() && partaux.isEstado()){ //si la particion anterior estuvo libre y la actual tambien
-                                   
                                  partaux.setInicio(resguardo.getInicio()); //modificamos el inicio de la aprticion actual con el inicio de la particion anterior
-                                   
-                                 listaParticionesNueva.remove(contpos-1); // eliminamos la particion anterior, la cual sabemos la posicion gracias al contador
-                                   
+                                 listaParticionesNueva.remove(contpos); // eliminamos la particion anterior, la cual sabemos la posicion gracias al contador
                                  contpos = contpos -1; // como eliminamos una particion, actualizamos el contador
-                                   
-                                // listaParticionesNueva.add(contpos, partaux); //añadimos la particion actual a la lista de particiones original
-                                YaJuntoEspacio=false;
+                                 listaParticionesNueva.add(contpos, partaux); //añadimos la particion actual a la lista de particiones original
                                }
                                
                             } 
@@ -104,7 +95,7 @@ public class Asignador {
                          contpos= contpos +1;    //actualizamos el contador con la posicion del siguiente    
                         }
                     }
-                   Iterator<Particion> it = listaParticionesNueva.iterator(); 
+                    
          switch (algoritmo){
                 case(1): //Algoritmos bf
                     
@@ -141,7 +132,7 @@ public class Asignador {
                                        listaParticionesNueva.get(resg2).setProces(_proceso); //meto el proceso en la particion
                                        
                                        
-                                       Nuevaparticion.CrearParticion(resg3.getFin(),cont - _proceso.getTamaño() , true,0); //creo una nueva particion con el sobrante de memoria
+                                       Nuevaparticion.CrearParticion(resg3.getFin(),cont - _proceso.getTamaño() , true); //creo una nueva particion con el sobrante de memoria
                                        
                                        listaParticionesNueva.add(resg2+1,Nuevaparticion); //añado esa particion a la lista de particiones
                                        
@@ -196,7 +187,7 @@ public class Asignador {
                                        listaParticionesNueva.get(posicion).setProces(_proceso); //meto el proceso en la particion
                                        
                                        
-                                       Nuevaparticion.CrearParticion(partaux.getFin(),cont - _proceso.getTamaño() , true,0); //creo una nueva particion con el sobrante de memoria
+                                       Nuevaparticion.CrearParticion(partaux.getFin(),cont - _proceso.getTamaño() , true); //creo una nueva particion con el sobrante de memoria
                                        
                                        listaParticionesNueva.add(posicion+1,Nuevaparticion); //añado esa particion a la lista de particiones
                                        
@@ -259,7 +250,7 @@ public class Asignador {
                                        listaParticionesNueva.get(resg2).setProces(_proceso); //meto el proceso en la particion
                                        
                                        
-                                       Nuevaparticion.CrearParticion(resg3.getFin(),cont - _proceso.getTamaño() , true,0); //creo una nueva particion con el sobrante de memoria
+                                       Nuevaparticion.CrearParticion(resg3.getFin(),cont - _proceso.getTamaño() , true); //creo una nueva particion con el sobrante de memoria
                                        
                                        listaParticionesNueva.add(resg2+1,Nuevaparticion); //añado esa particion a la lista de particiones
                                        
