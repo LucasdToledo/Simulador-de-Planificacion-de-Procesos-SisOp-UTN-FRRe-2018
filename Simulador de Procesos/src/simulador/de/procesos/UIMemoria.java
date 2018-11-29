@@ -16,10 +16,8 @@ public class UIMemoria extends javax.swing.JFrame {
     public Memoria mem;
     /**
      * Creates new form UIMemoria
-     * @param _mem
      */
-    public UIMemoria(Memoria _mem) {
-        mem=_mem;
+    public UIMemoria() {
         initComponents();
     }
 
@@ -167,7 +165,13 @@ public class UIMemoria extends javax.swing.JFrame {
        
     }//GEN-LAST:event_agregarTamActionPerformed
 
-   
+    public Memoria getMem() {
+        return mem;
+    }
+
+    public void setMem(Memoria mem) {
+        this.mem = mem;
+    }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

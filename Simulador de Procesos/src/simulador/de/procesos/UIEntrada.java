@@ -344,6 +344,7 @@ public class UIEntrada extends javax.swing.JFrame {
        }
        else{
            UIMemoria a = new UIMemoria();
+           a.setMem(mem);
            a.setVisible(true);  
        }
        this.setVisible(false);
