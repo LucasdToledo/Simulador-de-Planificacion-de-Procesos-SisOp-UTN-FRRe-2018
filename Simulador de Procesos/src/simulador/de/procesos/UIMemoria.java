@@ -13,11 +13,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class UIMemoria extends javax.swing.JFrame {
     int Cont = 0;
-
+    public Memoria mem;
     /**
      * Creates new form UIMemoria
+     * @param _mem
      */
-    public UIMemoria() {
+    public UIMemoria(Memoria _mem) {
+        mem=_mem;
         initComponents();
     }
 
@@ -39,6 +41,8 @@ public class UIMemoria extends javax.swing.JFrame {
         label2 = new java.awt.Label();
         label3 = new java.awt.Label();
         jTextField1 = new javax.swing.JTextField();
+        label4 = new java.awt.Label();
+        jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +93,9 @@ public class UIMemoria extends javax.swing.JFrame {
         label3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label3.setText("Total de Memoria");
 
+        label4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        label4.setText("Memoria Restante");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,9 +116,11 @@ public class UIMemoria extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1)
-                            .addComponent(label3, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))
+                            .addComponent(label3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(label4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField2)))
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,11 +138,15 @@ public class UIMemoria extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(SiguienteMem)
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -190,7 +203,7 @@ public class UIMemoria extends javax.swing.JFrame {
     public  void IngresarParti() {  
         DefaultTableModel modelo=(DefaultTableModel) tablaParti.getModel();
     Cont ++; 
-    Object[] tabla = new Object[6];
+    Object[] tabla = new Object[2];
   
       tabla[0]= Cont;
       tabla[1]= tamParti.getText();
@@ -213,9 +226,11 @@ public class UIMemoria extends javax.swing.JFrame {
     private javax.swing.JButton agregarTam;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
+    private java.awt.Label label4;
     private javax.swing.JTable tablaParti;
     private javax.swing.JTextField tamParti;
     // End of variables declaration//GEN-END:variables
