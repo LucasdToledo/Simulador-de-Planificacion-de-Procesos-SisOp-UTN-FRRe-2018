@@ -62,13 +62,19 @@
                               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                               <Component id="label5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="boxPlanificador" min="-2" pref="210" max="-2" attributes="0"/>
                                   <Component id="boxParticionamiento" min="-2" pref="210" max="-2" attributes="0"/>
                                   <Component id="boxAsignacion" min="-2" pref="210" max="-2" attributes="0"/>
                                   <Component id="totMem" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="label10" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="quantum" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                      <Component id="label10" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="entradaquantum" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="botonQuantum" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -126,13 +132,20 @@
                   <Component id="label5" min="-2" max="-2" attributes="0"/>
                   <Component id="boxPlanificador" min="-2" pref="28" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="label10" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="quantum" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="botonQuantum" min="-2" max="-2" attributes="0"/>
+                      <Component id="entradaquantum" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="label10" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
               <Component id="label8" min="-2" pref="39" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -167,8 +180,8 @@
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="124" max="-2" attributes="0"/>
-              <EmptySpace pref="64" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="143" max="-2" attributes="0"/>
+              <EmptySpace pref="25" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -391,9 +404,23 @@
         <Property name="text" type="java.lang.String" value="Quantum"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="quantum">
+    <Component class="javax.swing.JTextField" name="entradaquantum">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quantumActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="entradaquantumActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="java.awt.Button" name="botonQuantum">
+      <Properties>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor Por defecto"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="1"/>
+        </Property>
+        <Property name="label" type="java.lang.String" value="Agregar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonQuantumActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

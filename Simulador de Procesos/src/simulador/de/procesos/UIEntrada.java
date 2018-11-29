@@ -24,6 +24,7 @@ public class UIEntrada extends javax.swing.JFrame {
     public Planificador planificador;
     public boolean tipoMemoria;
     public int tamMemoria;
+    public int quantum;
     
     /**
      *
@@ -36,6 +37,7 @@ public class UIEntrada extends javax.swing.JFrame {
     public UIEntrada() {
         colaProcesos = new ArrayList();
         this.Contador = 0;
+        quantum = 0;
         tipoParticionamiento=null;
         tamMemoria=1024;
         initComponents();
@@ -80,7 +82,8 @@ public class UIEntrada extends javax.swing.JFrame {
         label9 = new java.awt.Label();
         totMem = new javax.swing.JTextField();
         label10 = new java.awt.Label();
-        quantum = new javax.swing.JTextField();
+        entradaquantum = new javax.swing.JTextField();
+        botonQuantum = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -201,9 +204,18 @@ public class UIEntrada extends javax.swing.JFrame {
         label10.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label10.setText("Quantum");
 
-        quantum.addActionListener(new java.awt.event.ActionListener() {
+        entradaquantum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quantumActionPerformed(evt);
+                entradaquantumActionPerformed(evt);
+            }
+        });
+
+        botonQuantum.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botonQuantum.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        botonQuantum.setLabel("Agregar");
+        botonQuantum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonQuantumActionPerformed(evt);
             }
         });
 
@@ -243,13 +255,18 @@ public class UIEntrada extends javax.swing.JFrame {
                                 .addGap(85, 85, 85)
                                 .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(166, 166, 166)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(boxPlanificador, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(boxParticionamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(boxAsignacion, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(totMem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(quantum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(entradaquantum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(botonQuantum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(53, 53, 53)
                                 .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -291,13 +308,17 @@ public class UIEntrada extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boxPlanificador, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(quantum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(botonQuantum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(entradaquantum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)))
                 .addGap(1, 1, 1)
                 .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,8 +344,8 @@ public class UIEntrada extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonInicialEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(13, 13, 13)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -381,9 +402,9 @@ public class UIEntrada extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tamActionPerformed
 
-    private void quantumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantumActionPerformed
+    private void entradaquantumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradaquantumActionPerformed
       // TODO add your handling code here:
-    }//GEN-LAST:event_quantumActionPerformed
+    }//GEN-LAST:event_entradaquantumActionPerformed
 
     private void boxPlanificadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxPlanificadorActionPerformed
         String asing;
@@ -425,6 +446,15 @@ public class UIEntrada extends javax.swing.JFrame {
                     break;
             }
     }//GEN-LAST:event_boxAsignacionActionPerformed
+
+    private void botonQuantumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQuantumActionPerformed
+        if (quantum==0){
+            quantum = Integer.parseInt(entradaquantum.getText());
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"El quantum no se puede cambiar una vez elegido. Valor="+quantum);
+        }
+    }//GEN-LAST:event_botonQuantumActionPerformed
 
     /**
      * @param args the command line arguments
@@ -519,11 +549,13 @@ public class UIEntrada extends javax.swing.JFrame {
     private java.awt.Label Nombre;
     private java.awt.Button botonAgregarEntrada;
     private java.awt.Button botonInicialEntrada;
+    private java.awt.Button botonQuantum;
     private javax.swing.JComboBox<String> boxAsignacion;
     private javax.swing.JComboBox<String> boxParticionamiento;
     private javax.swing.JComboBox<String> boxPlanificador;
     private javax.swing.JTextField cicloES;
     private javax.swing.JTextField ciclodeCPU;
+    private javax.swing.JTextField entradaquantum;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
     private java.awt.Label label10;
@@ -536,7 +568,6 @@ public class UIEntrada extends javax.swing.JFrame {
     private java.awt.Label label8;
     private java.awt.Label label9;
     private javax.swing.JTable miTabla;
-    private javax.swing.JTextField quantum;
     private javax.swing.JTextField tam;
     private javax.swing.JTextField tarribo;
     private javax.swing.JTextField totMem;
