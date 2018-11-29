@@ -340,7 +340,6 @@ public class UIEntrada extends javax.swing.JFrame {
 
     private void botonInicialEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInicialEntradaActionPerformed
        Iniciar();
-       mem.CrearMemoria(tamMemoria, tipoMemoria);
        if (tipoMemoria ==true){ 
            UIFinal b = new UIFinal();
            b.setVisible(true);
