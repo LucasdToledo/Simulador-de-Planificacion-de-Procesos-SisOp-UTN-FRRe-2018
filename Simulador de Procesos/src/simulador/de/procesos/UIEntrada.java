@@ -352,6 +352,8 @@ public class UIEntrada extends javax.swing.JFrame {
        else{
            UIMemoria a = new UIMemoria();
            a.setMem(mem);
+           a.setAsignador(asignador);
+           a.setPlanificador(planificador);
            a.setVisible(true);  
        }
        this.setVisible(false);

@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 public class UIMemoria extends javax.swing.JFrame {
     int Cont = 0;
     public Memoria mem;
+    public Asignador asignador;
+    public Planificador planificador;
     /**
      * Creates new form UIMemoria
      */
@@ -162,9 +164,16 @@ public class UIMemoria extends javax.swing.JFrame {
 
     private void agregarTamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarTamActionPerformed
        IngresarParti();
-       
     }//GEN-LAST:event_agregarTamActionPerformed
 
+    public void setAsignador(Asignador asignador) {
+        this.asignador = asignador;
+    }
+
+    public void setPlanificador(Planificador planificador) {
+        this.planificador = planificador;
+    }
+    
     public Memoria getMem() {
         return mem;
     }
