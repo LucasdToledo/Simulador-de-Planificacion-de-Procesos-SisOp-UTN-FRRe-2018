@@ -169,8 +169,8 @@ public class UIMemoria extends javax.swing.JFrame {
         return mem;
     }
 
-    public void setMem(Memoria _mem) {
-        mem.CrearMemoria(_mem.getTamaño(), _mem.isTipo());
+    public void setMem(Memoria mem) {
+        this.mem = mem;
     }
     
     public static void main(String args[]) {
@@ -198,8 +198,10 @@ public class UIMemoria extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new UIMemoria().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new UIMemoria().setVisible(true);
+            }
         });
     }
     public  void IngresarParti() {  
