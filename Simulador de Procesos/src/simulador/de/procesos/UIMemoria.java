@@ -5,6 +5,7 @@
  */
 package simulador.de.procesos;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,8 +15,8 @@ import javax.swing.table.DefaultTableModel;
 public class UIMemoria extends javax.swing.JFrame {
     int Cont = 0;
     public Memoria mem;
-    public Asignador asignador;
-    public Planificador planificador;
+    public int asignador;
+    public int planificador;
     /**
      * Creates new form UIMemoria
      */
@@ -164,13 +165,14 @@ public class UIMemoria extends javax.swing.JFrame {
 
     private void agregarTamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarTamActionPerformed
        IngresarParti();
+       MostrarDatos();
     }//GEN-LAST:event_agregarTamActionPerformed
 
-    public void setAsignador(Asignador asignador) {
-        this.asignador = asignador;
+    public void setAsignador(int asig) {
+        this.asignador = asig;
     }
 
-    public void setPlanificador(Planificador planificador) {
+    public void setPlanificador(int planificador) {
         this.planificador = planificador;
     }
     
@@ -178,8 +180,10 @@ public class UIMemoria extends javax.swing.JFrame {
         return mem;
     }
 
-    public void setMem(Memoria mem) {
-        this.mem = mem;
+    public void setMem(int tamMemoria,boolean tipoParticionamiento) {
+        Memoria memoria = new Memoria();
+        memoria.CrearMemoria(tamMemoria, tipoParticionamiento);
+        this.mem = memoria;
     }
     
     public static void main(String args[]) {
@@ -207,10 +211,8 @@ public class UIMemoria extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UIMemoria().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new UIMemoria().setVisible(true);
         });
     }
     public  void IngresarParti() {  
@@ -224,6 +226,11 @@ public class UIMemoria extends javax.swing.JFrame {
     modelo.addRow(tabla);
     }
     
+    public void MostrarDatos(){
+        JOptionPane.showMessageDialog(null,"Asignador = "+asignador);
+        JOptionPane.showMessageDialog(null,"Planificador = "+planificador);
+        mem.Mostrar();
+    }
     
     public void Borrar(int c){
         tablaParti.setValueAt(0,c,0);
