@@ -28,7 +28,7 @@ public class UIEntrada extends javax.swing.JFrame {
     public boolean fasig;
     public boolean ftam;
     public boolean fprocesos;
-    
+
     /**
      *
      */

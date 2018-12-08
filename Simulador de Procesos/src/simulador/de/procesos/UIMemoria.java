@@ -17,10 +17,17 @@ public class UIMemoria extends javax.swing.JFrame {
     public Memoria mem;
     public int asignador;
     public int planificador;
+    int contmemoriarestante;
+    int contmemusada;
+    boolean fsiguiente;
+    
     /**
      * Creates new form UIMemoria
      */
     public UIMemoria() {
+        contmemoriarestante = 0;
+        contmemusada = 0;
+        fsiguiente = false;
         initComponents();
     }
 
@@ -41,9 +48,9 @@ public class UIMemoria extends javax.swing.JFrame {
         agregarTam = new javax.swing.JButton();
         label2 = new java.awt.Label();
         label3 = new java.awt.Label();
-        jTextField1 = new javax.swing.JTextField();
+        memoriaUsada = new javax.swing.JTextField();
         label4 = new java.awt.Label();
-        jTextField2 = new javax.swing.JTextField();
+        Memoriarestante = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,8 +101,20 @@ public class UIMemoria extends javax.swing.JFrame {
         label3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label3.setText("Total de Memoria");
 
+        memoriaUsada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                memoriaUsadaActionPerformed(evt);
+            }
+        });
+
         label4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label4.setText("Memoria Restante");
+
+        Memoriarestante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MemoriarestanteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,10 +135,10 @@ public class UIMemoria extends javax.swing.JFrame {
                             .addComponent(SiguienteMem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
+                            .addComponent(memoriaUsada)
                             .addComponent(label3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(label4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField2)))
+                            .addComponent(Memoriarestante)))
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
@@ -139,11 +158,11 @@ public class UIMemoria extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(memoriaUsada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Memoriarestante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(SiguienteMem)
@@ -154,9 +173,14 @@ public class UIMemoria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SiguienteMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteMemActionPerformed
-        UIFinal b = new UIFinal();
-       b.setVisible(true);
-       this.setVisible(false);
+       if (fsiguiente){
+            UIFinal b = new UIFinal();
+            b.setVisible(true);
+            this.setVisible(false);
+       }
+       else{
+           JOptionPane.showMessageDialog(null,"Por favor, carga todas las particiones antes de avanzar");
+       }
     }//GEN-LAST:event_SiguienteMemActionPerformed
 
     private void tamPartiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tamPartiActionPerformed
@@ -165,8 +189,16 @@ public class UIMemoria extends javax.swing.JFrame {
 
     private void agregarTamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarTamActionPerformed
        IngresarParti();
-       MostrarDatos();
     }//GEN-LAST:event_agregarTamActionPerformed
+    
+    private void MemoriarestanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MemoriarestanteActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_MemoriarestanteActionPerformed
+
+    private void memoriaUsadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memoriaUsadaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_memoriaUsadaActionPerformed
 
     public void setAsignador(int asig) {
         this.asignador = asig;
@@ -175,7 +207,7 @@ public class UIMemoria extends javax.swing.JFrame {
     public void setPlanificador(int planificador) {
         this.planificador = planificador;
     }
-    
+
     public Memoria getMem() {
         return mem;
     }
@@ -184,6 +216,8 @@ public class UIMemoria extends javax.swing.JFrame {
         Memoria memoria = new Memoria();
         memoria.CrearMemoria(tamMemoria, tipoParticionamiento);
         this.mem = memoria;
+        contmemoriarestante = tamMemoria;
+        Memoriarestante.setText(String.valueOf(tamMemoria));
     }
     
     public static void main(String args[]) {
@@ -215,21 +249,27 @@ public class UIMemoria extends javax.swing.JFrame {
             new UIMemoria().setVisible(true);
         });
     }
-    public  void IngresarParti() {  
-        DefaultTableModel modelo=(DefaultTableModel) tablaParti.getModel();
-    Cont ++; 
-    Object[] tabla = new Object[2];
-  
-      tabla[0]= Cont;
-      tabla[1]= tamParti.getText();
-    
-    modelo.addRow(tabla);
-    }
-    
-    public void MostrarDatos(){
-        JOptionPane.showMessageDialog(null,"Asignador = "+asignador);
-        JOptionPane.showMessageDialog(null,"Planificador = "+planificador);
-        mem.Mostrar();
+    public  void IngresarParti() { 
+        
+        if((Integer.parseInt(tamParti.getText()) <= contmemoriarestante)&&(Integer.parseInt(tamParti.getText()) > 0)){
+            DefaultTableModel modelo=(DefaultTableModel) tablaParti.getModel();
+            Cont ++; 
+            Object[] tabla = new Object[2];
+
+            tabla[0]= Cont;
+            tabla[1]= tamParti.getText();
+            contmemusada = contmemusada + Integer.parseInt(tamParti.getText());
+            memoriaUsada.setText(String.valueOf(contmemusada));
+            contmemoriarestante = contmemoriarestante - Integer.parseInt(tamParti.getText()) ;
+            Memoriarestante.setText(String.valueOf(contmemoriarestante));
+              if (contmemoriarestante == 0){
+                  fsiguiente = true;
+              }
+            modelo.addRow(tabla);
+        }
+        else { 
+             JOptionPane.showMessageDialog(null,"La particion es demasiado grande");
+        }
     }
     
     public void Borrar(int c){
@@ -242,15 +282,15 @@ public class UIMemoria extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Memoriarestante;
     private javax.swing.JButton SiguienteMem;
     private javax.swing.JButton agregarTam;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
     private java.awt.Label label4;
+    private javax.swing.JTextField memoriaUsada;
     private javax.swing.JTable tablaParti;
     private javax.swing.JTextField tamParti;
     // End of variables declaration//GEN-END:variables

@@ -40,10 +40,10 @@
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTextField1" max="32767" attributes="0"/>
+                          <Component id="memoriaUsada" max="32767" attributes="0"/>
                           <Component id="label3" max="32767" attributes="0"/>
                           <Component id="label4" max="32767" attributes="0"/>
-                          <Component id="jTextField2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="Memoriarestante" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="label2" min="-2" max="-2" attributes="0"/>
@@ -70,11 +70,11 @@
                   <Group type="102" attributes="0">
                       <Component id="label3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                      <Component id="memoriaUsada" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="label4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jTextField2" min="-2" max="-2" attributes="0"/>
+                      <Component id="Memoriarestante" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="266" max="-2" attributes="0"/>
               </Group>
@@ -150,7 +150,10 @@
         <Property name="text" type="java.lang.String" value="Total de Memoria"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="memoriaUsada">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="memoriaUsadaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="java.awt.Label" name="label4">
       <Properties>
@@ -160,7 +163,10 @@
         <Property name="text" type="java.lang.String" value="Memoria Restante"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="Memoriarestante">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MemoriarestanteActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
