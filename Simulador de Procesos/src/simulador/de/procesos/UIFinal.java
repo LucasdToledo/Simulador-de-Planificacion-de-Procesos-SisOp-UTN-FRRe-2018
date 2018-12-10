@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class UIFinal extends javax.swing.JFrame {
     int acumul;
-    public Memoria mem;
+    public Memoria mema;
     public Asignador asignador;
     public Planificador planificador;
     public ArrayList<Proceso> colaProcesos;
@@ -24,19 +24,30 @@ public class UIFinal extends javax.swing.JFrame {
     /**
      * Creates new form UIFinal
      */
+    
+    
+    public void setMem(Memoria _mem ,int tamMemoria,boolean tipoParticionamiento) {
+        //Memoria mema = new Memoria(); 
+        //mema = _mem;
+        //mema.CrearMemoria(_mem.getTamaño(), _mem.isTipo());
+        //mema.setListaParticiones(_ListaParticion);
+        //mema.Mostrar();
+        Memoria memoria = new Memoria();
+        memoria.CrearMemoria(tamMemoria, tipoParticionamiento);
+        this.mema = memoria;
+        mema.setListaParticiones(_mem.getListaParticiones());
+        cargarParticiones();
+        mema.Mostrar();
+    }
+    
+    
     public UIFinal() {
         acumul =0;
         initComponents();
-        cargarParticiones();
+        //cargarParticiones();
     }
 
-    public void setMem(Memoria _mem, ArrayList <Particion> _ListaParticion) {
-        Memoria mema = new Memoria(); 
-        this.mem = mema;
-        mem.CrearMemoria(mema.getTamaño(), mema.isTipo());
-        mem.setListaParticiones(_ListaParticion);
-        mem.Mostrar();
-    }
+    
 
     public void setAsignador(int _asignador) {
         Asignador asig = new Asignador();
@@ -443,19 +454,27 @@ public class UIFinal extends javax.swing.JFrame {
     public final void cargarParticiones(){
         //Mostramos los procesos cargados en la lista
         ArrayList<Particion> listaParticiones;
-        listaParticiones = mem.getListaParticiones();
+        listaParticiones = mema.getListaParticiones();
         Iterator<Particion> it = listaParticiones.iterator();
         int cont = 0;
-        while (it.hasNext()) {
+        
             DefaultTableModel modelo=(DefaultTableModel) tablaParticiones.getModel();
             Object[] tabla = new Object[5];
-            Proceso process;
+            Proceso process = new Proceso();
+            
+            
+            
+            mema.Mostrar();
+            while (it.hasNext()) {
             process = it.next().getProces();
+           
+            //LOS COMENTARIOS DE ABAJO LOS PUSE PORQUE NO HAY NINGUN PROCESO CARGADO POR LO TANTO NO PUEDE COMPLETAR LA TABLA POR LO TANTO SE CAGA EL PROGRAMA
+            
             tabla[0]= cont; cont++;
-            tabla[1]= process.getDescripcion();
-            tabla[2]= process.getTamaño();
+            //tabla[1]= process.getDescripcion();
+            //tabla[2]= process.getTamaño();
             tabla[3]= it.next().Tamaño();
-            tabla[4]= it.next().Tamaño()-process.getTamaño();
+            //tabla[4]= it.next().Tamaño()-process.getTamaño();
             modelo.addRow(tabla);
         }
     }

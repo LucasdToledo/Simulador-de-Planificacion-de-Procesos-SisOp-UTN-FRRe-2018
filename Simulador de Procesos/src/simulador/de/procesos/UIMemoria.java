@@ -182,9 +182,10 @@ public class UIMemoria extends javax.swing.JFrame {
     private void SiguienteMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteMemActionPerformed
        if (fsiguiente){
             UIFinal b = new UIFinal();
-            b.setMem(mem, ListaParticiones);
-            b.setAsignador(asignador);
-            b.setPlanificador(planificador);
+            b.setMem(mem, mem.getTamaño(), mem.isTipo());
+           // b.setAsignador(asignador);
+           // b.setPlanificador(planificador);
+            
             b.setColaProcesos(colaProcesos);
             b.setVisible(true);
             this.setVisible(false);
@@ -265,8 +266,8 @@ public class UIMemoria extends javax.swing.JFrame {
         if((Integer.parseInt(tamParti.getText()) <= contmemoriarestante)&&(Integer.parseInt(tamParti.getText()) > 0)){
             DefaultTableModel modelo=(DefaultTableModel) tablaParti.getModel();
             Cont ++; 
-            Particion part;
-            part = new Particion();
+            Particion part = new Particion();
+            
             Object[] tabla = new Object[2];
             tabla[0]= Cont;
             tabla[1]= tamParti.getText();
@@ -276,6 +277,8 @@ public class UIMemoria extends javax.swing.JFrame {
             memoriaUsada.setText(String.valueOf(contmemusada));
             contmemoriarestante = contmemoriarestante - Integer.parseInt(tamParti.getText()) ;
             Memoriarestante.setText(String.valueOf(contmemoriarestante));
+            mem.setListaParticiones(ListaParticiones);
+            mem.Mostrar();
               if (contmemoriarestante == 0){
                   fsiguiente = true;
               }

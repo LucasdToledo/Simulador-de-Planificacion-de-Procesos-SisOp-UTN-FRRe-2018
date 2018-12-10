@@ -36,7 +36,7 @@ public class Asignador {
         fin=_tamParticion;
         if (_mem.getTamaño() >= _tamParticion){
             Particion particion = new Particion();
-            particion.CrearParticion(inicio, fin, true);
+            //particion.CrearParticion(inicio, fin, true);
             NuevaListaParticiones.add(particion);
         }
         //Si la persona pone un valor muy alto ponemos lo máximo que tengamos
