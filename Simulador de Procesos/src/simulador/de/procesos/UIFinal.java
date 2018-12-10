@@ -5,6 +5,8 @@
  */
 package simulador.de.procesos;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,7 +18,7 @@ public class UIFinal extends javax.swing.JFrame {
     public Memoria mem;
     public Asignador asignador;
     public Planificador planificador;
-    
+    public ArrayList<Proceso> colaProcesos;
     
     /**
      * Creates new form UIFinal
@@ -26,9 +28,11 @@ public class UIFinal extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void setMem(Memoria _mem) {
-        Memoria mema = new Memoria();        
+    public void setMem(Memoria _mem, ArrayList <Particion> _ListaParticion) {
+        Memoria mema = new Memoria(); 
         this.mem = mema;
+        mem.CrearMemoria(mema.getTamaño(), mema.isTipo());
+        mem.setListaParticiones(_ListaParticion);
         mem.Mostrar();
     }
 
@@ -44,7 +48,17 @@ public class UIFinal extends javax.swing.JFrame {
         this.planificador = planif;
     }
 
-    
+    public void setColaProcesos(ArrayList<Proceso> _colaProcesos) {
+        this.colaProcesos = _colaProcesos;//Mostramos los procesos cargados en la lista
+        Iterator<Proceso> it = colaProcesos.iterator();
+        String enLista = "";
+        int i = 0;
+        while (it.hasNext()) {
+            enLista = enLista +"\n"+ "Proceso: "+ i + "  " +it.next();
+            i++;
+        } 
+        JOptionPane.showMessageDialog(null,enLista);
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.

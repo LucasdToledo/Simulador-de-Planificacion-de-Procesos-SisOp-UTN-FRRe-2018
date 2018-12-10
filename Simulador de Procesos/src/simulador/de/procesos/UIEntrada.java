@@ -377,6 +377,7 @@ public class UIEntrada extends javax.swing.JFrame {
                a.setMem(tamMemoria, tipoMemoria);
                a.setAsignador(asignador);
                a.setPlanificador(planificador);
+               a.setColaProcesos(colaProcesos);
                a.setVisible(true);  
            }
            this.setVisible(false);

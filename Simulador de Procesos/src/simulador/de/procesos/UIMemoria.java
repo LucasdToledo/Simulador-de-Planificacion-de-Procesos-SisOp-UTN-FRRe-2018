@@ -6,6 +6,7 @@
 package simulador.de.procesos;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,6 +18,7 @@ public class UIMemoria extends javax.swing.JFrame {
     int Cont = 0;
     public Memoria mem;
     public ArrayList<Proceso> colaProcesos;
+    public ArrayList<Particion> ListaParticiones;
     public int asignador;
     public int planificador;
     int contmemoriarestante;
@@ -30,6 +32,7 @@ public class UIMemoria extends javax.swing.JFrame {
         contmemoriarestante = 0;
         contmemusada = 0;
         fsiguiente = false;
+        ListaParticiones = new ArrayList();
         initComponents();
     }
 
@@ -179,9 +182,10 @@ public class UIMemoria extends javax.swing.JFrame {
     private void SiguienteMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteMemActionPerformed
        if (fsiguiente){
             UIFinal b = new UIFinal();
-            b.setMem(mem);
+            b.setMem(mem, ListaParticiones);
             b.setAsignador(asignador);
             b.setPlanificador(planificador);
+            b.setColaProcesos(colaProcesos);
             b.setVisible(true);
             this.setVisible(false);
        }
@@ -215,12 +219,8 @@ public class UIMemoria extends javax.swing.JFrame {
         this.planificador = planificador;
     }
 
-    public Memoria getMem() {
-        return mem;
-    }
-
-    public void setColaProcesos(ArrayList<Proceso> colaProcesos) {
-        this.colaProcesos = colaProcesos;
+    public void setColaProcesos(ArrayList<Proceso> _colaProcesos) {
+        this.colaProcesos = _colaProcesos;
     }
 
     public void setMem(int tamMemoria,boolean tipoParticionamiento) {
@@ -265,9 +265,13 @@ public class UIMemoria extends javax.swing.JFrame {
         if((Integer.parseInt(tamParti.getText()) <= contmemoriarestante)&&(Integer.parseInt(tamParti.getText()) > 0)){
             DefaultTableModel modelo=(DefaultTableModel) tablaParti.getModel();
             Cont ++; 
+            Particion part;
+            part = new Particion();
             Object[] tabla = new Object[2];
             tabla[0]= Cont;
             tabla[1]= tamParti.getText();
+            part.CrearParticion(Integer.parseInt(tamParti.getText()));
+            ListaParticiones.add(part);
             contmemusada = contmemusada + Integer.parseInt(tamParti.getText());
             memoriaUsada.setText(String.valueOf(contmemusada));
             contmemoriarestante = contmemoriarestante - Integer.parseInt(tamParti.getText()) ;
