@@ -8,6 +8,7 @@ package simulador.de.procesos;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,6 +27,7 @@ public class UIFinal extends javax.swing.JFrame {
     public UIFinal() {
         acumul =0;
         initComponents();
+        cargarParticiones();
     }
 
     public void setMem(Memoria _mem, ArrayList <Particion> _ListaParticion) {
@@ -80,7 +82,7 @@ public class UIFinal extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         label6 = new java.awt.Label();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tablaParticiones = new javax.swing.JTable();
         label2 = new java.awt.Label();
         botonSiguiente = new java.awt.Button();
         jLabel1 = new javax.swing.JLabel();
@@ -182,7 +184,7 @@ public class UIFinal extends javax.swing.JFrame {
         label6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label6.setText("Terminados");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tablaParticiones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -205,7 +207,7 @@ public class UIFinal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(jTable3);
+        jScrollPane4.setViewportView(tablaParticiones);
 
         label2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label2.setText("Asignacion en Memoria ");
@@ -437,6 +439,26 @@ public class UIFinal extends javax.swing.JFrame {
         acumul++;
         tiempoo.setText(String.valueOf(acumul));
     }
+    
+    public final void cargarParticiones(){
+        //Mostramos los procesos cargados en la lista
+        ArrayList<Particion> listaParticiones;
+        listaParticiones = mem.getListaParticiones();
+        Iterator<Particion> it = listaParticiones.iterator();
+        int cont = 0;
+        while (it.hasNext()) {
+            DefaultTableModel modelo=(DefaultTableModel) tablaParticiones.getModel();
+            Object[] tabla = new Object[5];
+            Proceso process;
+            process = it.next().getProces();
+            tabla[0]= cont; cont++;
+            tabla[1]= process.getDescripcion();
+            tabla[2]= process.getTamaño();
+            tabla[3]= it.next().Tamaño();
+            tabla[4]= it.next().Tamaño()-process.getTamaño();
+            modelo.addRow(tabla);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button botonGantt;
@@ -452,7 +474,6 @@ public class UIFinal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
     private java.awt.Label label1;
@@ -461,6 +482,7 @@ public class UIFinal extends javax.swing.JFrame {
     private java.awt.Label label5;
     private java.awt.Label label6;
     private javax.swing.JTable tablaFinal;
+    private javax.swing.JTable tablaParticiones;
     private javax.swing.JTextField tiempoo;
     // End of variables declaration//GEN-END:variables
 }
