@@ -5,12 +5,19 @@
  */
 package simulador.de.procesos;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Sole
  */
 public class UIFinal extends javax.swing.JFrame {
     int acumul;
+    public Memoria mem;
+    public Asignador asignador;
+    public Planificador planificador;
+    
+    
     /**
      * Creates new form UIFinal
      */
@@ -19,6 +26,26 @@ public class UIFinal extends javax.swing.JFrame {
         initComponents();
     }
 
+    public void setMem(Memoria _mem) {
+        Memoria mema = new Memoria();        
+        this.mem = mema;
+        mem.Mostrar();
+    }
+
+    public void setAsignador(int _asignador) {
+        Asignador asig = new Asignador();
+        asig.setAlgoritmo(_asignador);
+        this.asignador = asig;
+    }
+
+    public void setPlanificador(int _planificador) {
+        Planificador planif = new Planificador();
+        planif.setAlgorit(_planificador);
+        this.planificador = planif;
+    }
+
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

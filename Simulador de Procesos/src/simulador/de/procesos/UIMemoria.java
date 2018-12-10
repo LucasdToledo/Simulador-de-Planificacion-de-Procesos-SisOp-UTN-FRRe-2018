@@ -5,6 +5,7 @@
  */
 package simulador.de.procesos;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class UIMemoria extends javax.swing.JFrame {
     int Cont = 0;
     public Memoria mem;
+    public ArrayList<Proceso> colaProcesos;
     public int asignador;
     public int planificador;
     int contmemoriarestante;
@@ -177,6 +179,9 @@ public class UIMemoria extends javax.swing.JFrame {
     private void SiguienteMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteMemActionPerformed
        if (fsiguiente){
             UIFinal b = new UIFinal();
+            b.setMem(mem);
+            b.setAsignador(asignador);
+            b.setPlanificador(planificador);
             b.setVisible(true);
             this.setVisible(false);
        }
@@ -212,6 +217,10 @@ public class UIMemoria extends javax.swing.JFrame {
 
     public Memoria getMem() {
         return mem;
+    }
+
+    public void setColaProcesos(ArrayList<Proceso> colaProcesos) {
+        this.colaProcesos = colaProcesos;
     }
 
     public void setMem(int tamMemoria,boolean tipoParticionamiento) {
@@ -257,7 +266,6 @@ public class UIMemoria extends javax.swing.JFrame {
             DefaultTableModel modelo=(DefaultTableModel) tablaParti.getModel();
             Cont ++; 
             Object[] tabla = new Object[2];
-
             tabla[0]= Cont;
             tabla[1]= tamParti.getText();
             contmemusada = contmemusada + Integer.parseInt(tamParti.getText());
