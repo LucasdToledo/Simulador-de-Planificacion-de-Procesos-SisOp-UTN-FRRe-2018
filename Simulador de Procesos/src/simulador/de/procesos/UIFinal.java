@@ -23,6 +23,9 @@ public class UIFinal extends javax.swing.JFrame {
     
     /**
      * Creates new form UIFinal
+     * @param _mem
+     * @param tamMemoria
+     * @param tipoParticionamiento
      */
     
     
@@ -36,18 +39,13 @@ public class UIFinal extends javax.swing.JFrame {
         memoria.CrearMemoria(tamMemoria, tipoParticionamiento);
         this.mema = memoria;
         mema.setListaParticiones(_mem.getListaParticiones());
-        cargarParticiones();
         mema.Mostrar();
     }
-    
     
     public UIFinal() {
         acumul =0;
         initComponents();
-        //cargarParticiones();
     }
-
-    
 
     public void setAsignador(int _asignador) {
         Asignador asig = new Asignador();
@@ -83,7 +81,7 @@ public class UIFinal extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaFinal = new javax.swing.JTable();
+        tablaColaNuevo = new javax.swing.JTable();
         label1 = new java.awt.Label();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -108,7 +106,7 @@ public class UIFinal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tablaFinal.setModel(new javax.swing.table.DefaultTableModel(
+        tablaColaNuevo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -131,7 +129,7 @@ public class UIFinal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tablaFinal);
+        jScrollPane1.setViewportView(tablaColaNuevo);
 
         label1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         label1.setText("SIMULACIÓN");
@@ -400,6 +398,17 @@ public class UIFinal extends javax.swing.JFrame {
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
         Acumular();
+        int tiempo = Integer.parseInt(tiempoo.getText());
+        switch (tiempo){
+            case (1):
+                cargarParticionesPrimerVez();
+                break;
+            default:
+                hacerUnaVuelta();
+                cargarParticiones();
+                break;
+            
+        }
     }//GEN-LAST:event_botonSiguienteActionPerformed
 
     private void tiempooActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tiempooActionPerformed
@@ -451,30 +460,66 @@ public class UIFinal extends javax.swing.JFrame {
         tiempoo.setText(String.valueOf(acumul));
     }
     
+    public void hacerUnaVuelta(){
+        Iterator<Proceso> it = colaProcesos.iterator();
+        while (it.hasNext()) {
+            asignador.Asignar(mema, it.next());
+        }
+    }    
+ 
     public final void cargarParticiones(){
         //Mostramos los procesos cargados en la lista
         ArrayList<Particion> listaParticiones;
         listaParticiones = mema.getListaParticiones();
         Iterator<Particion> it = listaParticiones.iterator();
         int cont = 0;
-        
             DefaultTableModel modelo=(DefaultTableModel) tablaParticiones.getModel();
             Object[] tabla = new Object[5];
-            Proceso process = new Proceso();
-            
-            
-            
+            Proceso process;
             mema.Mostrar();
             while (it.hasNext()) {
             process = it.next().getProces();
-           
-            //LOS COMENTARIOS DE ABAJO LOS PUSE PORQUE NO HAY NINGUN PROCESO CARGADO POR LO TANTO NO PUEDE COMPLETAR LA TABLA POR LO TANTO SE CAGA EL PROGRAMA
-            
             tabla[0]= cont; cont++;
-            //tabla[1]= process.getDescripcion();
-            //tabla[2]= process.getTamaño();
+            tabla[1]= process.getDescripcion();
+            tabla[2]= process.getTamaño();
             tabla[3]= it.next().Tamaño();
-            //tabla[4]= it.next().Tamaño()-process.getTamaño();
+            tabla[4]= it.next().Tamaño()-process.getTamaño();
+            modelo.addRow(tabla);
+        }
+    }    
+    
+    public final void cargarColaNuevo(){
+        //Mostramos los procesos cargados en la lista
+        ArrayList<Proceso> colaNuevo;
+        colaNuevo = new ArrayList();
+        int cont = 0;
+        DefaultTableModel modelo=(DefaultTableModel) tablaColaNuevo.getModel();
+        Object[] tabla = new Object[5];
+        Proceso process;
+        mema.Mostrar();
+        Iterator<Proceso> it = colaProcesos.iterator();
+        while (it.hasNext()) {
+            process = it.next();
+            tabla[0]= cont; cont++;
+            modelo.addRow(tabla);
+        }
+    }    
+    
+    public final void cargarParticionesPrimerVez(){
+        //Mostramos los procesos cargados en la lista
+        ArrayList<Particion> listaParticiones;
+        listaParticiones = mema.getListaParticiones();
+        Iterator<Particion> it = listaParticiones.iterator();
+        int cont = 0;
+        DefaultTableModel modelo=(DefaultTableModel) tablaParticiones.getModel();
+        Object[] tabla = new Object[5];
+        mema.Mostrar();
+        while (it.hasNext()) {
+            tabla[0]= cont; cont++;
+            tabla[1]= "Vacío";
+            tabla[2]= 0;
+            tabla[3]= it.next().Tamaño();
+            tabla[4]= 0;
             modelo.addRow(tabla);
         }
     }
@@ -500,7 +545,7 @@ public class UIFinal extends javax.swing.JFrame {
     private java.awt.Label label4;
     private java.awt.Label label5;
     private java.awt.Label label6;
-    private javax.swing.JTable tablaFinal;
+    private javax.swing.JTable tablaColaNuevo;
     private javax.swing.JTable tablaParticiones;
     private javax.swing.JTextField tiempoo;
     // End of variables declaration//GEN-END:variables
