@@ -54,10 +54,10 @@ public class Asignador {
     
     //Asigna un proceso a una partición creada
     ArrayList <Particion> Asignar (Memoria _mem, Proceso _proceso){
-        
+        JOptionPane.showMessageDialog(null,"Hasta adentro llego");
         Memoria memoria = new Memoria();
         ArrayList <Particion> listaParticionesNueva;
-                    listaParticionesNueva = _mem.getListaParticiones();//auxiliar de la lista de particion, creada porque saltaba errores. 
+        listaParticionesNueva = _mem.getListaParticiones();//auxiliar de la lista de particion, creada porque saltaba errores. 
                     
                     //Bucle de selección de algoritmo según elección del usuario
                     Iterator<Particion> it = listaParticionesNueva.iterator();
@@ -282,6 +282,7 @@ public class Asignador {
                     JOptionPane.showMessageDialog(null, "404: Not found inteligencia en ti, vuelve a intentar");
                 break;
             }
+        memoria.Mostrar();
         return memoria.getListaParticiones();
     }
 }

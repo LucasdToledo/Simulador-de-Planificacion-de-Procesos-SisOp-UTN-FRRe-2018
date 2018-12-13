@@ -183,8 +183,8 @@ public class UIMemoria extends javax.swing.JFrame {
        if (fsiguiente){
             UIFinal b = new UIFinal();
             b.setMem(mem, mem.getTamaño(), mem.isTipo());
-           // b.setAsignador(asignador);
-           // b.setPlanificador(planificador);
+            b.setAsignador(asignador);
+            b.setPlanificador(planificador);
             
             b.setColaProcesos(colaProcesos);
             b.setVisible(true);

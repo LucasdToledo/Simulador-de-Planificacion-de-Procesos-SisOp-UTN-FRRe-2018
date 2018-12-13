@@ -462,10 +462,11 @@ public class UIFinal extends javax.swing.JFrame {
         tiempoo.setText(String.valueOf(acumul));
     }
     
-    public void hacerUnaVuelta(){
-        Iterator<Proceso> it = colaNuevo.iterator();
+    public void hacerUnaVuelta(){//CLICK EN SIGUIENTE MAYOR QUE 1. entra aca
+        Iterator<Proceso> it = colaNuevo.iterator();//ACA AGARRO PROCESOS DE LA COLA DE NUEVO. 
+        
         while (it.hasNext()) {
-            mema.setListaParticiones(asignador.Asignar(mema, it.next()));
+            asignador.Asignar(mema, it.next());
         }
         mema.Mostrar();
     }    
