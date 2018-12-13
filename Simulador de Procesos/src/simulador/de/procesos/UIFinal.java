@@ -400,10 +400,10 @@ public class UIFinal extends javax.swing.JFrame {
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
         Acumular();
+        cargarColaNuevo();
         switch (acumul){
             case (1):
                 cargarParticionesPrimerVez();
-                cargarColaNuevo();
                 break;
             default:
                 hacerUnaVuelta();
@@ -465,8 +465,9 @@ public class UIFinal extends javax.swing.JFrame {
     public void hacerUnaVuelta(){
         Iterator<Proceso> it = colaNuevo.iterator();
         while (it.hasNext()) {
-            asignador.Asignar(mema, it.next());
+            mema.setListaParticiones(asignador.Asignar(mema, it.next()));
         }
+        mema.Mostrar();
     }    
  
     public final void cargarParticiones(){

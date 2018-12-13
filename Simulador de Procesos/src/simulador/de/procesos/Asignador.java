@@ -53,10 +53,9 @@ public class Asignador {
     }
     
     //Asigna un proceso a una partición creada
-    Memoria Asignar (Memoria _mem, Proceso _proceso){
+    ArrayList <Particion> Asignar (Memoria _mem, Proceso _proceso){
         
         Memoria memoria = new Memoria();
-        /*
         ArrayList <Particion> listaParticionesNueva;
                     listaParticionesNueva = _mem.getListaParticiones();//auxiliar de la lista de particion, creada porque saltaba errores. 
                     
@@ -75,7 +74,7 @@ public class Asignador {
                     int memdisp = 0;
                    
                     //Este codigo verifica si hay particiones contiguas libres en memoria VARIABLE para juntarlas
-                    if(_mem.isTipo()){ //Si es Variable
+                    if(_mem.isTipo()){ /*//Si es Variable
                         boolean flag = true; //Bandera para saber cuando es la primera vez que entra al codigo
                         Particion resguardo = null; //resguardo de la particion
                         int contpos =0; //contador para saber la posicion de la particion de memoria
@@ -95,12 +94,12 @@ public class Asignador {
                             } 
                          resguardo = partaux;//resguardamos la particion actual antes de que termine el ciclo while
                          contpos= contpos +1;    //actualizamos el contador con la posicion del siguiente    
-                        }
+                        }*/
                     }
                     
          switch (algoritmo){
                 case(1): //Algoritmos bf
-                    if(_mem.isTipo()){ //Si es Variable
+                    if(_mem.isTipo()){ /*//Si es Variable
                             while (it3.hasNext() && (banderita)){
                            Particion partaux = it3.next(); //particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
                            
@@ -131,7 +130,7 @@ public class Asignador {
                             Nuevaparticion.CrearParticion(resg3.getFin(),cont - _proceso.getTamaño() , true); //creo una nueva particion con el sobrante de memoria
                             listaParticionesNueva.add(resg2+1,Nuevaparticion); //añado esa particion a la lista de particiones
                             banderita = false;
-                          }
+                          }*/
                            //------------------------------- //Podria no funcar al angau anda
                                    
                         }    
@@ -169,7 +168,7 @@ public class Asignador {
                 break;
                 case (2)://ff
                    
-                       if(_mem.isTipo()){ //Si es Variable
+                       if(_mem.isTipo()){ /*//Si es Variable
                            while (it.hasNext() && (banderita) ) {
                                 Particion partaux = it.next();
                                 Particion Nuevaparticion = new Particion();//particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
@@ -191,7 +190,7 @@ public class Asignador {
                                     listaParticionesNueva.get(posicion).setProces(_proceso); //mete el proceso en la particion
                                 }
                                posicion ++;        
-                             }        
+                             }*/        
                         }    
                        else{ //Si es Fija
                             while (it.hasNext() && (banderita) ) {
@@ -213,7 +212,7 @@ public class Asignador {
                     
                 break;
                 case (3): //WF
-                   if(_mem.isTipo()){ //Si es Variable
+                   if(_mem.isTipo()){ /*//Si es Variable
                             while (it3.hasNext() && (banderita)){
                            Particion partaux = it3.next(); //particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
                            
@@ -245,7 +244,7 @@ public class Asignador {
                             Nuevaparticion.CrearParticion(resg3.getFin(),cont - _proceso.getTamaño() , true); //creo una nueva particion con el sobrante de memoria
                             listaParticionesNueva.add(resg2+1,Nuevaparticion); //añado esa particion a la lista de particiones
                             banderita = false;
-                          }
+                          }*/
 
                            //------------------------------- //Podria no funcar al angau anda
                                    
@@ -282,8 +281,8 @@ public class Asignador {
                 default:
                     JOptionPane.showMessageDialog(null, "404: Not found inteligencia en ti, vuelve a intentar");
                 break;
-            }*/
-        return memoria;
+            }
+        return memoria.getListaParticiones();
     }
 }
     
