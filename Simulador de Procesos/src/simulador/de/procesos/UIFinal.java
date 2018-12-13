@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class UIFinal extends javax.swing.JFrame {
     int acumul;
     public Memoria mema;
+    public ArrayList<Proceso> colaNuevo;
     public Asignador asignador;
     public Planificador planificador;
     public ArrayList<Proceso> colaProcesos;
@@ -43,6 +44,7 @@ public class UIFinal extends javax.swing.JFrame {
     }
     
     public UIFinal() {
+        colaNuevo = new ArrayList();
         acumul =0;
         initComponents();
     }
@@ -402,6 +404,7 @@ public class UIFinal extends javax.swing.JFrame {
         switch (tiempo){
             case (1):
                 cargarParticionesPrimerVez();
+                cargarColaNuevo();
                 break;
             default:
                 hacerUnaVuelta();
@@ -489,19 +492,23 @@ public class UIFinal extends javax.swing.JFrame {
     }    
     
     public final void cargarColaNuevo(){
-        //Mostramos los procesos cargados en la lista
-        ArrayList<Proceso> colaNuevo;
-        colaNuevo = new ArrayList();
-        int cont = 0;
+        int cont = 1;
+        //Creación de la tabla
         DefaultTableModel modelo=(DefaultTableModel) tablaColaNuevo.getModel();
         Object[] tabla = new Object[5];
+        //Creo un proceso auxiliar para mejorar la legibilidad del código
         Proceso process;
-        mema.Mostrar();
         Iterator<Proceso> it = colaProcesos.iterator();
         while (it.hasNext()) {
             process = it.next();
-            tabla[0]= cont; cont++;
-            modelo.addRow(tabla);
+            if (process.getTarribo()==acumul){
+                tabla[0]= cont; cont++;
+                tabla[1]= process.getDescripcion();
+                tabla[2]= process.getTamaño();
+                tabla[3]= process.getCicloCPU();
+                tabla[4]= process.getCicloES();
+                modelo.addRow(tabla);
+            }
         }
     }    
     
