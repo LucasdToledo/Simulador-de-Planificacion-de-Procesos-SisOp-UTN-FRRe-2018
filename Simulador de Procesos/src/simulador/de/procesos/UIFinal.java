@@ -464,10 +464,11 @@ public class UIFinal extends javax.swing.JFrame {
     
     public void hacerUnaVuelta(){//CLICK EN SIGUIENTE MAYOR QUE 1. entra aca
         Iterator<Proceso> it = colaNuevo.iterator();//ACA AGARRO PROCESOS DE LA COLA DE NUEVO. 
-        
+        ArrayList <Particion> lista = new ArrayList();
         while (it.hasNext()) {
-            asignador.Asignar(mema, it.next());
+            lista = asignador.Asignar(mema, it.next());
         }
+        mema.setListaParticiones(lista);
         mema.Mostrar();
     }    
  

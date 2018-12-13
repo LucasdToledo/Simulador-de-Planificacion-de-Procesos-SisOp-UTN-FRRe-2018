@@ -282,8 +282,7 @@ public class Asignador {
                     JOptionPane.showMessageDialog(null, "404: Not found inteligencia en ti, vuelve a intentar");
                 break;
             }
-        memoria.Mostrar();
-        return memoria.getListaParticiones();
+        return listaParticionesNueva;
     }
 }
     
