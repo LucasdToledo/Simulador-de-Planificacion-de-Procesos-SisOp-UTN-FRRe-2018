@@ -400,8 +400,7 @@ public class UIFinal extends javax.swing.JFrame {
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
         Acumular();
-        int tiempo = Integer.parseInt(tiempoo.getText());
-        switch (tiempo){
+        switch (acumul){
             case (1):
                 cargarParticionesPrimerVez();
                 cargarColaNuevo();
@@ -464,7 +463,7 @@ public class UIFinal extends javax.swing.JFrame {
     }
     
     public void hacerUnaVuelta(){
-        Iterator<Proceso> it = colaProcesos.iterator();
+        Iterator<Proceso> it = colaNuevo.iterator();
         while (it.hasNext()) {
             asignador.Asignar(mema, it.next());
         }
@@ -508,6 +507,7 @@ public class UIFinal extends javax.swing.JFrame {
                 tabla[3]= process.getCicloCPU();
                 tabla[4]= process.getCicloES();
                 modelo.addRow(tabla);
+                colaNuevo.add(process);
             }
         }
     }    
