@@ -17,8 +17,10 @@ import javax.swing.table.DefaultTableModel;
 public class UIFinal extends javax.swing.JFrame {
     int acumul;
     int contp;
+    int contCL; //contador de los procesos en Cola de Listos según cómo van llegando
     public Memoria mema;
     public ArrayList<Proceso> colaNuevo;
+    public ArrayList<Proceso> colaListos;
     public Asignador asignador;
     public Planificador planificador;
     public ArrayList<Proceso> colaProcesos;
@@ -46,8 +48,10 @@ public class UIFinal extends javax.swing.JFrame {
     
     public UIFinal() {
         colaNuevo = new ArrayList();
+        colaListos = new ArrayList();
         acumul =0;
-        contp = 0;
+        contp = 1;
+        contCL = 1;
         initComponents();
     }
 
@@ -88,7 +92,7 @@ public class UIFinal extends javax.swing.JFrame {
         tablaColaNuevo = new javax.swing.JTable();
         label1 = new java.awt.Label();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaColaListos = new javax.swing.JTable();
         label4 = new java.awt.Label();
         label5 = new java.awt.Label();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -138,7 +142,7 @@ public class UIFinal extends javax.swing.JFrame {
         label1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         label1.setText("SIMULACIÓN");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaColaListos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -161,7 +165,7 @@ public class UIFinal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(TablaColaListos);
 
         label4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label4.setText("Cola de Nuevos");
@@ -410,6 +414,7 @@ public class UIFinal extends javax.swing.JFrame {
             default:
                 hacerUnaVuelta();
                 cargarParticiones();
+                cargarColaListos();
                 break;
         }
     }//GEN-LAST:event_botonSiguienteActionPerformed
@@ -475,20 +480,26 @@ public class UIFinal extends javax.swing.JFrame {
  
     public final void cargarParticiones(){
         //Mostramos los procesos cargados en la lista
-        Iterator<Particion> it = mema.getListaParticiones().iterator();
         DefaultTableModel modelo=(DefaultTableModel) tablaParticiones.getModel();
         Object[] tabla = new Object[5];
+        //Creo un proceso y particion auxiliares para mejorar la legibilidad del código
+        Particion part;
         Proceso process;
+        Iterator<Particion> it = mema.getListaParticiones().iterator();
         while (it.hasNext()) {
-            process = it.next().getProces();
-            tabla[0]= contp; contp++;
-            tabla[1]= process.getDescripcion();
-            tabla[2]= process.getTamaño();
-            tabla[3]= it.next().Tamaño();
-            tabla[4]= it.next().Tamaño()-process.getTamaño();
-            modelo.addRow(tabla);
+            part = it.next();
+            if (part.isEstado() == false){              //Si la particion esta ocupada entra
+                process = part.getProces();
+                tabla[0]= contCL; contCL++;
+                tabla[1]= process.getDescripcion();
+                tabla[2]= process.getTamaño();
+                tabla[3]= process.getCicloCPU();
+                tabla[4]= process.getCicloES();
+                modelo.addRow(tabla);
+                colaListos.add(process);
+            }
         }
-    }    
+    }
     
     public final void cargarColaNuevo(){
         int cont = 1;
@@ -512,6 +523,24 @@ public class UIFinal extends javax.swing.JFrame {
         }
     }    
     
+    public final void cargarColaListos(){
+        //Creación de la tabla
+        DefaultTableModel modelo=(DefaultTableModel) TablaColaListos.getModel();
+        Object[] tabla = new Object[5];
+        //Creo un proceso y particion auxiliares para mejorar la legibilidad del código
+        Proceso process;
+        Iterator<Proceso> it = colaListos.iterator();
+        while (it.hasNext()) {
+            process = it.next();
+            tabla[0]= contCL; contCL++;
+            tabla[1]= process.getDescripcion();
+            tabla[2]= process.getTamaño();
+            tabla[3]= process.getCicloCPU();
+            tabla[4]= process.getCicloES();
+            modelo.addRow(tabla);
+        }
+    }    
+    
     public final void cargarParticionesPrimerVez(){
         //Mostramos los procesos cargados en la lista
         ArrayList<Particion> listaParticiones;
@@ -532,6 +561,7 @@ public class UIFinal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaColaListos;
     private java.awt.Button botonGantt;
     private java.awt.Button botonSiguiente;
     private javax.swing.JLabel jLabel1;
@@ -543,7 +573,6 @@ public class UIFinal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
