@@ -525,6 +525,7 @@ public class UIFinal extends javax.swing.JFrame {
         Object[] tabla = new Object[5];
         //Creo un proceso auxiliar para mejorar la legibilidad del código
         Proceso process;
+         
         Iterator<Proceso> it = colaProcesos.iterator();
         while (it.hasNext()) {
             process = it.next();
@@ -538,6 +539,7 @@ public class UIFinal extends javax.swing.JFrame {
                 colaNuevo.add(process);
             }
         }
+     
     }    
     
     public final void cargarColaListos(){

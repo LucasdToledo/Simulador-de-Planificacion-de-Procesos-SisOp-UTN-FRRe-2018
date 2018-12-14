@@ -370,6 +370,7 @@ public class UIEntrada extends javax.swing.JFrame {
            Iniciar();
            if (tipoMemoria ==true){ 
                UIFinal b = new UIFinal();
+               b.setColaProcesos(colaProcesos);
                b.setVisible(true);
            }
            else{

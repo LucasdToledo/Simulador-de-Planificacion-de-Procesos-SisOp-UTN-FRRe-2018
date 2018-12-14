@@ -36,6 +36,10 @@ public class Particion {
         return tamaño;
     }
     
+    public void setTamaño(int tam) {
+        tamaño= tam;
+    }
+    
     public void CrearParticion (int _tamParticion) {
         tamaño = _tamParticion;
         estado = true;
