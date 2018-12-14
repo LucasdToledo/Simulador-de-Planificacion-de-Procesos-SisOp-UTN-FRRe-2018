@@ -412,6 +412,7 @@ public class UIFinal extends javax.swing.JFrame {
                 cargarParticionesPrimerVez();
                 break;
             default:
+                reiniciarTabla(tablaParticiones);
                 hacerUnaVuelta();
                 cargarParticiones();
                 cargarColaListos();
@@ -493,8 +494,8 @@ public class UIFinal extends javax.swing.JFrame {
                 tabla[0]= contCL; contCL++;
                 tabla[1]= process.getDescripcion();
                 tabla[2]= process.getTamaño();
-                tabla[3]= process.getCicloCPU();
-                tabla[4]= process.getCicloES();
+                tabla[3]= part.Tamaño();
+                tabla[4]= part.Tamaño()- process.getTamaño();
                 modelo.addRow(tabla);
                 colaListos.add(process);
                 for (int posi = 0; posi <= colaNuevo.size()-1 ; posi++) {
@@ -505,6 +506,14 @@ public class UIFinal extends javax.swing.JFrame {
                     posi= posi-1;
                 }
             }
+            }
+            else{
+                tabla[0]= contCL; contCL++;
+                tabla[1]= "Vacío";
+                tabla[2]= 0;
+                tabla[3]= part.Tamaño();
+                tabla[4]= 0;
+                modelo.addRow(tabla);
             }
         }
     }
@@ -566,6 +575,11 @@ public class UIFinal extends javax.swing.JFrame {
             tabla[4]= 0;
             modelo.addRow(tabla);
         }
+     
+    }
+    public void reiniciarTabla(javax.swing.JTable tabla){
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        while(modelo.getRowCount()>0)modelo.removeRow(0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
