@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class UIFinal extends javax.swing.JFrame {
     int acumul;
+    int contp;
     public Memoria mema;
     public ArrayList<Proceso> colaNuevo;
     public Asignador asignador;
@@ -46,6 +47,7 @@ public class UIFinal extends javax.swing.JFrame {
     public UIFinal() {
         colaNuevo = new ArrayList();
         acumul =0;
+        contp = 0;
         initComponents();
     }
 
@@ -409,7 +411,6 @@ public class UIFinal extends javax.swing.JFrame {
                 hacerUnaVuelta();
                 cargarParticiones();
                 break;
-            
         }
     }//GEN-LAST:event_botonSiguienteActionPerformed
 
@@ -470,21 +471,17 @@ public class UIFinal extends javax.swing.JFrame {
         }
         mema.setListaParticiones(lista);
         mema.Mostrar();
-    }    
+    }
  
     public final void cargarParticiones(){
         //Mostramos los procesos cargados en la lista
-        ArrayList<Particion> listaParticiones;
-        listaParticiones = mema.getListaParticiones();
-        Iterator<Particion> it = listaParticiones.iterator();
-        int cont = 0;
-            DefaultTableModel modelo=(DefaultTableModel) tablaParticiones.getModel();
-            Object[] tabla = new Object[5];
-            Proceso process;
-            mema.Mostrar();
-            while (it.hasNext()) {
+        Iterator<Particion> it = mema.getListaParticiones().iterator();
+        DefaultTableModel modelo=(DefaultTableModel) tablaParticiones.getModel();
+        Object[] tabla = new Object[5];
+        Proceso process;
+        while (it.hasNext()) {
             process = it.next().getProces();
-            tabla[0]= cont; cont++;
+            tabla[0]= contp; contp++;
             tabla[1]= process.getDescripcion();
             tabla[2]= process.getTamaño();
             tabla[3]= it.next().Tamaño();
