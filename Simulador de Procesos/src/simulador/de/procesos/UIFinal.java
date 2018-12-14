@@ -497,6 +497,14 @@ public class UIFinal extends javax.swing.JFrame {
                 tabla[4]= process.getCicloES();
                 modelo.addRow(tabla);
                 colaListos.add(process);
+                for (int posi = 0; posi <= colaNuevo.size()-1 ; posi++) {
+             
+                Proceso pepe = colaNuevo.get(posi);
+                if(colaListos.contains(pepe)){
+                    colaNuevo.remove(pepe);
+                    posi= posi-1;
+                }
+            }
             }
         }
     }
