@@ -369,9 +369,15 @@ public class UIEntrada extends javax.swing.JFrame {
        if ((fasig)&&(fplan)&&(ftam)&&(fprocesos)){
            Iniciar();
            if (tipoMemoria ==true){ 
-               UIFinal b = new UIFinal();
-               b.setColaProcesos(colaProcesos);
-               b.setVisible(true);
+               UIMemoria a = new UIMemoria();
+               a.setMem(tamMemoria, tipoMemoria);
+               a.setAsignador(asignador);
+               a.setPlanificador(planificador);
+               a.setColaProcesos(colaProcesos);
+               a.Siguiente();
+               //UIFinal b = new UIFinal();
+               //b.setColaProcesos(colaProcesos);
+               //b.setVisible(true);
            }
            else{
                UIMemoria a = new UIMemoria();

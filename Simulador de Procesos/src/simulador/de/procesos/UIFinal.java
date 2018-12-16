@@ -563,6 +563,9 @@ public class UIFinal extends javax.swing.JFrame {
     public final void cargarParticionesPrimerVez(){
         //Mostramos los procesos cargados en la lista
         ArrayList<Particion> listaParticiones;
+        if(mema.isTipo()){
+        
+        }
         listaParticiones = mema.getListaParticiones();
         Iterator<Particion> it = listaParticiones.iterator();
         int cont = 0;
