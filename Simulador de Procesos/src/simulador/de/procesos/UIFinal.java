@@ -50,6 +50,7 @@ public class UIFinal extends javax.swing.JFrame {
         acumul =0;
         contp = 1;
         contCL = 1;
+        contM=1;
         initComponents();
     }
 
@@ -403,14 +404,18 @@ public class UIFinal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
-        Acumular();
+        Acumular();         //Sumo un valor al tiempo
+        //Reiniciamos todas las tablas
+        contCN = reiniciarTabla(tablaColaNuevo);
+        contM = reiniciarTabla(tablaParticiones);
+        contCL = reiniciarTabla(TablaColaListos);
+        //Cargamos la cola de Nuevos con los procesos que tienen tiempo de arribo igual al tiempo presente
         cargarColaNuevo();
         switch (acumul){
             case (1):
                 cargarParticionesPrimerVez();
                 break;
             default:
-                reiniciarTabla(tablaParticiones);
                 hacerUnaVuelta();
                 cargarParticiones();
                 cargarColaListos();
@@ -575,10 +580,10 @@ public class UIFinal extends javax.swing.JFrame {
         }
      
     }
-    public void reiniciarTabla(javax.swing.JTable tabla){
+    public int reiniciarTabla(javax.swing.JTable tabla){
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         while(modelo.getRowCount()>0)modelo.removeRow(0);
-        contM = 0;
+        return 1;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
