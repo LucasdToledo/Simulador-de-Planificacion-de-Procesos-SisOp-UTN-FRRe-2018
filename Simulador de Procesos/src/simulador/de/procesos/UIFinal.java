@@ -15,8 +15,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Sole
  */
 public class UIFinal extends javax.swing.JFrame {
+    int contCN;
     int acumul;
     int contp;
+    int contM;
     int contCL; //contador de los procesos en Cola de Listos según cómo van llegando
     public Memoria mema;
     public ArrayList<Proceso> colaNuevo;
@@ -34,11 +36,6 @@ public class UIFinal extends javax.swing.JFrame {
     
     
     public void setMem(Memoria _mem ,int tamMemoria,boolean tipoParticionamiento) {
-        //Memoria mema = new Memoria(); 
-        //mema = _mem;
-        //mema.CrearMemoria(_mem.getTamaño(), _mem.isTipo());
-        //mema.setListaParticiones(_ListaParticion);
-        //mema.Mostrar();
         Memoria memoria = new Memoria();
         memoria.CrearMemoria(tamMemoria, tipoParticionamiento);
         this.mema = memoria;
@@ -47,6 +44,7 @@ public class UIFinal extends javax.swing.JFrame {
     }
     
     public UIFinal() {
+        contCN = 1;
         colaNuevo = new ArrayList();
         colaListos = new ArrayList();
         acumul =0;
@@ -491,7 +489,7 @@ public class UIFinal extends javax.swing.JFrame {
             part = it.next();
             if (part.isEstado() == false){              //Si la particion esta ocupada entra
                 process = part.getProces();
-                tabla[0]= contCL; contCL++;
+                tabla[0]= contM; contM++;
                 tabla[1]= process.getDescripcion();
                 tabla[2]= process.getTamaño();
                 tabla[3]= part.Tamaño();
@@ -500,15 +498,15 @@ public class UIFinal extends javax.swing.JFrame {
                 colaListos.add(process);
                 for (int posi = 0; posi <= colaNuevo.size()-1 ; posi++) {
              
-                Proceso pepe = colaNuevo.get(posi);
-                if(colaListos.contains(pepe)){
-                    colaNuevo.remove(pepe);
-                    posi= posi-1;
+                    Proceso pepe = colaNuevo.get(posi);
+                    if(colaListos.contains(pepe)){
+                        colaNuevo.remove(pepe);
+                        posi= posi-1;
+                    }
                 }
             }
-            }
             else{
-                tabla[0]= contCL; contCL++;
+                tabla[0]= contM; contM++;
                 tabla[1]= "Vacío";
                 tabla[2]= 0;
                 tabla[3]= part.Tamaño();
@@ -519,7 +517,6 @@ public class UIFinal extends javax.swing.JFrame {
     }
     
     public final void cargarColaNuevo(){
-        int cont = 1;
         //Creación de la tabla
         DefaultTableModel modelo=(DefaultTableModel) tablaColaNuevo.getModel();
         Object[] tabla = new Object[5];
@@ -530,7 +527,7 @@ public class UIFinal extends javax.swing.JFrame {
         while (it.hasNext()) {
             process = it.next();
             if (process.getTarribo()==acumul){
-                tabla[0]= cont; cont++;
+                tabla[0]= contCN; contCN++;
                 tabla[1]= process.getDescripcion();
                 tabla[2]= process.getTamaño();
                 tabla[3]= process.getCicloCPU();
@@ -563,17 +560,13 @@ public class UIFinal extends javax.swing.JFrame {
     public final void cargarParticionesPrimerVez(){
         //Mostramos los procesos cargados en la lista
         ArrayList<Particion> listaParticiones;
-        if(mema.isTipo()){
-        
-        }
         listaParticiones = mema.getListaParticiones();
         Iterator<Particion> it = listaParticiones.iterator();
-        int cont = 0;
         DefaultTableModel modelo=(DefaultTableModel) tablaParticiones.getModel();
         Object[] tabla = new Object[5];
         mema.Mostrar();
         while (it.hasNext()) {
-            tabla[0]= cont; cont++;
+            tabla[0]= contM; contM++;
             tabla[1]= "Vacío";
             tabla[2]= 0;
             tabla[3]= it.next().Tamaño();
@@ -585,6 +578,7 @@ public class UIFinal extends javax.swing.JFrame {
     public void reiniciarTabla(javax.swing.JTable tabla){
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         while(modelo.getRowCount()>0)modelo.removeRow(0);
+        contM = 0;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

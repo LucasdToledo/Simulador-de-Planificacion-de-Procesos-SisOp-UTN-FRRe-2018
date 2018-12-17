@@ -369,15 +369,18 @@ public class UIEntrada extends javax.swing.JFrame {
        if ((fasig)&&(fplan)&&(ftam)&&(fprocesos)){
            Iniciar();
            if (tipoMemoria ==true){ 
-               UIMemoria a = new UIMemoria();
-               a.setMem(tamMemoria, tipoMemoria);
-               a.setAsignador(asignador);
-               a.setPlanificador(planificador);
-               a.setColaProcesos(colaProcesos);
-               a.Siguiente();
-               //UIFinal b = new UIFinal();
-               //b.setColaProcesos(colaProcesos);
-               //b.setVisible(true);
+               UIFinal b = new UIFinal();                           //Creo la interfaz final
+               Memoria mem = new Memoria();                         //Creo una memoria para pasar la particion
+               Particion part = new Particion();                    //Creo la primera particion
+               part.CrearParticion(tamMemoria);                     //Tamaño total de la memoria para la primera particion
+               ArrayList <Particion> listaPart = new ArrayList();   //Creo una lista para setearla en memoria
+               listaPart.add(part);
+               mem.setListaParticiones(listaPart);
+               b.setMem(mem, tamMemoria, tipoMemoria);              //Por último paso los parámetros a UIFinal
+               b.setAsignador(asignador);
+               b.setPlanificador(planificador);
+               b.setColaProcesos(colaProcesos);
+               b.setVisible(true);
            }
            else{
                UIMemoria a = new UIMemoria();

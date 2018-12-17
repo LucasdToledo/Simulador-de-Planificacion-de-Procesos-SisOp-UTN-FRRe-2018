@@ -6,7 +6,6 @@
 package simulador.de.procesos;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -179,19 +178,6 @@ public class UIMemoria extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    public void Siguiente() {                                             
-       
-            UIFinal b = new UIFinal();
-            b.setMem(mem, mem.getTamaño(), mem.isTipo());
-            b.setAsignador(asignador);
-            b.setPlanificador(planificador);
-            
-            b.setColaProcesos(colaProcesos);
-            b.setVisible(true);
-            
-       
-    }
     
     private void SiguienteMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteMemActionPerformed
        if (fsiguiente){
