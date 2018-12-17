@@ -19,6 +19,7 @@ public class UIFinal extends javax.swing.JFrame {
     int acumul;
     int contp;
     int contM;
+    int contT;
     int contCL; //contador de los procesos en Cola de Listos según cómo van llegando
     public Memoria mema;
     public ArrayList<Proceso> colaNuevo;
@@ -26,6 +27,7 @@ public class UIFinal extends javax.swing.JFrame {
     public Asignador asignador;
     public Planificador planificador;
     public ArrayList<Proceso> colaProcesos;
+    public ArrayList<Proceso> colaTerminados;
     
     /**
      * Creates new form UIFinal
@@ -47,10 +49,12 @@ public class UIFinal extends javax.swing.JFrame {
         contCN = 1;
         colaNuevo = new ArrayList();
         colaListos = new ArrayList();
+        colaTerminados = new ArrayList();
         acumul =0;
         contp = 1;
         contCL = 1;
         contM=1;
+        contT = 1;
         initComponents();
     }
 
@@ -95,7 +99,7 @@ public class UIFinal extends javax.swing.JFrame {
         label4 = new java.awt.Label();
         label5 = new java.awt.Label();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        TablaTerminados = new javax.swing.JTable();
         label6 = new java.awt.Label();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaParticiones = new javax.swing.JTable();
@@ -104,9 +108,9 @@ public class UIFinal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        tablaCPU = new javax.swing.JTable();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
+        tablaES = new javax.swing.JTable();
         tiempoo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         botonGantt = new java.awt.Button();
@@ -172,7 +176,7 @@ public class UIFinal extends javax.swing.JFrame {
         label5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label5.setText("Cola de Listos");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        TablaTerminados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -195,7 +199,7 @@ public class UIFinal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(TablaTerminados);
 
         label6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label6.setText("Terminados");
@@ -242,7 +246,7 @@ public class UIFinal extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("Proceso en E/S");
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        tablaCPU.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -265,9 +269,9 @@ public class UIFinal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane6.setViewportView(jTable5);
+        jScrollPane6.setViewportView(tablaCPU);
 
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+        tablaES.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -290,7 +294,7 @@ public class UIFinal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane7.setViewportView(jTable6);
+        jScrollPane7.setViewportView(tablaES);
 
         tiempoo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -419,6 +423,8 @@ public class UIFinal extends javax.swing.JFrame {
                 hacerUnaVuelta();
                 cargarParticiones();
                 cargarColaListos();
+                colaListos = planificador.elegirSiguiente(colaListos, acumul);
+                cargarColaTerminados();
                 break;
         }
     }//GEN-LAST:event_botonSiguienteActionPerformed
@@ -527,7 +533,7 @@ public class UIFinal extends javax.swing.JFrame {
         Object[] tabla = new Object[5];
         //Creo un proceso auxiliar para mejorar la legibilidad del código
         Proceso process;
-         
+        
         Iterator<Proceso> it = colaProcesos.iterator();
         while (it.hasNext()) {
             process = it.next();
@@ -562,6 +568,28 @@ public class UIFinal extends javax.swing.JFrame {
         }
     }    
     
+    public final void cargarColaTerminados(){
+        //Creación de la tabla
+        DefaultTableModel modelo=(DefaultTableModel) TablaTerminados.getModel();
+        Object[] tabla = new Object[5];
+        //Creo un proceso y particion auxiliares para mejorar la legibilidad del código
+        Proceso process;
+        ArrayList <Proceso> listaAux = planificador.getColaTerminado();
+        if (!listaAux.isEmpty()){
+            Iterator<Proceso> it = listaAux.iterator();
+            while (it.hasNext()) {
+                process = it.next();
+                tabla[0]= contT; contT++;
+                tabla[1]= process.getDescripcion();
+                tabla[2]= process.getTamaño();
+                tabla[3]= process.getCicloCPU();
+                tabla[4]= process.getCicloES();
+                modelo.addRow(tabla);
+            }    
+        }
+        
+    }   
+    
     public final void cargarParticionesPrimerVez(){
         //Mostramos los procesos cargados en la lista
         ArrayList<Particion> listaParticiones;
@@ -588,6 +616,7 @@ public class UIFinal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaColaListos;
+    private javax.swing.JTable TablaTerminados;
     private java.awt.Button botonGantt;
     private java.awt.Button botonSiguiente;
     private javax.swing.JLabel jLabel1;
@@ -599,15 +628,14 @@ public class UIFinal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable5;
-    private javax.swing.JTable jTable6;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label4;
     private java.awt.Label label5;
     private java.awt.Label label6;
+    private javax.swing.JTable tablaCPU;
     private javax.swing.JTable tablaColaNuevo;
+    private javax.swing.JTable tablaES;
     private javax.swing.JTable tablaParticiones;
     private javax.swing.JTextField tiempoo;
     // End of variables declaration//GEN-END:variables

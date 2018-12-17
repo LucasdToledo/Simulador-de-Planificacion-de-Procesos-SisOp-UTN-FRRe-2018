@@ -12,6 +12,8 @@ public class Proceso {
     private String descripcion;
     private int tarribo;
     private int tamaño;
+    int inicioEjecucion;
+    int finEjecución;
     
     public int getNumero() {
         return numero;
@@ -75,6 +77,14 @@ public class Proceso {
 
     public void setTamaño(int tamaño) {
         this.tamaño = tamaño;
+    }
+
+    public void setInicioEjecucion(int inicioEjecucion) {
+        this.inicioEjecucion = inicioEjecucion;
+    }
+
+    public void setFinEjecución(int finEjecución) {
+        this.finEjecución = finEjecución;
     }
     
     public void CrearProceso(String _des,int _tarribo,int _tam, int _es, int _cpu){
