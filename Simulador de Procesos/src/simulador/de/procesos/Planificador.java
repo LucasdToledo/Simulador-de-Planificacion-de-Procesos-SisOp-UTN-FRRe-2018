@@ -30,6 +30,7 @@ public class Planificador {
     
     //Dentro de este método se definirán los algoritmos de planificación
     public ArrayList <Proceso> elegirSiguiente (ArrayList<Proceso> colaListos, int tiempo){
+      
         ArrayList <Proceso> nuevaColaListos;
         nuevaColaListos = colaListos;
         Proceso proaux;
@@ -43,7 +44,7 @@ public class Planificador {
                     break;
                 case (4):   //FCFS
                     proaux = nuevaColaListos.get(0);
-                    if (iniciaEjecucion){
+                    if (iniciaEjecucion){ 
                         proaux.setInicioEjecucion(tiempo);
                         iniciaEjecucion = false;
                     }

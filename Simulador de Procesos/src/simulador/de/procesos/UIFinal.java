@@ -419,7 +419,9 @@ public class UIFinal extends javax.swing.JFrame {
                 //Cargamos la cola de Nuevos con los procesos que tienen tiempo de arribo igual al tiempo presente
                 contM = reiniciarTabla(tablaParticiones);
                 hacerUnaVuelta();
+                JOptionPane.showMessageDialog(null, "1");
                 cargarParticiones();
+                JOptionPane.showMessageDialog(null, "2");
                 cargarColaListos();
                 //Se carga de nuevo para actualizar
                 colaListos = planificador.elegirSiguiente(colaListos, acumul);
@@ -493,6 +495,7 @@ public class UIFinal extends javax.swing.JFrame {
         Object[] tabla = new Object[5];
         //Creo un proceso y particion auxiliares para mejorar la legibilidad del código
         Particion part;
+        colaListos = new ArrayList();
         Proceso process;
         Iterator<Particion> it = mema.getListaParticiones().iterator();
         while (it.hasNext()) {
@@ -566,6 +569,7 @@ public class UIFinal extends javax.swing.JFrame {
             tabla[3]= process.getCicloCPU();
             tabla[4]= process.getCicloES();
             modelo.addRow(tabla);
+            JOptionPane.showMessageDialog(null, colaListos);
         }
     }    
     
@@ -586,6 +590,7 @@ public class UIFinal extends javax.swing.JFrame {
                 tabla[4]= process.getCicloES();
                 modelo.addRow(tabla);
                 colaTerminados.add(process);
+                colaListos.remove(process);
             }
         }    
         
