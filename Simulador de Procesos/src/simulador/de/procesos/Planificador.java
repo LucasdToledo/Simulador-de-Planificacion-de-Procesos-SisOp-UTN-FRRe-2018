@@ -15,16 +15,11 @@ import javax.swing.JOptionPane;
 public class Planificador {
     private int algorit;
     boolean iniciaEjecucion;
-    ArrayList <Proceso> colaTerminado;
     
     public void Planificador(){
         iniciaEjecucion = true;
     }
 
-    public ArrayList<Proceso> getColaTerminado() {
-        return colaTerminado;
-    }
-    
     public int getAlgorit() {
         return algorit;
     }
@@ -61,7 +56,6 @@ public class Planificador {
                         }
                         else{
                             proaux.setFinEjecución(tiempo-1);
-                            colaTerminado.add(proaux);
                             nuevaColaListos.remove(0);
                             if (!nuevaColaListos.isEmpty()){
                                 proaux = nuevaColaListos.get(0);

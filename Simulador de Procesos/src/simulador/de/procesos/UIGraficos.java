@@ -5,16 +5,20 @@
  */
 package simulador.de.procesos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Mireya
  */
 public class UIGraficos extends javax.swing.JFrame {
 
+    public ArrayList <Proceso> colaTerminados;
     /**
      * Creates new form UIGraficos
      */
     public UIGraficos() {
+        colaTerminados = new ArrayList();
         initComponents();
     }
 
@@ -115,6 +119,33 @@ public class UIGraficos extends javax.swing.JFrame {
                 new UIGraficos().setVisible(true);
             }
         });
+    }
+    
+    public void crearFalsosProcesos (){
+        ArrayList <Proceso> colaT = new ArrayList();
+        
+        
+        Proceso p1 = new Proceso();
+        p1.CrearProceso("P1", 1, 1, 1, 1);
+        p1.setInicioEjecucion(1);
+        p1.setFinEjecución(2);
+        colaT.add(p1);
+       
+        Proceso p2 = new Proceso();
+        p2.CrearProceso("P1", 1, 1, 1, 1);
+        p2.setInicioEjecucion(1);
+        p2.setFinEjecución(2);
+        colaT.add(p2);
+        
+        Proceso p3 = new Proceso();
+        p3.CrearProceso("P1", 1, 1, 1, 1);
+        p3.setInicioEjecucion(1);
+        p3.setFinEjecución(2);
+        colaT.add(p3);
+        
+        colaTerminados= colaT;
+        
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

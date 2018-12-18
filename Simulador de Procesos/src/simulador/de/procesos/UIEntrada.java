@@ -554,9 +554,9 @@ public class UIEntrada extends javax.swing.JFrame {
             Hacemos uso de la función random, que genera un valor aleatorio dentro de un rango
             Coloco int porque el random genera un double y el +1 es para que no de un valor 0*/
             int tamp = (int) (Math.random() * 511) + 1;  //Tamaño del proceso
-            int tarrib = (int) (Math.random() * 7) + 1;  //Tiempo de arribo
-            int cicloE = (int) (Math.random() * 15) + 1;  //CicloES
-            int cicloCP = (int) (Math.random() * 15) + 1; //CicloCPU
+            int tarrib = (int) (Math.random() * 5) + 1;  //Tiempo de arribo
+            int cicloE = (int) (Math.random() * 9) + 1;  //CicloES
+            int cicloCP = (int) (Math.random() * 9) + 1; //CicloCPU
 
             //Ahora guardo los valores en la tabla
             tabla[2]= tamp;

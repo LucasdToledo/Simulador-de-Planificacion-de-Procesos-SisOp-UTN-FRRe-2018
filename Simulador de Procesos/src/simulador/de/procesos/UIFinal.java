@@ -50,7 +50,7 @@ public class UIFinal extends javax.swing.JFrame {
         colaNuevo = new ArrayList();
         colaListos = new ArrayList();
         colaTerminados = new ArrayList();
-        acumul =0;
+        acumul =-1;
         contp = 1;
         contCL = 1;
         contM=1;
@@ -409,23 +409,22 @@ public class UIFinal extends javax.swing.JFrame {
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
         Acumular();         //Sumo un valor al tiempo
-        //Reiniciamos todas las tablas
         contCN = reiniciarTabla(tablaColaNuevo);
-        contM = reiniciarTabla(tablaParticiones);
-        contCL = reiniciarTabla(TablaColaListos);
-        //Cargamos la cola de Nuevos con los procesos que tienen tiempo de arribo igual al tiempo presente
         cargarColaNuevo();
-        switch (acumul){
-            case (1):
-                cargarParticionesPrimerVez();
-                break;
-            default:
+        if (acumul == 0){
+            cargarParticionesPrimerVez();
+        }
+        else{ 
+            if(acumul > 0 ){
+                //Cargamos la cola de Nuevos con los procesos que tienen tiempo de arribo igual al tiempo presente
+                contM = reiniciarTabla(tablaParticiones);
                 hacerUnaVuelta();
                 cargarParticiones();
                 cargarColaListos();
+                //Se carga de nuevo para actualizar
                 colaListos = planificador.elegirSiguiente(colaListos, acumul);
-                //cargarColaTerminados();
-                break;
+                cargarColaTerminados();
+            }
         }
     }//GEN-LAST:event_botonSiguienteActionPerformed
 
@@ -507,6 +506,7 @@ public class UIFinal extends javax.swing.JFrame {
                 tabla[4]= part.Tamaño()- process.getTamaño();
                 modelo.addRow(tabla);
                 colaListos.add(process);
+                colaProcesos.remove(process);
                 for (int posi = 0; posi <= colaNuevo.size()-1 ; posi++) {
              
                     Proceso pepe = colaNuevo.get(posi);
@@ -537,7 +537,7 @@ public class UIFinal extends javax.swing.JFrame {
         Iterator<Proceso> it = colaProcesos.iterator();
         while (it.hasNext()) {
             process = it.next();
-            if (process.getTarribo()==acumul){
+            if (process.getTarribo()<=acumul){
                 tabla[0]= contCN; contCN++;
                 tabla[1]= process.getDescripcion();
                 tabla[2]= process.getTamaño();
@@ -551,6 +551,7 @@ public class UIFinal extends javax.swing.JFrame {
     }    
     
     public final void cargarColaListos(){
+        contCL = reiniciarTabla(TablaColaListos);
         //Creación de la tabla
         DefaultTableModel modelo=(DefaultTableModel) TablaColaListos.getModel();
         Object[] tabla = new Object[5];
@@ -574,19 +575,19 @@ public class UIFinal extends javax.swing.JFrame {
         Object[] tabla = new Object[5];
         //Creo un proceso y particion auxiliares para mejorar la legibilidad del código
         Proceso process;
-        ArrayList <Proceso> listaAux = planificador.getColaTerminado();
-        if (!listaAux.isEmpty()){
-            Iterator<Proceso> it = listaAux.iterator();
-            while (it.hasNext()) {
-                process = it.next();
+        Iterator<Proceso> it = colaListos.iterator();
+        while (it.hasNext()) {
+            process = it.next();
+            if (process.getCicloCPU() == 0 && process.getCicloES() == 0){
                 tabla[0]= contT; contT++;
                 tabla[1]= process.getDescripcion();
                 tabla[2]= process.getTamaño();
                 tabla[3]= process.getCicloCPU();
                 tabla[4]= process.getCicloES();
                 modelo.addRow(tabla);
-            }    
-        }
+                colaTerminados.add(process);
+            }
+        }    
         
     }   
     
