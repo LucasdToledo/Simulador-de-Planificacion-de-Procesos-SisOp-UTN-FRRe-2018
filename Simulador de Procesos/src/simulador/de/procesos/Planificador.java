@@ -18,7 +18,6 @@ public class Planificador {
     ArrayList <Proceso> colaTerminado;
     
     public void Planificador(){
-        colaTerminado = new ArrayList();
         iniciaEjecucion = true;
     }
 

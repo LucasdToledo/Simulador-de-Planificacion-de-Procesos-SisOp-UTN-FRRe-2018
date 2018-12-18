@@ -424,7 +424,7 @@ public class UIFinal extends javax.swing.JFrame {
                 cargarParticiones();
                 cargarColaListos();
                 colaListos = planificador.elegirSiguiente(colaListos, acumul);
-                cargarColaTerminados();
+                //cargarColaTerminados();
                 break;
         }
     }//GEN-LAST:event_botonSiguienteActionPerformed
