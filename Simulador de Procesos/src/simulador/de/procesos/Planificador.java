@@ -72,9 +72,9 @@ public class Planificador {
                         }
                         else{
                             proaux.setFinEjecución(tiempo-1);
-                            nuevaColaListos.remove(0);
+                            //nuevaColaListos.remove(0);
                             if (!nuevaColaListos.isEmpty()){
-                                proaux = nuevaColaListos.get(0);
+                                proaux = nuevaColaListos.get(1);
                                 proaux.setInicioEjecucion(tiempo);
                                 proaux.setCicloCPU(proaux.getCicloCPU()-1);
                             }

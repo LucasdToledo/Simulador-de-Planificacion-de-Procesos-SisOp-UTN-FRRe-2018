@@ -48,7 +48,7 @@ public class Proceso {
     }
 
     public int getDuracion() {
-        return duracion;
+        return cicloES + cicloCPU;
     }
 
     public void setDuracion(int duracion) {
@@ -93,7 +93,6 @@ public class Proceso {
         descripcion = _des;
         tarribo = _tarribo;
         tamaño = _tam;
-        duracion = cicloES+cicloCPU;
     }
 
     @Override

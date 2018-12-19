@@ -422,10 +422,12 @@ public class UIFinal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "1");
                 cargarParticiones();
                 JOptionPane.showMessageDialog(null, "2");
-                cargarColaListos();
+                
                 //Se carga de nuevo para actualizar
                 colaListos = planificador.elegirSiguiente(colaListos, acumul);
+                cargarColaListos();
                 cargarColaTerminados();
+                JOptionPane.showMessageDialog(null, colaListos);
             }
         }
     }//GEN-LAST:event_botonSiguienteActionPerformed

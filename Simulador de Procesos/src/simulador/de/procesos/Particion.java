@@ -17,12 +17,10 @@ public class Particion {
 
     public boolean isEstado() {
         //Si exite un proceso cargado
-        if (proces != null){
+        if (proces == null || proces.getDuracion() == 0){
                 //Y si duración es 0, significa que el proceso termino y la partición estará vacía
                 //El proceso no se borra sino que se sobreescribe como en las memorias reales.
-                if (proces.getDuracion() == 0){
                     estado = true;
-                }
         }
         return estado;
     }
