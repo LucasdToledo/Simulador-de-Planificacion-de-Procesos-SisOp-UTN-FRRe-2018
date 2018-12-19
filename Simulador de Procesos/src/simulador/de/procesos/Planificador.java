@@ -6,6 +6,7 @@
 package simulador.de.procesos;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 /**
@@ -53,10 +54,66 @@ public class Planificador {
             switch(algorit){
                 case(1):    //Round Robin
                     break;
+                    
+                    
                 case(2):    //SRTF
                     break;
+                    
+                    
+                    
                 case (3):   //SJF
+                    //Busca el proceso con menor duración
+                    Iterator<Proceso> it = colaListos.iterator();
+                    int i = 0;
+                    int resguardo = 0;
+                    while (it.hasNext()) {
+                        proaux = it.next();
+                        if (proaux.getDuracion()> colaListos.get(i).getDuracion()){
+                            resguardo = i;
+                        }
+                        i++;
+                    }
+                    proaux = colaListos.get(resguardo);
+                    //Ahora, guardo el inicio de ejecución si es el primer proceso
+                    if (iniciaEjecucion){ 
+                        proaux.setInicioEjecucion(tiempo);
+                        iniciaEjecucion = false;
+                    }
+                    //Si el proceso tiene ciclos CPU los consume de a uno
+                    if (proaux.getCicloCPU()> 0){
+                        proaux.setCicloCPU(proaux.getCicloCPU()-1);
+                    }
+                    //Pero si no los tiene, nos fijamos si hay ciclos de ES y los consumimos
+                    else{
+                        if (proaux.getCicloES()> 0){
+                            proaux.setCicloES(proaux.getCicloES()-1);
+                        }
+                        //Si ambos valores son 0 el proceso ya se terminó
+                        // por lo que hay que consumir otro proceso
+                        else{
+                            //Se guarda el tiempo de fin
+                            proaux.setFinEjecución(tiempo-1);
+                            //Controlamos que la cola de listos no este vacía
+                            if (!nuevaColaListos.isEmpty()){
+                                //Busca el proceso con menor duración
+                                Iterator<Proceso> ite = colaListos.iterator();
+                                while (ite.hasNext()) {
+                                    proaux = ite.next();
+                                    if (proaux.getDuracion()> colaListos.get(i).getDuracion()){
+                                        resguardo = i;
+                                    }
+                                    i++;
+                                }
+                                proaux = nuevaColaListos.get(resguardo);
+                                proaux.setInicioEjecucion(tiempo);
+                                proaux.setCicloCPU(proaux.getCicloCPU()-1);
+                            }
+                        }
+                    }
                     break;
+                    
+                    
+                    
                 case (4):   //FCFS
                     proaux = nuevaColaListos.get(0);
                     if (iniciaEjecucion){ 
@@ -72,7 +129,6 @@ public class Planificador {
                         }
                         else{
                             proaux.setFinEjecución(tiempo-1);
-                            //nuevaColaListos.remove(0);
                             if (!nuevaColaListos.isEmpty()){
                                 proaux = nuevaColaListos.get(1);
                                 proaux.setInicioEjecucion(tiempo);
