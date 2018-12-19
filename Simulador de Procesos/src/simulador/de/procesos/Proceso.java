@@ -97,8 +97,8 @@ public class Proceso {
 
     @Override
     public String toString() {
-        return  descripcion + ", duracion=" + duracion+ ", tarribo=" + tarribo+ '}';
+        return "  ||"+ descripcion + ", duracion=" + duracion+ ", tarribo=" + tarribo+ "||  ";}
     }
     
     
-}
+

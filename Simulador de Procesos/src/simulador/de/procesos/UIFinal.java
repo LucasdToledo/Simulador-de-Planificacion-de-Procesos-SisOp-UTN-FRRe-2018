@@ -305,9 +305,9 @@ public class UIFinal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel3.setText("Tiempo");
 
-        botonGantt.setActionCommand("Gráfica de Gantt");
+        botonGantt.setActionCommand("Gantt");
         botonGantt.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        botonGantt.setLabel("Gráfica de Gantt");
+        botonGantt.setLabel("Gantt");
         botonGantt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonGanttActionPerformed(evt);
