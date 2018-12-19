@@ -97,7 +97,7 @@ public class Proceso {
 
     @Override
     public String toString() {
-        return descripcion + ", duracion=" + duracion+ ", tarribo=" + tarribo + ", tamaño=" + tamaño + '}';
+        return  descripcion + ", duracion=" + duracion+ ", tarribo=" + tarribo+ '}';
     }
     
     

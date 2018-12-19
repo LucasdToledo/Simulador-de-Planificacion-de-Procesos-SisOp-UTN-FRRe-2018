@@ -6,6 +6,8 @@
 package simulador.de.procesos;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,7 +35,8 @@ public class UIGraficos extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         botonVolver = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        gantt = new javax.swing.JTextField();
+        BotonIniciar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,20 +51,31 @@ public class UIGraficos extends javax.swing.JFrame {
             }
         });
 
+        BotonIniciar.setText("Iniciar");
+        BotonIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonIniciarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(gantt, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(141, 141, 141)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(251, 251, 251)
+                        .addComponent(BotonIniciar)))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -69,9 +83,11 @@ public class UIGraficos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BotonIniciar)
+                .addGap(41, 41, 41)
+                .addComponent(gantt, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81)
                 .addComponent(botonVolver)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -85,6 +101,14 @@ public class UIGraficos extends javax.swing.JFrame {
             d.setVisible(true);
             this.setVisible(false);
     }//GEN-LAST:event_botonVolverActionPerformed
+
+    private void BotonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarActionPerformed
+        crearFalsosProcesos();
+               gantt.setText(String.valueOf(colaTerminados));
+            
+             
+        //gantt.setText(String.valueOf(colaTerminados));
+    }//GEN-LAST:event_BotonIniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,35 +146,42 @@ public class UIGraficos extends javax.swing.JFrame {
     }
     
     public void crearFalsosProcesos (){
-        ArrayList <Proceso> colaT = new ArrayList();
+        
         
         
         Proceso p1 = new Proceso();
-        p1.CrearProceso("P1", 1, 1, 1, 1);
+        p1.CrearProceso("Proceso 1", 1, 1,1,1);
         p1.setInicioEjecucion(1);
         p1.setFinEjecución(2);
-        colaT.add(p1);
+        colaTerminados.add(p1);
        
         Proceso p2 = new Proceso();
-        p2.CrearProceso("P1", 1, 1, 1, 1);
-        p2.setInicioEjecucion(1);
-        p2.setFinEjecución(2);
-        colaT.add(p2);
+        p2.CrearProceso("Proceso 2", 1, 1, 1, 1);
+        p2.setInicioEjecucion(2);
+        p2.setFinEjecución(3);
+        colaTerminados.add(p2);
         
         Proceso p3 = new Proceso();
-        p3.CrearProceso("P1", 1, 1, 1, 1);
-        p3.setInicioEjecucion(1);
-        p3.setFinEjecución(2);
-        colaT.add(p3);
+        p3.CrearProceso("Proceso 3", 1, 1, 1, 1);
+        p3.setInicioEjecucion(3);
+        p3.setFinEjecución(4);
+        colaTerminados.add(p3);
         
-        colaTerminados= colaT;
+        Proceso p4 = new Proceso();
+        p3.CrearProceso("Proceso 3", 1, 1, 1, 1);
+        p3.setInicioEjecucion(3);
+        p3.setFinEjecución(4);
+        colaTerminados.add(p3);
+        
+       
         
        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonIniciar;
     private javax.swing.JButton botonVolver;
+    private javax.swing.JTextField gantt;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
