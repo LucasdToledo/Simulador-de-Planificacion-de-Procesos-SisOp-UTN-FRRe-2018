@@ -28,6 +28,21 @@ public class Planificador {
         this.algorit = algorit;
     }
     
+    public ArrayList <Proceso> procesoTerminado(ArrayList <Proceso> colaListos){
+        switch (algorit){
+            case (1):   //RR+Q
+                break;  
+            case (2):   //SRTF
+                break;
+            case (3):   //SJF
+                break;
+            case(4):    //FCFS
+                colaListos.remove(0);
+                break;
+        }
+        return colaListos;
+    }
+    
     //Dentro de este método se definirán los algoritmos de planificación
     public ArrayList <Proceso> elegirSiguiente (ArrayList<Proceso> colaListos, int tiempo){
       

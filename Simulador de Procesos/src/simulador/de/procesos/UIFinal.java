@@ -569,9 +569,8 @@ public class UIFinal extends javax.swing.JFrame {
             tabla[3]= process.getCicloCPU();
             tabla[4]= process.getCicloES();
             modelo.addRow(tabla);
-            JOptionPane.showMessageDialog(null, colaListos);
         }
-    }    
+    }
     
     public final void cargarColaTerminados(){
         //Creación de la tabla
@@ -579,7 +578,9 @@ public class UIFinal extends javax.swing.JFrame {
         Object[] tabla = new Object[5];
         //Creo un proceso y particion auxiliares para mejorar la legibilidad del código
         Proceso process;
-        Iterator<Proceso> it = colaListos.iterator();
+        ArrayList <Proceso> listaListos = new ArrayList <Proceso>(colaListos);
+        Iterator<Proceso> it = listaListos.iterator();
+        colaListos = new ArrayList();
         while (it.hasNext()) {
             process = it.next();
             if (process.getCicloCPU() == 0 && process.getCicloES() == 0){
@@ -590,7 +591,7 @@ public class UIFinal extends javax.swing.JFrame {
                 tabla[4]= process.getCicloES();
                 modelo.addRow(tabla);
                 colaTerminados.add(process);
-                colaListos.remove(process);
+                colaListos = planificador.procesoTerminado(listaListos);
             }
         }    
         
