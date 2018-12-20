@@ -329,6 +329,8 @@ public class UIFinal extends javax.swing.JFrame {
         });
 
         gantt.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        gantt.setCaretColor(new java.awt.Color(255, 0, 0));
+        gantt.setDisabledTextColor(new java.awt.Color(51, 153, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -504,11 +506,13 @@ public class UIFinal extends javax.swing.JFrame {
     public void hacerUnaVuelta(){//CLICK EN SIGUIENTE MAYOR QUE 1. entra aca
         Iterator<Proceso> it = colaNuevo.iterator();//ACA AGARRO PROCESOS DE LA COLA DE NUEVO. 
         ArrayList <Particion> lista = new ArrayList();
-        while (it.hasNext()) {
-            lista = asignador.Asignar(mema, it.next());
+       if (!colaNuevo.isEmpty()){
+           while (it.hasNext()) {
+               lista = asignador.Asignar(mema, it.next());
+           }
+           mema.setListaParticiones(lista);// que hace esta linea. jl
+           mema.Mostrar();
         }
-        mema.setListaParticiones(lista);// que hace esta linea. jl
-        mema.Mostrar();
     }
  
     public final void cargarParticiones(){
@@ -518,7 +522,7 @@ public class UIFinal extends javax.swing.JFrame {
         //Creo un proceso y particion auxiliares para mejorar la legibilidad del código
         Particion part;
         
-        //colaListos = new ArrayList(); 
+        colaListos = new ArrayList(); 
         Proceso process;
         Iterator<Particion> it = mema.getListaParticiones().iterator();
         while (it.hasNext()) {
