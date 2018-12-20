@@ -74,7 +74,7 @@ public class Asignador {
                     int memdisp = 0;
                    
                     //Este codigo verifica si hay particiones contiguas libres en memoria VARIABLE para juntarlas
-                    if(_mem.isTipo()){ /*//Si es Variable
+                    if(_mem.isTipo()){ //Si es Variable
                         boolean flag = true; //Bandera para saber cuando es la primera vez que entra al codigo
                         Particion resguardo = null; //resguardo de la particion
                         int contpos =0; //contador para saber la posicion de la particion de memoria
@@ -85,7 +85,7 @@ public class Asignador {
                             }
                             else{
                                if(resguardo != null && resguardo.isEstado() && partaux.isEstado()){ //si la particion anterior estuvo libre y la actual tambien
-                                 partaux.setInicio(resguardo.getInicio()); //modificamos el inicio de la aprticion actual con el inicio de la particion anterior
+                                 partaux.setTamaño((partaux.Tamaño() + resguardo.Tamaño()));//modificamos el inicio de la aprticion actual con el inicio de la particion anterior
                                  listaParticionesNueva.remove(contpos); // eliminamos la particion anterior, la cual sabemos la posicion gracias al contador
                                  contpos = contpos -1; // como eliminamos una particion, actualizamos el contador
                                  listaParticionesNueva.add(contpos, partaux); //añadimos la particion actual a la lista de particiones original
@@ -94,12 +94,12 @@ public class Asignador {
                             } 
                          resguardo = partaux;//resguardamos la particion actual antes de que termine el ciclo while
                          contpos= contpos +1;    //actualizamos el contador con la posicion del siguiente    
-                        }*/
+                        }
                     }
                     
          switch (algoritmo){
                 case(1): //Algoritmos bf
-                    if(_mem.isTipo()){ /*//Si es Variable
+                    if(_mem.isTipo()){ //Si es Variable
                             while (it3.hasNext() && (banderita)){
                            Particion partaux = it3.next(); //particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
                            
@@ -125,14 +125,15 @@ public class Asignador {
                           if(resg1!=99999) {  
                             Particion Nuevaparticion = new Particion();
                             cont=resg3.Tamaño();
-                            resg3.setFin(resg3.getInicio()+_proceso.getTamaño()); //modifico el tamaño de la particion original
+                            resg3.CrearParticion(_proceso.getTamaño()); //modifico el tamaño de la particion original
                             listaParticionesNueva.get(resg2).setProces(_proceso); //meto el proceso en la particion
-                            Nuevaparticion.CrearParticion(resg3.getFin(),cont - _proceso.getTamaño() , true); //creo una nueva particion con el sobrante de memoria
+                            int a = resg3.Tamaño() - _proceso.getTamaño();
+                                    Nuevaparticion.CrearParticion(a); //creo una nueva particion con el sobrante de memoria
                             listaParticionesNueva.add(resg2+1,Nuevaparticion); //añado esa particion a la lista de particiones
                             banderita = false;
                           }
                            //------------------------------- //Podria no funcar al angau anda
-                                   */
+                                   
                         }    
                        else{ //Si es Fija
                            while (it.hasNext() && (banderita) ){
@@ -215,7 +216,7 @@ public class Asignador {
                     
                 break;
                 case (3): //WF
-                   if(_mem.isTipo()){ /*//Si es Variable
+                   if(_mem.isTipo()){ //Si es Variable
                             while (it3.hasNext() && (banderita)){
                            Particion partaux = it3.next(); //particion auxiliar donde guardamos la particion que esta en es momento en la lista de particiones
                            
@@ -242,12 +243,13 @@ public class Asignador {
                           if(resg1!=99999) {  
                             Particion Nuevaparticion = new Particion();
                             cont=resg3.Tamaño();
-                            resg3.setFin(resg3.getInicio()+_proceso.getTamaño()); //modifico el tamaño de la particion original
+                            resg3.CrearParticion(_proceso.getTamaño()); //modifico el tamaño de la particion original
                             listaParticionesNueva.get(resg2).setProces(_proceso); //meto el proceso en la particion
-                            Nuevaparticion.CrearParticion(resg3.getFin(),cont - _proceso.getTamaño() , true); //creo una nueva particion con el sobrante de memoria
+                            int a = resg3.Tamaño() - _proceso.getTamaño();
+                                    Nuevaparticion.CrearParticion(a); //creo una nueva particion con el sobrante de memoria
                             listaParticionesNueva.add(resg2+1,Nuevaparticion); //añado esa particion a la lista de particiones
                             banderita = false;
-                          }*/
+                          }
 
                            //------------------------------- //Podria no funcar al angau anda
                                    
