@@ -198,7 +198,7 @@ public class UIFinal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nombre", "Tamaño", "Ciclo de CPU", "Ciclo de E/S"
+                "ID", "Nombre", "Tamaño", "Inicio E", "Fin E"
             }
         ) {
             Class[] types = new Class [] {
@@ -357,7 +357,7 @@ public class UIFinal extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -449,9 +449,8 @@ public class UIFinal extends javax.swing.JFrame {
                 //Se carga de nuevo para actualizar
                 Collections.sort(colaListos, (Proceso p1, Proceso p2)-> new Integer(p1.getIdProceso()).compareTo(p2.getIdProceso()));
                 colaListos = planificador.elegirSiguiente(colaListos, acumul);
-                cargarColaListos();
                 cargarColaTerminados();
-                JOptionPane.showMessageDialog(null, colaListos);
+                cargarColaListos();
             }
         }
     }//GEN-LAST:event_botonSiguienteActionPerformed
@@ -623,6 +622,9 @@ public class UIFinal extends javax.swing.JFrame {
                     modelo.addRow(tabla);
                     colaTerminados.add(process);
                     colaListos = planificador.procesoTerminado(listaListos);
+                }
+                else{
+                    colaListos.add(process);
                 }
             } 
         }

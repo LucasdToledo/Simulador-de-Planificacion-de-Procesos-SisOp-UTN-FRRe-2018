@@ -278,10 +278,9 @@ public class UIMemoria extends javax.swing.JFrame {
             contmemoriarestante = contmemoriarestante - Integer.parseInt(tamParti.getText()) ;
             Memoriarestante.setText(String.valueOf(contmemoriarestante));
             mem.setListaParticiones(ListaParticiones);
-            mem.Mostrar();
-              if (contmemoriarestante == 0){
-                  fsiguiente = true;
-              }
+            if (contmemoriarestante == 0){
+                fsiguiente = true;
+            }
             modelo.addRow(tabla);
         }
         else { 

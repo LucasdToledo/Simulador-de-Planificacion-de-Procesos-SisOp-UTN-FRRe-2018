@@ -44,7 +44,7 @@
                           </Group>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="10" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -288,8 +288,8 @@
                 <Column editable="false" title="ID" type="java.lang.Integer"/>
                 <Column editable="false" title="Nombre" type="java.lang.String"/>
                 <Column editable="false" title="Tama&#xf1;o" type="java.lang.Integer"/>
-                <Column editable="false" title="Ciclo de CPU" type="java.lang.Integer"/>
-                <Column editable="false" title="Ciclo de E/S" type="java.lang.Integer"/>
+                <Column editable="false" title="Inicio E" type="java.lang.Integer"/>
+                <Column editable="false" title="Fin E" type="java.lang.Integer"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

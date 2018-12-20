@@ -40,6 +40,19 @@ public class Planificador {
             case (2):   //SRTF
                 break;
             case (3):   //SJF
+                //Busca el proceso de duración 0
+                Iterator<Proceso> ite = colaListos.iterator();
+                int i = 0;
+                int resguardo = 0;
+                Proceso p;
+                while (ite.hasNext()) {
+                    p = ite.next();
+                    if (p.getDuracion()==0){
+                        resguardo = i;
+                    }
+                    i++;
+                }
+                colaListos.remove(resguardo);
                 break;
             case(4):    //FCFS
                 colaListos.remove(0);
@@ -54,8 +67,8 @@ public class Planificador {
  int ResiduoRafaga=0;//Carga el residuo en ejecución
  int TiempoProceso=0;//Carga el tiempo que se dura procesando
  int CantidadProcesos;//Número de procesos terminados
- int Estado = 0; // 
- int i=1;// Numero de proceso en ejecucion
+ int Estado = 1; // 
+ int iRR=1;// Numero de proceso en ejecucion
  int Ejecucion = 0; // 
 
                 
@@ -69,34 +82,32 @@ public class Planificador {
         if (!colaListos.isEmpty()){
             switch(algorit){
                 case(1):    //Round Robin
-                    
-//Pregunto si existe algo dentro de la primer posicion de la lista, si hay cargo mis variables 
-        if ( Estado == 1 && !(colaListos.isEmpty())){
-            Rafaga= colaListos.get(i).getCicloCPU() ;
-            Quantum=5;
-            ResiduoRafaga= colaListos.get(i).getCicloCPU() ;
-            Ejecucion = 1;
-            Estado = 0;
-        }else{
-           Ejecucion = 0;
-        }
-        
-        if (Quantum != 0 && Ejecucion == 1) {
-            if (ResiduoRafaga != 0){
-            ResiduoRafaga = ResiduoRafaga - 1;
-            Quantum = Quantum - 1;
-            }else{
-                Estado=1;
-            }
-        }else{
-            if (Quantum == 0 && Ejecucion == 1 ){
-                Estado = 1;
-                colaListos.get(i).setCicloCPU(ResiduoRafaga);
-                i = i+1;
-            }
-        }
-        
-                    
+
+                    //Pregunto si existe algo dentro de la primer posicion de la lista, si hay cargo mis variables 
+                    if ( Estado == 1 && !(colaListos.isEmpty())){
+                        Rafaga= colaListos.get(iRR).getCicloCPU() ;
+                        Quantum=3;
+                        ResiduoRafaga= colaListos.get(iRR).getCicloCPU() ;
+                        Ejecucion = 1;
+                        Estado = 0;
+                    }else{
+                       Ejecucion = 0;
+                    }
+
+                    if (Quantum != 0 && Ejecucion == 1) {
+                        if (ResiduoRafaga != 0){
+                        ResiduoRafaga = ResiduoRafaga - 1;
+                        Quantum = Quantum - 1;
+                        }else{
+                            Estado=1;
+                        }
+                    }else{
+                        if (Quantum == 0 && Ejecucion == 1 ){
+                            Estado = 1;
+                            colaListos.get(iRR).setCicloCPU(ResiduoRafaga);
+                            iRR++;
+                        }
+                    }
                     break;
                 case(2):    //SRTF
                     break;
@@ -108,19 +119,29 @@ public class Planificador {
                     Iterator<Proceso> it = colaListos.iterator();
                     int i = 0;
                     int resguardo = 0;
+                    Proceso p1;
                     while (it.hasNext()) {
-                        proaux = it.next();
-                        if (proaux.getDuracion()> colaListos.get(i).getDuracion()){
+                        p1 = it.next();
+                        if (p1.getDuracion()< colaListos.get(resguardo).getDuracion()&& p1.getCicloES()>0){
                             resguardo = i;
                         }
                         i++;
                     }
                     proaux = colaListos.get(resguardo);
                     //Ahora, guardo el inicio de ejecución si es el primer proceso
-                    if (iniciaEjecucion){ 
+                    
+                    if (iniciaEjecucion && proaux.isSjf()){ 
                         proaux.setInicioEjecucion(tiempo);
                         iniciaEjecucion = false;
+                        proaux.setSjf(false);
                     }
+                    else{
+                        if (proaux.isSjf()){
+                            proaux.setInicioEjecucion(tiempo);
+                            proaux.setSjf(false);
+                        }
+                    }
+                   
                     //Si el proceso tiene ciclos CPU los consume de a uno
                     if (proaux.getCicloCPU()> 0){
                         proaux.setCicloCPU(proaux.getCicloCPU()-1);
@@ -132,26 +153,10 @@ public class Planificador {
                             
                             //Controlamos si no se termino el proceso
                             if (proaux.getCicloES()==0){
+                                
                                 //Se guarda el tiempo de fin
-                                proaux.setFinEjecución(tiempo-1);
-                                //Controlamos que la cola de listos no este vacía
-                                if (!nuevaColaListos.isEmpty()){
-                                    //Busca el proceso con menor duración
-                                    Iterator<Proceso> ite = colaListos.iterator();
-                                    //Reinicio los contadores
-                                    i = 0;
-                                    resguardo = 0;
-                                    while (ite.hasNext()) {
-                                        proaux = ite.next();
-                                        if (proaux.getDuracion()> colaListos.get(i).getDuracion()){
-                                            resguardo = i;
-                                        }
-                                        i++;
-                                    }
-                                    proaux = nuevaColaListos.get(resguardo);
-                                    proaux.setInicioEjecucion(tiempo);
-                                    proaux.setCicloCPU(proaux.getCicloCPU()-1);
-                                }
+                                proaux.setFinEjecución(tiempo);
+                                iniciaEjecucion = true;
                             }
                         }
                     }
@@ -173,11 +178,11 @@ public class Planificador {
                             proaux.setCicloES(proaux.getCicloES()-1);
                             //Controlamos si no se termino el proceso
                             if (proaux.getCicloES()==0){
-                                proaux.setFinEjecución(tiempo-1);
+                                proaux.setFinEjecución(tiempo);
                                 //Si hay mas procesos seteamos el tiempo de inicio del siguiente proceso
                                 if (nuevaColaListos.size()>1){
                                     proaux = nuevaColaListos.get(1);
-                                    proaux.setInicioEjecucion(tiempo);
+                                    proaux.setInicioEjecucion(tiempo+1);
                                 }
                             }
                         }

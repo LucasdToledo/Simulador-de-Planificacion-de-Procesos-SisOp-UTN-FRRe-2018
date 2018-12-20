@@ -15,6 +15,15 @@ public class Proceso {
     private int tamaño;
     int inicioEjecucion;
     int finEjecución;
+    boolean sjf;
+
+    public boolean isSjf() {
+        return sjf;
+    }
+
+    public void setSjf(boolean sjf) {
+        this.sjf = sjf;
+    }
 
     public int getIdProceso() {
         return idProceso;
@@ -102,9 +111,7 @@ public class Proceso {
 
     public int getFinEjecución() {
         return finEjecución;
-    }
-    
-    
+    } 
     
     public void CrearProceso(String _des,int _tarribo,int _tam, int _es, int _cpu){
         cicloES = _es;
@@ -112,11 +119,12 @@ public class Proceso {
         descripcion = _des;
         tarribo = _tarribo;
         tamaño = _tam;
+        sjf = true;
     }
 
     @Override
     public String toString() {
-        return " || TI=" +inicioEjecucion +" "+  descripcion +  ", TF=" +finEjecución+ "||";}
+        return "||TI=" +inicioEjecucion +" "+  descripcion +  ", TF=" +finEjecución;}
     }
     
     
