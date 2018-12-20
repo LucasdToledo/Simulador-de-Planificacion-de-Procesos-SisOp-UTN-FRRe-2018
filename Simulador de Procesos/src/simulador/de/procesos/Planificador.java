@@ -48,6 +48,18 @@ public class Planificador {
         return colaListos;
     }
     
+ int Contador;//Contador del total de procesos que se van ingresando
+ int Rafaga=0;//Carga la ráfaga en ejecución
+ int Quantum=0;//Carga el quantum en ejecución
+ int ResiduoRafaga=0;//Carga el residuo en ejecución
+ int TiempoProceso=0;//Carga el tiempo que se dura procesando
+ int CantidadProcesos;//Número de procesos terminados
+ int Estado = 0; // 
+ int i=1;// Numero de proceso en ejecucion
+ int Ejecucion = 0; // 
+
+                
+    
     //Dentro de este método se definirán los algoritmos de planificación
     public ArrayList <Proceso> elegirSiguiente (ArrayList<Proceso> colaListos, int tiempo){
       
@@ -57,9 +69,35 @@ public class Planificador {
         if (!colaListos.isEmpty()){
             switch(algorit){
                 case(1):    //Round Robin
+                    
+//Pregunto si existe algo dentro de la primer posicion de la lista, si hay cargo mis variables 
+        if ( Estado == 1 && !(colaListos.isEmpty())){
+            Rafaga= colaListos.get(i).getCicloCPU() ;
+            Quantum=5;
+            ResiduoRafaga= colaListos.get(i).getCicloCPU() ;
+            Ejecucion = 1;
+            Estado = 0;
+        }else{
+           Ejecucion = 0;
+        }
+        
+        if (Quantum != 0 && Ejecucion == 1) {
+            if (ResiduoRafaga != 0){
+            ResiduoRafaga = ResiduoRafaga - 1;
+            Quantum = Quantum - 1;
+            }else{
+                Estado=1;
+            }
+        }else{
+            if (Quantum == 0 && Ejecucion == 1 ){
+                Estado = 1;
+                colaListos.get(i).setCicloCPU(ResiduoRafaga);
+                i = i+1;
+            }
+        }
+        
+                    
                     break;
-                    
-                    
                 case(2):    //SRTF
                     break;
                     
