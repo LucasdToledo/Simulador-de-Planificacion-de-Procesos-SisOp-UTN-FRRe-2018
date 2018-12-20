@@ -91,26 +91,29 @@ public class Planificador {
                     else{
                         if (proaux.getCicloES()> 0){
                             proaux.setCicloES(proaux.getCicloES()-1);
-                        }
-                        //Si ambos valores son 0 el proceso ya se terminó
-                        // por lo que hay que consumir otro proceso
-                        else{
-                            //Se guarda el tiempo de fin
-                            proaux.setFinEjecución(tiempo-1);
-                            //Controlamos que la cola de listos no este vacía
-                            if (!nuevaColaListos.isEmpty()){
-                                //Busca el proceso con menor duración
-                                Iterator<Proceso> ite = colaListos.iterator();
-                                while (ite.hasNext()) {
-                                    proaux = ite.next();
-                                    if (proaux.getDuracion()> colaListos.get(i).getDuracion()){
-                                        resguardo = i;
+                            
+                            //Controlamos si no se termino el proceso
+                            if (proaux.getCicloES()==0){
+                                //Se guarda el tiempo de fin
+                                proaux.setFinEjecución(tiempo-1);
+                                //Controlamos que la cola de listos no este vacía
+                                if (!nuevaColaListos.isEmpty()){
+                                    //Busca el proceso con menor duración
+                                    Iterator<Proceso> ite = colaListos.iterator();
+                                    //Reinicio los contadores
+                                    i = 0;
+                                    resguardo = 0;
+                                    while (ite.hasNext()) {
+                                        proaux = ite.next();
+                                        if (proaux.getDuracion()> colaListos.get(i).getDuracion()){
+                                            resguardo = i;
+                                        }
+                                        i++;
                                     }
-                                    i++;
+                                    proaux = nuevaColaListos.get(resguardo);
+                                    proaux.setInicioEjecucion(tiempo);
+                                    proaux.setCicloCPU(proaux.getCicloCPU()-1);
                                 }
-                                proaux = nuevaColaListos.get(resguardo);
-                                proaux.setInicioEjecucion(tiempo);
-                                proaux.setCicloCPU(proaux.getCicloCPU()-1);
                             }
                         }
                     }
@@ -130,8 +133,10 @@ public class Planificador {
                     else{
                         if (proaux.getCicloES()> 0){
                             proaux.setCicloES(proaux.getCicloES()-1);
+                            //Controlamos si no se termino el proceso
                             if (proaux.getCicloES()==0){
                                 proaux.setFinEjecución(tiempo-1);
+                                //Si hay mas procesos seteamos el tiempo de inicio del siguiente proceso
                                 if (nuevaColaListos.size()>1){
                                     proaux = nuevaColaListos.get(1);
                                     proaux.setInicioEjecucion(tiempo);
