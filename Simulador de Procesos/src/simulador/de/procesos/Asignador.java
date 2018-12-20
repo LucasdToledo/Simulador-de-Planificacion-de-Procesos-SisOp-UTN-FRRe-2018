@@ -10,6 +10,7 @@ public class Asignador {
     private int algoritmo;
      int finalparticion =0;
      int cont =0;
+     int contadorProcesos = 1;
      
     public int getAlgoritmo() {
         return algoritmo;
@@ -153,14 +154,16 @@ public class Asignador {
                                
                             }
                             posicion ++; //aumentamos la variable que indica en que posicion de la lista de particiones asignar el proceso
-                           }
                         }
+                    }
                        
                     
                     if(resg1!=99999) {//aca entra solo si encontro un lugar.
-                      listaParticionesNueva.get(resg2).setProces(_proceso); //Pone el proceso en la lista de particiones
-                     //Pone el proceso en la lista de particiones
-                     banderita = false; //bandera para que no vuelva a entrar en el while
+                        //Pone el proceso en la lista de particiones
+                        _proceso.setIdProceso(contadorProcesos);
+                        listaParticionesNueva.get(resg2).setProces(_proceso);
+                        contadorProcesos++;
+                        banderita = false; //bandera para que no vuelva a entrar en el while
                     }
                     memoria = _mem;
                     
@@ -196,7 +199,9 @@ public class Asignador {
                            
                             if(partaux.isEstado()&& partaux.Tamaño()>= _proceso.getTamaño()){ //Si la particion esta vacia, y el proceso entra ahi hace lo siguiente
                                 //aca preguntamos si lo que tenemos en el resguardo, es de tamaño mayor a la actual
+                                _proceso.setIdProceso(contadorProcesos);
                                 listaParticionesNueva.get(posicion).setProces(_proceso); //Pone el proceso en la lista de particiones
+                                contadorProcesos++;
                                 banderita = false; //bandera para que no vuelva a entrar en el while
                             }
                             posicion ++; //aumentamos la variable que indica en que posicion de la lista de particiones asignar el proceso
@@ -270,9 +275,11 @@ public class Asignador {
                         }
                        
                     if(resg1!=99999) {
-                      listaParticionesNueva.get(resg2).setProces(_proceso); //Pone el proceso en la lista de particiones
-                     //Pone el proceso en la lista de particiones
-                     banderita = false; //bandera para que no vuelva a entrar en el while
+                        //Pone el proceso en la lista de particiones
+                        _proceso.setIdProceso(contadorProcesos);
+                        listaParticionesNueva.get(resg2).setProces(_proceso);
+                        contadorProcesos++;
+                        banderita = false; //bandera para que no vuelva a entrar en el while
                     }
                     memoria = _mem;
                 break;

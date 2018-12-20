@@ -9,11 +9,20 @@ public class Proceso {
     private int cicloES; //Ciclos de CPU y E-S
     private int cicloCPU;
     private int duracion;
+    private int idProceso;
     private String descripcion;
     private int tarribo;
     private int tamaño;
     int inicioEjecucion;
     int finEjecución;
+
+    public int getIdProceso() {
+        return idProceso;
+    }
+
+    public void setIdProceso(int idProceso) {
+        this.idProceso = idProceso;
+    }
     
     public int getNumero() {
         return numero;
@@ -107,7 +116,7 @@ public class Proceso {
 
     @Override
     public String toString() {
-        return "  || TI=" +inicioEjecucion +"   "+  descripcion +  ", TF=" +finEjecución+ "||  ";}
+        return " || TI=" +inicioEjecucion +" "+  descripcion +  ", TF=" +finEjecución+ "||";}
     }
     
     

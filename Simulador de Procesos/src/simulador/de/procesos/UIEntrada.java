@@ -548,7 +548,7 @@ public class UIEntrada extends javax.swing.JFrame {
             Proceso proceso;
             proceso = new Proceso();
             tabla[0]= Contador;
-            tabla[1]= "PAutoGen"; //Indico que es un proceso autogenerado
+            tabla[1]= "PAutoGen" + String.valueOf(Contador); //Indico que es un proceso autogenerado
             
             /*Creo las variables necesarias para cargar los procesos
             Hacemos uso de la función random, que genera un valor aleatorio dentro de un rango
@@ -566,7 +566,7 @@ public class UIEntrada extends javax.swing.JFrame {
             modelo.addRow(tabla);
             
             //Y ahora creo el proceso con estos atributos
-            proceso.CrearProceso("PAutoGen", tarrib, tamp, cicloE, cicloCP);
+            proceso.CrearProceso("PAutoG"+String.valueOf(Contador), tarrib, tamp, cicloE, cicloCP);
 
             //Guardo el nuevo proceso en la cola de procesos
             colaProcesos.add(proceso);

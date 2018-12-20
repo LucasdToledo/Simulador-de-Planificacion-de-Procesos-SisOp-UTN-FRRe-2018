@@ -20,6 +20,7 @@ public class UIFinal extends javax.swing.JFrame {
     int acumul;
     int contp;
     int contM;
+    int contadorColaListosParaNoEquivocarseDeProceso;
     int contT;
     int contCL; //contador de los procesos en Cola de Listos según cómo van llegando
     public Memoria mema;
@@ -68,6 +69,7 @@ public class UIFinal extends javax.swing.JFrame {
         contCL = 1;
         contM=1;
         contT = 1;
+        contadorColaListosParaNoEquivocarseDeProceso = 1;
         initComponents();
     }
 
@@ -81,6 +83,7 @@ public class UIFinal extends javax.swing.JFrame {
         Planificador planif = new Planificador();
         planif.setAlgorit(_planificador);
         this.planificador = planif;
+        planificador.setInicio();
     }
 
     public void setColaProcesos(ArrayList<Proceso> _colaProcesos) {
@@ -437,17 +440,14 @@ public class UIFinal extends javax.swing.JFrame {
         if (acumul == 0){
             cargarParticionesPrimerVez();
         }
-        else{ 
+        else{
             if(acumul > 0 ){
                 //Cargamos la cola de Nuevos con los procesos que tienen tiempo de arribo igual al tiempo presente
                 contM = reiniciarTabla(tablaParticiones);
                 hacerUnaVuelta();
-                JOptionPane.showMessageDialog(null, "1");
                 cargarParticiones();
-               JOptionPane.showMessageDialog(null, "2");
-                
                 //Se carga de nuevo para actualizar
-                Collections.sort(colaListos, (Proceso p1, Proceso p2)-> new Integer(p1.getTarribo()).compareTo(p2.getTarribo()));
+                Collections.sort(colaListos, (Proceso p1, Proceso p2)-> new Integer(p1.getIdProceso()).compareTo(p2.getIdProceso()));
                 colaListos = planificador.elegirSiguiente(colaListos, acumul);
                 cargarColaListos();
                 cargarColaTerminados();
@@ -508,7 +508,8 @@ public class UIFinal extends javax.swing.JFrame {
         ArrayList <Particion> lista = new ArrayList();
        if (!colaNuevo.isEmpty()){
            while (it.hasNext()) {
-               lista = asignador.Asignar(mema, it.next());
+               Proceso pross = it.next();
+               lista = asignador.Asignar(mema, pross);
            }
            mema.setListaParticiones(lista);// que hace esta linea. jl
            mema.Mostrar();
@@ -606,25 +607,27 @@ public class UIFinal extends javax.swing.JFrame {
         Object[] tabla = new Object[5];
         //Creo un proceso y particion auxiliares para mejorar la legibilidad del código
         Proceso process;
-        ArrayList <Proceso> listaListos = new ArrayList <Proceso>(colaListos);
+        ArrayList <Proceso> listaListos = new ArrayList <>(colaListos);
         Iterator<Proceso> it = listaListos.iterator();
         colaListos = new ArrayList();
-        while (it.hasNext()) {
-            process = it.next();
-            if (process.getCicloCPU() == 0 && process.getCicloES() == 0){
-                tabla[0]= contT; contT++;
-                tabla[1]= process.getDescripcion();
-                tabla[2]= process.getTamaño();
-                tabla[3]= process.getCicloCPU();
-                tabla[4]= process.getCicloES();
-                modelo.addRow(tabla);
-                colaTerminados.add(process);
-                colaListos = planificador.procesoTerminado(listaListos);
-            }
-        }    
-        
-    }   
+        if (!listaListos.isEmpty()){
     
+            while (it.hasNext()) {
+                process = it.next();
+                if (process.getCicloCPU() == 0 && process.getCicloES() == 0){
+                    tabla[0]= contT; contT++;
+                    tabla[1]= process.getDescripcion();
+                    tabla[2]= process.getTamaño();
+                    tabla[3]= process.getInicioEjecucion();
+                    tabla[4]= process.getFinEjecución();
+                    modelo.addRow(tabla);
+                    colaTerminados.add(process);
+                    colaListos = planificador.procesoTerminado(listaListos);
+                }
+            } 
+        }
+    }
+        
     public final void cargarParticionesPrimerVez(){
         //Mostramos los procesos cargados en la lista
         ArrayList<Particion> listaParticiones;

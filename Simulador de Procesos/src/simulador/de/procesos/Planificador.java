@@ -25,6 +25,10 @@ public class Planificador {
         return algorit;
     }
 
+    public void setInicio(){
+        iniciaEjecucion = true;
+    }
+    
     public void setAlgorit(int algorit) {
         this.algorit = algorit;
     }
@@ -126,14 +130,12 @@ public class Planificador {
                     else{
                         if (proaux.getCicloES()> 0){
                             proaux.setCicloES(proaux.getCicloES()-1);
-                        }
-                        else{
-                            proaux.setFinEjecución(tiempo-1);
-                            if (!nuevaColaListos.isEmpty()){
-                                
-                                proaux = nuevaColaListos.get(1);
-                                proaux.setInicioEjecucion(tiempo);
-                                proaux.setCicloCPU(proaux.getCicloCPU()-1);
+                            if (proaux.getCicloES()==0){
+                                proaux.setFinEjecución(tiempo-1);
+                                if (nuevaColaListos.size()>1){
+                                    proaux = nuevaColaListos.get(1);
+                                    proaux.setInicioEjecucion(tiempo);
+                                }
                             }
                         }
                     }
