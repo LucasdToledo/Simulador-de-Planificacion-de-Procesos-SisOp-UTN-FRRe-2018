@@ -105,9 +105,22 @@ public class UIGraficos extends javax.swing.JFrame {
             this.setVisible(false);
     }//GEN-LAST:event_botonVolverActionPerformed
 
+    public ArrayList<Proceso> getColaTerminados() {
+        return colaTerminados;
+    }
+
+   
+
+    
+    
+    
     private void BotonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarActionPerformed
-        crearFalsosProcesos();
-               gantt.setText(String.valueOf(colaTerminados));
+                //crearFalsosProcesos();
+                
+              
+        
+        
+               //gantt.setText(String.valueOf(colaTerminados));
             
              
         //gantt.setText(String.valueOf(colaTerminados));

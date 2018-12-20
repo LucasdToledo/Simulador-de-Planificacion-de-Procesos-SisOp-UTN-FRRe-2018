@@ -130,6 +130,7 @@ public class Planificador {
                         else{
                             proaux.setFinEjecución(tiempo-1);
                             if (!nuevaColaListos.isEmpty()){
+                                
                                 proaux = nuevaColaListos.get(1);
                                 proaux.setInicioEjecucion(tiempo);
                                 proaux.setCicloCPU(proaux.getCicloCPU()-1);

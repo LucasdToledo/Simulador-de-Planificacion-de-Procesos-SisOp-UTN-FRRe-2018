@@ -86,6 +86,16 @@ public class Proceso {
     public void setFinEjecución(int finEjecución) {
         this.finEjecución = finEjecución;
     }
+
+    public int getInicioEjecucion() {
+        return inicioEjecucion;
+    }
+
+    public int getFinEjecución() {
+        return finEjecución;
+    }
+    
+    
     
     public void CrearProceso(String _des,int _tarribo,int _tam, int _es, int _cpu){
         cicloES = _es;
@@ -97,7 +107,7 @@ public class Proceso {
 
     @Override
     public String toString() {
-        return "  ||"+ descripcion + ", duracion=" + duracion+ ", tarribo=" + tarribo+ "||  ";}
+        return "  || TI=" +inicioEjecucion +"   "+  descripcion +  ", TF=" +finEjecución+ "||  ";}
     }
     
     
