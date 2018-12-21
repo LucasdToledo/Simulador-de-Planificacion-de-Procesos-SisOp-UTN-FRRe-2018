@@ -115,8 +115,6 @@ public class Planificador {
                                     //Pero como el proceso termina se lo reinicia
                                     ResiduoRafaga = quantum;
                                     //La cola de listos tiene un elemento menos
-                                    //Se reduce el contador para compensar el desfase
-                                    iRR--;
                                 }
                             }
                         }
@@ -128,12 +126,9 @@ public class Planificador {
                     }
                     else {
                         //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
-                        if (colaListos.size()<= iRR){
+                        iRR++;
+                        if (nuevaColaListos.size()== iRR){
                             iRR = 0;
-                        }
-                        //Si no es tan grande lo incremento
-                        else {
-                            iRR++;
                         }
                         //Como es un nuevo proceso reinicio el quantum
                         ResiduoRafaga = quantum-1;
