@@ -23,6 +23,7 @@ public class UIEntrada extends javax.swing.JFrame {
     public int tamMemoria;
     public int asignador;
     public int planificador;
+    public int quantum;
     //Acá van un montón de banderas que se encargan de que el usuario no pueda avanzar a menos que haya completado todo
     public boolean fplan;   //la f es de flag
     public boolean fasig;
@@ -88,7 +89,7 @@ public class UIEntrada extends javax.swing.JFrame {
         label9 = new java.awt.Label();
         totMem = new javax.swing.JTextField();
         label10 = new java.awt.Label();
-        quantum = new javax.swing.JTextField();
+        entradaQuantum = new javax.swing.JTextField();
         BotonProcesosAleatorios = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -210,9 +211,9 @@ public class UIEntrada extends javax.swing.JFrame {
         label10.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label10.setText("Quantum");
 
-        quantum.addActionListener(new java.awt.event.ActionListener() {
+        entradaQuantum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quantumActionPerformed(evt);
+                entradaQuantumActionPerformed(evt);
             }
         });
 
@@ -246,16 +247,20 @@ public class UIEntrada extends javax.swing.JFrame {
                                             .addGap(9, 9, 9)
                                             .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGap(85, 85, 85)
-                                    .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(166, 166, 166)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(boxPlanificador, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(85, 85, 85)
+                                            .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(166, 166, 166))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(boxParticionamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(boxAsignacion, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(totMem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(quantum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(entradaQuantum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(boxPlanificador, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(53, 53, 53)
                                     .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -310,10 +315,10 @@ public class UIEntrada extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boxPlanificador, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(quantum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(entradaQuantum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
@@ -379,6 +384,7 @@ public class UIEntrada extends javax.swing.JFrame {
                b.setMem(mem, tamMemoria, tipoMemoria);              //Por último paso los parámetros a UIFinal
                b.setAsignador(asignador);
                b.setPlanificador(planificador);
+               b.setQuantum(quantum);
                b.setColaProcesos(colaProcesos);
                b.setVisible(true);
            }
@@ -388,6 +394,7 @@ public class UIEntrada extends javax.swing.JFrame {
                a.setAsignador(asignador);
                a.setPlanificador(planificador);
                a.setColaProcesos(colaProcesos);
+               a.setQuantum(quantum);
                a.setVisible(true);  
            }
            this.setVisible(false);
@@ -421,19 +428,24 @@ public class UIEntrada extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tamActionPerformed
 
-    private void quantumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantumActionPerformed
-      // TODO add your handling code here:
-    }//GEN-LAST:event_quantumActionPerformed
+    private void entradaQuantumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradaQuantumActionPerformed
+      quantum = Integer.parseInt(entradaQuantum.getText());
+      JOptionPane.showMessageDialog(null, "Quantum = " + quantum);
+    }//GEN-LAST:event_entradaQuantumActionPerformed
 
     private void boxPlanificadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxPlanificadorActionPerformed
         String asing;
+        //Indico que ya se cargo un algoritmo al planificador
+        fplan = true;
         asing= (String) boxPlanificador.getSelectedItem();
         switch (asing){
                 case("RoundRobin+Q"): 
                     planificador = 1;
                     break;
                 case ("SRTF"):
-                    planificador = 2;
+                    JOptionPane.showMessageDialog(null, "Planificador no implementado");
+                    //Como en este caso el planificador no existe, regresa a falso
+                    fplan = false;
                     break;
                 case ("SJF"):
                     planificador = 3;
@@ -445,8 +457,6 @@ public class UIEntrada extends javax.swing.JFrame {
                     planificador = 4;
                     break;
             }
-        //Indico que ya se cargo un algoritmo al planificador
-        fplan = true;
         JOptionPane.showMessageDialog(null, "Algoritmo de Planificación guardado");
     }//GEN-LAST:event_boxPlanificadorActionPerformed
 
@@ -617,6 +627,7 @@ public class UIEntrada extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> boxPlanificador;
     private javax.swing.JTextField cicloES;
     private javax.swing.JTextField ciclodeCPU;
+    private javax.swing.JTextField entradaQuantum;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
     private java.awt.Label label10;
@@ -629,7 +640,6 @@ public class UIEntrada extends javax.swing.JFrame {
     private java.awt.Label label8;
     private java.awt.Label label9;
     private javax.swing.JTable miTabla;
-    private javax.swing.JTextField quantum;
     private javax.swing.JTextField tam;
     private javax.swing.JTextField tarribo;
     private javax.swing.JTextField totMem;

@@ -45,16 +45,23 @@
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-                                  <Component id="label5" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="boxPlanificador" min="-2" pref="210" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                                          <Component id="label5" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="label10" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="boxParticionamiento" min="-2" pref="210" max="-2" attributes="0"/>
                                       <Component id="boxAsignacion" min="-2" pref="210" max="-2" attributes="0"/>
                                       <Component id="totMem" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                                      <Component id="label10" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="quantum" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="entradaQuantum" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="boxPlanificador" min="-2" pref="210" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -132,10 +139,11 @@
                   <Component id="label5" min="-2" max="-2" attributes="0"/>
                   <Component id="boxPlanificador" min="-2" pref="28" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="label10" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="quantum" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="entradaQuantum" min="-2" max="-2" attributes="0"/>
+                  <Component id="label10" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
               <Component id="label8" min="-2" pref="39" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
@@ -396,9 +404,9 @@
         <Property name="text" type="java.lang.String" value="Quantum"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="quantum">
+    <Component class="javax.swing.JTextField" name="entradaQuantum">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quantumActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="entradaQuantumActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BotonProcesosAleatorios">

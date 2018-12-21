@@ -23,6 +23,7 @@ public class UIMemoria extends javax.swing.JFrame {
     int contmemoriarestante;
     int contmemusada;
     boolean fsiguiente;
+    int quantum;
     
     /**
      * Creates new form UIMemoria
@@ -185,7 +186,7 @@ public class UIMemoria extends javax.swing.JFrame {
             b.setMem(mem, mem.getTamaño(), mem.isTipo());
             b.setAsignador(asignador);
             b.setPlanificador(planificador);
-            
+            b.setQuantum(quantum);
             b.setColaProcesos(colaProcesos);
             b.setVisible(true);
             this.setVisible(false);
@@ -222,6 +223,10 @@ public class UIMemoria extends javax.swing.JFrame {
 
     public void setColaProcesos(ArrayList<Proceso> _colaProcesos) {
         this.colaProcesos = _colaProcesos;
+    }
+
+    public void setQuantum(int quantum) {
+        this.quantum = quantum;
     }
 
     public void setMem(int tamMemoria,boolean tipoParticionamiento) {

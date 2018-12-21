@@ -16,6 +16,18 @@ import javax.swing.JOptionPane;
 public class Planificador {
     private int algorit;
     boolean iniciaEjecucion;
+    int quantum=5;//Carga el quantum en ejecución, por defecto será 5
+    int iRR=0;// Numero de proceso en ejecucion
+    int residuo = 5;
+
+    public void setQuantum(int quantum) {
+        residuo = quantum;
+        this.quantum = quantum;
+    }
+
+    public int getQuantum() {
+        return quantum;
+    }
     
     public void Planificador(){
         iniciaEjecucion = true;
@@ -61,17 +73,6 @@ public class Planificador {
         return colaListos;
     }
     
- int Contador;//Contador del total de procesos que se van ingresando
- int Rafaga=0;//Carga la ráfaga en ejecución
- int Quantum=0;//Carga el quantum en ejecución
- int ResiduoRafaga=0;//Carga el residuo en ejecución
- int TiempoProceso=0;//Carga el tiempo que se dura procesando
- int CantidadProcesos;//Número de procesos terminados
- int Estado = 1; // 
- int iRR=1;// Numero de proceso en ejecucion
- int Ejecucion = 0; // 
-
-                
     
     //Dentro de este método se definirán los algoritmos de planificación
     public ArrayList <Proceso> elegirSiguiente (ArrayList<Proceso> colaListos, int tiempo){
@@ -82,7 +83,7 @@ public class Planificador {
         if (!colaListos.isEmpty()){
             switch(algorit){
                 case(1):    //Round Robin
-
+                    /*
                     //Pregunto si existe algo dentro de la primer posicion de la lista, si hay cargo mis variables 
                     if ( Estado == 1 && !(colaListos.isEmpty())){
                         Rafaga= colaListos.get(iRR).getCicloCPU() ;
@@ -108,6 +109,49 @@ public class Planificador {
                             iRR++;
                         }
                     }
+                    */
+                    //Si todavía no se termina el quantum decrece el residuo
+                    if (residuo > 0){
+                        residuo--;
+                    }
+                    else {
+                        //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
+                        if (colaListos.size()<= iRR-1){
+                            iRR = 0;
+                        }
+                        //Si no es tan grande lo incremento
+                        else {
+                            iRR++;
+                        }
+                        //Como es un nuevo proceso reinicio el quantum
+                        residuo = quantum;
+                    }
+                    
+                    proaux = nuevaColaListos.get(iRR);
+                    if (iniciaEjecucion){ 
+                        proaux.setInicioEjecucion(tiempo);
+                        iniciaEjecucion = false;
+                    }
+                    
+                    //Si el proceso tiene ciclos CPU los consume de a uno
+                    if (proaux.getCicloCPU()> 0){
+                        proaux.setCicloCPU(proaux.getCicloCPU()-1);
+                    }
+                    //Pero si no los tiene, nos fijamos si hay ciclos de ES y los consumimos
+                    else{
+                        if (proaux.getCicloES()> 0){
+                            proaux.setCicloES(proaux.getCicloES()-1);
+                            
+                            //Controlamos si no se termino el proceso
+                            if (proaux.getCicloES()==0){
+                                
+                                //Se guarda el tiempo de fin
+                                proaux.setFinEjecución(tiempo);
+                                iniciaEjecucion = true;
+                            }
+                        }
+                    }
+                    
                     break;
                 case(2):    //SRTF
                     break;
@@ -180,10 +224,7 @@ public class Planificador {
                             if (proaux.getCicloES()==0){
                                 proaux.setFinEjecución(tiempo);
                                 //Si hay mas procesos seteamos el tiempo de inicio del siguiente proceso
-                                if (nuevaColaListos.size()>1){
-                                    proaux = nuevaColaListos.get(1);
-                                    proaux.setInicioEjecucion(tiempo+1);
-                                }
+                                iniciaEjecucion = true;
                             }
                         }
                     }

@@ -111,7 +111,7 @@ public class Proceso {
 
     public int getFinEjecución() {
         return finEjecución;
-    } 
+    }
     
     public void CrearProceso(String _des,int _tarribo,int _tam, int _es, int _cpu){
         cicloES = _es;
@@ -120,11 +120,12 @@ public class Proceso {
         tarribo = _tarribo;
         tamaño = _tam;
         sjf = true;
+        idProceso = 0;
     }
 
     @Override
     public String toString() {
-        return "||TI=" +inicioEjecucion +" "+  descripcion +  ", TF=" +finEjecución;}
+        return "ID:" + idProceso + ", Proceso: " +descripcion +  ", Tamaño=" +tamaño;}
     }
     
     
