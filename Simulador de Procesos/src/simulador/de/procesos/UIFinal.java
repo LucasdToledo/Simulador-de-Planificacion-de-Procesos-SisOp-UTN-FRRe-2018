@@ -461,7 +461,7 @@ public class UIFinal extends javax.swing.JFrame {
             valorQuantum.setText(String.valueOf(quantum));
         }
         else {
-            valorQuantum.setText("No es RR+Q");
+            valorQuantum.setText("No es RR");
         }
     }
     

@@ -17,19 +17,17 @@ public class Planificador {
     private int algorit;
     boolean iniciaEjecucion;
     int quantum;
-    // Numero de proceso en ejecucion
-    //Carga el quantum en ejecución, por defecto será 5
-    int iRR;
-    int residuo;
+    int iRR;            // Numero de proceso en ejecucion
+    int ResiduoRafaga;  //Carga el valor del quantum aun no consumido
 
     public Planificador() {
         this.quantum = 5;
-        this.residuo = 5;
+        this.ResiduoRafaga = 5;
         this.iRR = -1;
     }
 
     public void setQuantum(int quantum) {
-        residuo = quantum;
+        ResiduoRafaga = quantum;
         this.quantum = quantum;
     }
 
@@ -104,9 +102,9 @@ public class Planificador {
                         }
                     }
                     */
-                    //Si todavía no se termina el quantum decrece el residuo
-                    if (residuo > 0){
-                        residuo--;
+                    //Si todavía no se termina el quantum decrece el ResiduoRafaga
+                    if (ResiduoRafaga > 0){
+                        ResiduoRafaga--;
                     }
                     else {
                         //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
@@ -118,7 +116,7 @@ public class Planificador {
                             iRR++;
                         }
                         //Como es un nuevo proceso reinicio el quantum
-                        residuo = quantum;
+                        ResiduoRafaga = quantum;
                     }
                     proaux = nuevaColaListos.get(iRR);
                     
@@ -144,12 +142,15 @@ public class Planificador {
                         if (proaux.getCicloES()> 0){
                             proaux.setCicloES(proaux.getCicloES()-1);
                             
-                            //Controlamos si no se termino el proceso
+                            //Controlamos si se termino el proceso
                             if (proaux.getCicloES()==0){
                                 
                                 //Se guarda el tiempo de fin
                                 proaux.setFinEjecución(tiempo);
                                 iniciaEjecucion = true;
+                                //Puede que no se haya consumido todo el quantum
+                                //Pero como el proceso termina se lo reinicia
+                                ResiduoRafaga = quantum;
                             }
                         }
                     }
