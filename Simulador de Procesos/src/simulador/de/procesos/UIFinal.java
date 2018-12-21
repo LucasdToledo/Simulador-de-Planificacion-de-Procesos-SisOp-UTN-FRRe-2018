@@ -458,7 +458,7 @@ public class UIFinal extends javax.swing.JFrame {
     
     public void cargarQuantum (){
         if (planificador.getAlgorit()==1){
-            valorQuantum.setText(String.valueOf(quantum));
+            valorQuantum.setText(String.valueOf(planificador.getResiduo()));
         }
         else {
             valorQuantum.setText("No es RR");

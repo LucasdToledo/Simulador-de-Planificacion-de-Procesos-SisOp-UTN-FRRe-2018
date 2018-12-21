@@ -21,9 +21,7 @@ public class Planificador {
     int ResiduoRafaga;  //Carga el valor del quantum aun no consumido
 
     public Planificador() {
-        this.quantum = 5;
-        this.ResiduoRafaga = 5;
-        this.iRR = -1;
+        this.iRR = 0;
     }
 
     public void setQuantum(int quantum) {
@@ -33,6 +31,10 @@ public class Planificador {
 
     public int getQuantum() {
         return quantum;
+    }
+    
+    public int getResiduo(){
+        return ResiduoRafaga;
     }
 
     public int getAlgorit() {
@@ -52,16 +54,16 @@ public class Planificador {
         //Busca el proceso de duración 0
         Iterator<Proceso> ite = colaListos.iterator();
         int i = 0;
-        int resguardo = 0;
+        int resguardo;
         Proceso p;
         while (ite.hasNext()) {
             p = ite.next();
             if (p.getDuracion()==0){
                 resguardo = i;
+                colaListos.remove(resguardo);
             }
             i++;
         }
-        colaListos.remove(resguardo);
         return colaListos;
     }
     
@@ -119,6 +121,7 @@ public class Planificador {
                         ResiduoRafaga = quantum;
                     }
                     proaux = nuevaColaListos.get(iRR);
+                    JOptionPane.showMessageDialog(null, "Control: "+ iRR);
                     
                     //Se llama SJF pero cumple la misma función en RR
                     if (iniciaEjecucion && proaux.isSjf()){ 
@@ -151,6 +154,9 @@ public class Planificador {
                                 //Puede que no se haya consumido todo el quantum
                                 //Pero como el proceso termina se lo reinicia
                                 ResiduoRafaga = quantum;
+                                //La cola de listos tiene un elemento menos
+                                //Se reduce el contador para compensar el desfase
+                                iRR--;
                             }
                         }
                     }
