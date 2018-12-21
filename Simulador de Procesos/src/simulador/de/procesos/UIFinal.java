@@ -537,7 +537,7 @@ public class UIFinal extends javax.swing.JFrame {
     public final void cargarColaNuevo(){
         //Creación de la tabla
         DefaultTableModel modelo=(DefaultTableModel) tablaColaNuevo.getModel();
-        Object[] tabla = new Object[5];
+        Object[] tabla = new Object[6];
         //Creo un proceso auxiliar para mejorar la legibilidad del código
         Proceso process;
         
@@ -550,6 +550,7 @@ public class UIFinal extends javax.swing.JFrame {
                 tabla[2]= process.getTamaño();
                 tabla[3]= process.getCicloCPU();
                 tabla[4]= process.getCicloES();
+                tabla[5]= process.getCicloCPU2();
                 modelo.addRow(tabla);
                 colaNuevo.add(process);
             }
@@ -561,7 +562,7 @@ public class UIFinal extends javax.swing.JFrame {
         contCL = reiniciarTabla(TablaColaListos);
         //Creación de la tabla
         DefaultTableModel modelo=(DefaultTableModel) TablaColaListos.getModel();
-        Object[] tabla = new Object[5];
+        Object[] tabla = new Object[6];
         //Creo un proceso y particion auxiliares para mejorar la legibilidad del código
         Proceso process;
         Iterator<Proceso> it = colaListos.iterator();
@@ -572,6 +573,7 @@ public class UIFinal extends javax.swing.JFrame {
             tabla[2]= process.getTamaño();
             tabla[3]= process.getCicloCPU();
             tabla[4]= process.getCicloES();
+            tabla[5]= process.getCicloCPU2();
             modelo.addRow(tabla);
         }
     }
@@ -589,7 +591,7 @@ public class UIFinal extends javax.swing.JFrame {
     
             while (it.hasNext()) {
                 process = it.next();
-                if (process.getCicloCPU() == 0 && process.getCicloES() == 0){
+                if (process.getCicloCPU() == 0 && process.getCicloES() == 0 && process.getCicloCPU2() == 0){
                     tabla[0]= contT; contT++;
                     tabla[1]= process.getDescripcion();
                     tabla[2]= process.getTamaño();

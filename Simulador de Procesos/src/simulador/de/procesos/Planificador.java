@@ -143,19 +143,23 @@ public class Planificador {
                     else{
                         if (proaux.getCicloES()> 0){
                             proaux.setCicloES(proaux.getCicloES()-1);
-                            
-                            //Controlamos si se termino el proceso
-                            if (proaux.getCicloES()==0){
-                                
-                                //Se guarda el tiempo de fin
-                                proaux.setFinEjecución(tiempo);
-                                iniciaEjecucion = true;
-                                //Puede que no se haya consumido todo el quantum
-                                //Pero como el proceso termina se lo reinicia
-                                ResiduoRafaga = quantum;
-                                //La cola de listos tiene un elemento menos
-                                //Se reduce el contador para compensar el desfase
-                                iRR--;
+                        }
+                        else{
+                            if (proaux.getCicloCPU2()>0){
+                                proaux.setCicloCPU2(proaux.getCicloCPU2()-1);
+                                //Controlamos si se termino el proceso
+                                if (proaux.getCicloCPU2()==0){
+
+                                    //Se guarda el tiempo de fin
+                                    proaux.setFinEjecución(tiempo);
+                                    iniciaEjecucion = true;
+                                    //Puede que no se haya consumido todo el quantum
+                                    //Pero como el proceso termina se lo reinicia
+                                    ResiduoRafaga = quantum;
+                                    //La cola de listos tiene un elemento menos
+                                    //Se reduce el contador para compensar el desfase
+                                    iRR--;
+                                }
                             }
                         }
                     }
