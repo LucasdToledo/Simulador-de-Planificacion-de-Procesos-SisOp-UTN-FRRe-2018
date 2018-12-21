@@ -105,7 +105,7 @@ public class Planificador {
                     }
                     */
                     //Si todavía no se termina el quantum decrece el ResiduoRafaga
-                    if (ResiduoRafaga > 0){
+                    if (ResiduoRafaga > 1){
                         ResiduoRafaga--;
                     }
                     else {
