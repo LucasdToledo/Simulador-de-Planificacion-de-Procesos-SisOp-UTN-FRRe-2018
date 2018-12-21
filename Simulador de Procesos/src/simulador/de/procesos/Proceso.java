@@ -8,6 +8,7 @@ public class Proceso {
     private int prioridad;
     private int cicloES; //Ciclos de CPU y E-S
     private int cicloCPU;
+    private int cicloCPU2;
     private int duracion;
     private int idProceso;
     private String descripcion;
@@ -20,6 +21,16 @@ public class Proceso {
     public boolean isSjf() {
         return sjf;
     }
+
+    public int getCicloCPU2() {
+        return cicloCPU2;
+    }
+
+    public void setCicloCPU2(int cicloCPU2) {
+        this.cicloCPU2 = cicloCPU2;
+    }
+    
+    
 
     public void setSjf(boolean sjf) {
         this.sjf = sjf;
@@ -66,7 +77,7 @@ public class Proceso {
     }
 
     public int getDuracion() {
-        return cicloES + cicloCPU;
+        return cicloES + cicloCPU + cicloCPU2;
     }
 
     public void setDuracion(int duracion) {
@@ -113,9 +124,10 @@ public class Proceso {
         return finEjecución;
     }
     
-    public void CrearProceso(String _des,int _tarribo,int _tam, int _es, int _cpu){
+    public void CrearProceso(String _des,int _tarribo,int _tam, int _es, int _cpu, int _cpu2){
         cicloES = _es;
         cicloCPU = _cpu;
+        cicloCPU2 = _cpu2;
         descripcion = _des;
         tarribo = _tarribo;
         tamaño = _tam;
