@@ -90,8 +90,31 @@ public class Memoria {
             if (ite.next().isEstado()){
                 acum= acum + ite.next().Tamaño();
             }
-        }  
+        }
         return frag_externa;
+    }
+    
+    public void desfragmentar(){
+        Iterator<Particion> ite = ListaParticiones.iterator();
+        boolean anterior = false;
+        Particion part;
+        int i = 0;
+        while (ite.hasNext()) {
+            part = ite.next();
+            if (part.isEstado()){
+                if (anterior){
+                    ListaParticiones.get(i-1).CrearParticion(ListaParticiones.get(i).Tamaño()+ListaParticiones.get(i-1).Tamaño());
+                    ListaParticiones.remove(i);
+                }
+                else{
+                    anterior = true;
+                }
+            }
+            else {
+                anterior = false;
+            }
+            i++;
+        }
     }
     
     //Este es el constructor

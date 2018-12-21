@@ -395,6 +395,9 @@ public class UIFinal extends javax.swing.JFrame {
             if(acumul > 0 ){
                 //Cargamos la cola de Nuevos con los procesos que tienen tiempo de arribo igual al tiempo presente
                 contM = reiniciarTabla(tablaParticiones);
+                if (mema.isTipo()){
+                    mema.desfragmentar();
+                }
                 hacerUnaVuelta();
                 cargarParticiones();
                 //Se carga de nuevo para actualizar
