@@ -121,7 +121,6 @@ public class Planificador {
                         ResiduoRafaga = quantum;
                     }
                     proaux = nuevaColaListos.get(iRR);
-                    JOptionPane.showMessageDialog(null, "Control: "+ iRR);
                     
                     //Se llama SJF pero cumple la misma función en RR
                     if (iniciaEjecucion && proaux.isSjf()){ 
