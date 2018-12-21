@@ -16,9 +16,17 @@ import javax.swing.JOptionPane;
 public class Planificador {
     private int algorit;
     boolean iniciaEjecucion;
-    int quantum=5;//Carga el quantum en ejecución, por defecto será 5
-    int iRR=0;// Numero de proceso en ejecucion
-    int residuo = 5;
+    int quantum;
+    // Numero de proceso en ejecucion
+    //Carga el quantum en ejecución, por defecto será 5
+    int iRR;
+    int residuo;
+
+    public Planificador() {
+        this.quantum = 5;
+        this.residuo = 5;
+        this.iRR = -1;
+    }
 
     public void setQuantum(int quantum) {
         residuo = quantum;
@@ -27,10 +35,6 @@ public class Planificador {
 
     public int getQuantum() {
         return quantum;
-    }
-    
-    public void Planificador(){
-        iniciaEjecucion = true;
     }
 
     public int getAlgorit() {
@@ -46,30 +50,20 @@ public class Planificador {
     }
     
     public ArrayList <Proceso> procesoTerminado(ArrayList <Proceso> colaListos){
-        switch (algorit){
-            case (1):   //RR+Q
-                break;  
-            case (2):   //SRTF
-                break;
-            case (3):   //SJF
-                //Busca el proceso de duración 0
-                Iterator<Proceso> ite = colaListos.iterator();
-                int i = 0;
-                int resguardo = 0;
-                Proceso p;
-                while (ite.hasNext()) {
-                    p = ite.next();
-                    if (p.getDuracion()==0){
-                        resguardo = i;
-                    }
-                    i++;
-                }
-                colaListos.remove(resguardo);
-                break;
-            case(4):    //FCFS
-                colaListos.remove(0);
-                break;
+       
+        //Busca el proceso de duración 0
+        Iterator<Proceso> ite = colaListos.iterator();
+        int i = 0;
+        int resguardo = 0;
+        Proceso p;
+        while (ite.hasNext()) {
+            p = ite.next();
+            if (p.getDuracion()==0){
+                resguardo = i;
+            }
+            i++;
         }
+        colaListos.remove(resguardo);
         return colaListos;
     }
     
@@ -116,7 +110,7 @@ public class Planificador {
                     }
                     else {
                         //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
-                        if (colaListos.size()<= iRR-1){
+                        if (colaListos.size()<= iRR){
                             iRR = 0;
                         }
                         //Si no es tan grande lo incremento
@@ -126,11 +120,19 @@ public class Planificador {
                         //Como es un nuevo proceso reinicio el quantum
                         residuo = quantum;
                     }
-                    
                     proaux = nuevaColaListos.get(iRR);
-                    if (iniciaEjecucion){ 
+                    
+                    //Se llama SJF pero cumple la misma función en RR
+                    if (iniciaEjecucion && proaux.isSjf()){ 
                         proaux.setInicioEjecucion(tiempo);
                         iniciaEjecucion = false;
+                        proaux.setSjf(false);
+                    }
+                    else{
+                        if (proaux.isSjf()){
+                            proaux.setInicioEjecucion(tiempo);
+                            proaux.setSjf(false);
+                        }
                     }
                     
                     //Si el proceso tiene ciclos CPU los consume de a uno
