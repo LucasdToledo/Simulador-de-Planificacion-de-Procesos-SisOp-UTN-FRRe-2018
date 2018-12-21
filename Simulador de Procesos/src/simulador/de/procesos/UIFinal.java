@@ -385,7 +385,6 @@ public class UIFinal extends javax.swing.JFrame {
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
         Acumular();         //Sumo un valor al tiempo
-        cargarQuantum();
         contCN = reiniciarTabla(tablaColaNuevo);
         cargarColaNuevo();
         if (acumul == 0){
@@ -403,6 +402,7 @@ public class UIFinal extends javax.swing.JFrame {
                 //Se carga de nuevo para actualizar
                 Collections.sort(colaListos, (Proceso p1, Proceso p2)-> new Integer(p1.getIdProceso()).compareTo(p2.getIdProceso()));
                 colaListos = planificador.elegirSiguiente(colaListos, acumul);
+                cargarQuantum();
                 cargarColaTerminados();
                 cargarColaListos();
             }
