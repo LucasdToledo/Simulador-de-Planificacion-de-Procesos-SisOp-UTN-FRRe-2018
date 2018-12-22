@@ -79,15 +79,17 @@ public class Planificador {
                 case(1):    //Round Robin
                     
                     proaux = nuevaColaListos.get(iRR);
-                    
+                    JOptionPane.showMessageDialog(null, "iRR: " + iRR);
                     //Se llama SJF pero cumple la misma función en RR
                     if (iniciaEjecucion && proaux.isSjf()){ 
+                        JOptionPane.showMessageDialog(null, "Inicio ejecución");
                         proaux.setInicioEjecucion(tiempo);
                         iniciaEjecucion = false;
                         proaux.setSjf(false);
                     }
                     else{
                         if (proaux.isSjf()){
+                            JOptionPane.showMessageDialog(null, "Cambio de proceso");
                             proaux.setInicioEjecucion(tiempo);
                             proaux.setSjf(false);
                         }
@@ -115,18 +117,21 @@ public class Planificador {
                                     //Pero como el proceso termina se lo reinicia
                                     ResiduoRafaga = quantum;
                                     //La cola de listos tiene un elemento menos
+                                    JOptionPane.showMessageDialog(null, "Rafaga: " + ResiduoRafaga);
                                 }
                             }
                         }
                     }
                     
                     //Si todavía no se termina el quantum decrece el ResiduoRafaga
-                    if (ResiduoRafaga > 0){
+                    if (ResiduoRafaga > 1){
                         ResiduoRafaga--;
+                        JOptionPane.showMessageDialog(null, "Rafaga resto: " + ResiduoRafaga);
                     }
                     else {
                         //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
                         iRR++;
+                        JOptionPane.showMessageDialog(null, "iRR: " + iRR);
                         if (nuevaColaListos.size()== iRR){
                             iRR = 0;
                         }
