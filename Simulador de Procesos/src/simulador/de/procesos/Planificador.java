@@ -136,7 +136,7 @@ public class Planificador {
                             iRR = 0;
                         }
                         //Como es un nuevo proceso reinicio el quantum
-                        ResiduoRafaga = quantum-1;
+                        ResiduoRafaga = quantum; //ACA BORRE EL -1. CALA LA BOCA MANITO. GUIDO
                     }
                     
                     break;
