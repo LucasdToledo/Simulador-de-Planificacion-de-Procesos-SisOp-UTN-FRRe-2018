@@ -62,24 +62,16 @@ public class Planificador {
         Iterator<Proceso> ite = colaListos.iterator();
         if (!colaListos.isEmpty()){
             int i = 0;
-            int resguardo;
             Proceso p;
             while (ite.hasNext()) {
                 p = ite.next();
                 if (p.getDuracion()==0){
-                    resguardo = i;
-                    colaListos.remove(resguardo);
+                    colaListos.remove(i);
+                }
+                if (p.getCicloCPU()==0 && p.getCicloES()!=0){
+                    colaListos.remove(i);
                 }
                 i++;
-            }
-        }
-        else{
-            Proceso p2;
-            while (ite.hasNext()) {
-                p2 = ite.next();
-                if (p2.getCicloCPU()==0){
-                    colaListos.remove(p2);
-                }
             }
         }
         return colaListos;

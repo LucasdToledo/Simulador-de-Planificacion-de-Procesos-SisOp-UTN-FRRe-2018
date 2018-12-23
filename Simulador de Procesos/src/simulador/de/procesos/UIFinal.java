@@ -457,6 +457,7 @@ public class UIFinal extends javax.swing.JFrame {
                 cargarQuantum();
                 cargarColaTerminados();
                 cargarColaListos();
+                cargarColaES();
             }
         }
     }//GEN-LAST:event_botonSiguienteActionPerformed
