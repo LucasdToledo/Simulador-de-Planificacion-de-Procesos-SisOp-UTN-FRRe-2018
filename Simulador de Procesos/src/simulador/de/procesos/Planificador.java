@@ -22,6 +22,7 @@ public class Planificador {
     int ResiduoRafaga2; //Carga el valor del quantum aun no consumido
     int ResiduoRafaga;  //Carga el valor del quantum aun no consumido
     public ArrayList<Proceso> colaES;
+    
     public Planificador() {
         this.iRR = 0;
     }
@@ -69,46 +70,40 @@ public class Planificador {
         return colaListos;
     }
     
-    
     //Dentro de este método se definirán los algoritmos de planificación
     public ArrayList <Proceso> elegirSiguiente (ArrayList<Proceso> colaListos, int tiempo){
       
         ArrayList <Proceso> nuevaColaListos;
         nuevaColaListos = colaListos;
         Proceso proaux;
-        if (!colaListos.isEmpty()){
             switch(algorit){
                 case(1):    //Round Robin
                     
                     if (!nuevaColaListos.isEmpty()) {
-             
-                       proaux = nuevaColaListos.get(iRR);
             
-                    JOptionPane.showMessageDialog(null, "iRR: " + iRR);
+                        proaux = nuevaColaListos.get(iRR);
                     
-                    if (iniciaEjecucion && proaux.isSjf()){ //Se llama SJF pero cumple la misma función en RR
-                        JOptionPane.showMessageDialog(null, "Inicio ejecución");
-                        proaux.setInicioEjecucion(tiempo);
-                        iniciaEjecucion = false;
-                        proaux.setSjf(false);
-                    }
-                    else{
-                        if (proaux.isSjf()){
-                            JOptionPane.showMessageDialog(null, "Cambio de proceso");
+                        if (iniciaEjecucion && proaux.isSjf()){ //Se llama SJF pero cumple la misma función en RR
                             proaux.setInicioEjecucion(tiempo);
+                            iniciaEjecucion = false;
                             proaux.setSjf(false);
                         }
-                    }
+                        else{
+                            if (proaux.isSjf()){
+                                proaux.setInicioEjecucion(tiempo);
+                                proaux.setSjf(false);
+                            }
+                        }
                     
              
                 if (proaux.getCicloCPU()> 0){
                 proaux.setCicloCPU(proaux.getCicloCPU()-1);
-               if (proaux.getCicloCPU()==0) {
-                    colaES.add(proaux);
-                    nuevaColaListos.remove(proaux);
-                }
+                    if (proaux.getCicloCPU()==0) {
+                        colaES.add(proaux);
+                        nuevaColaListos.remove(proaux);
+                    }
             
-                                           }
+                }
              
              else{           
              if (proaux.getCicloCPU2()> 0){
@@ -138,11 +133,14 @@ public class Planificador {
                         ResiduoRafaga = quantum; //ACA BORRE EL -1. CALA LA BOCA MANITO. GUIDO
                     }
                    }//ESTO NO SE SI CIERRA ACA, salu2
+                    
               //ENTRADA SALIDA
               if (!colaES.isEmpty()) {
+                  if (colaES.get(iRR2).getCicloCPU2()> 0){
                         colaES.get(iRR2).setCicloES(colaES.get(iRR2).getCicloES()-1);//restamos la entrada/salida
                      if (ResiduoRafaga2 > 1){  //si es mayor a 1, resto el quatum
                         ResiduoRafaga2--;
+                     }
                         if(colaES.get(iRR2).getCicloES() == 0){ //si mi ciclo de entrada/salida ya TERMINO, lo mando a cola de LISTO
                              nuevaColaListos.add(colaES.get(iRR2));
                              colaES.remove(iRR2);
@@ -280,7 +278,6 @@ public class Planificador {
                     }
                     break;
             }
-        }
         else{
             JOptionPane.showMessageDialog(null, "La cola de listos está vacía");
             iniciaEjecucion = true;
