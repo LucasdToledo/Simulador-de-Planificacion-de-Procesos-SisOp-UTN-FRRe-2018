@@ -17,6 +17,7 @@ public class Proceso {
     int inicioEjecucion;
     int finEjecución;
     boolean sjf;
+    boolean ES;
 
     public boolean isSjf() {
         return sjf;
@@ -28,6 +29,14 @@ public class Proceso {
 
     public void setCicloCPU2(int cicloCPU2) {
         this.cicloCPU2 = cicloCPU2;
+    }
+
+    public boolean isES() {
+        return ES;
+    }
+
+    public void setES(boolean ES) {
+        this.ES = ES;
     }
     
     
@@ -133,6 +142,7 @@ public class Proceso {
         tamaño = _tam;
         sjf = true;
         idProceso = 0;
+        ES= false;
     }
 
     @Override

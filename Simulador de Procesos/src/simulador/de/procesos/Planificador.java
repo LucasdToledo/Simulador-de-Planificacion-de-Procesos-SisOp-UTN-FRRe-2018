@@ -107,6 +107,11 @@ public class Planificador {
                             if (nuevaColaListos.get(iRR).getCicloCPU()==0 ) {
                                 colaES.add(nuevaColaListos.get(iRR));
                                 ResiduoRafaga = quantum;
+                                nuevaColaListos.get(iRR).setES(true);//---------------------------------------------------------------------------------77777777777
+                                nuevaColaListos.remove(iRR);
+                                JOptionPane.showMessageDialog(null, "la TENES ADENTRO");
+                                System.out.println("LA TENES ADENTRO");
+                                
                                 if (nuevaColaListos.size()== iRR){
                                     iRR = 0;
                                     JOptionPane.showMessageDialog(null, "ALERTA: Puede que funque porque Reinició");
@@ -131,6 +136,7 @@ public class Planificador {
                             if (nuevaColaListos.get(iRR).getCicloCPU2()> 0){
                                nuevaColaListos.get(iRR).setCicloCPU2(nuevaColaListos.get(iRR).getCicloCPU2()-1);
                                 if (nuevaColaListos.get(iRR).getCicloCPU2()==0) {
+                                    
                                     nuevaColaListos.remove(iRR);
                                     //Se guarda el tiempo de fin
                                     nuevaColaListos.get(iRR2).setFinEjecución(tiempo);
@@ -167,7 +173,9 @@ public class Planificador {
                     if (!colaES.isEmpty()) {
                         if (colaES.get(iRR2).getCicloES()> 0){ 
                             colaES.get(iRR2).setCicloES(colaES.get(iRR2).getCicloES()-1);//restamos la entrada/salida
-                            if(colaES.get(iRR2).getCicloES() == 0){ //si mi ciclo de entrada/salida ya TERMINO, lo mando a cola de LISTO
+                            if(colaES.get(iRR2).getCicloES() == 0){ //si mi ciclo de entrada/salida ya TERMINO, lo mando a cola de LISTO                               
+                                colaES.get(iRR2).setES(false);//---------------------------------------------------------------------------------7777777777777777777777777777
+                                nuevaColaListos.add(colaES.get(iRR2));
                                 colaES.remove(iRR2);
                                 ResiduoRafaga2 = quantum;
                                 

@@ -559,8 +559,9 @@ public class UIFinal extends javax.swing.JFrame {
                 tabla[3]= part.Tamaño();
                 tabla[4]= part.Tamaño()- process.getTamaño();
                 modelo.addRow(tabla);
-                colaListos.add(process);
-                
+                if (!process.isES()){
+                     colaListos.add(process);
+                }
                 colaProcesos.remove(process);
                 for (int posi = 0; posi <= colaNuevo.size()-1 ; posi++) {
              
