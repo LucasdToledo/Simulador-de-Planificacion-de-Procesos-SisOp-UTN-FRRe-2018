@@ -21,7 +21,6 @@ public class Planificador {
     int iRR2;// Numero de proceso en ejecucion
     int ResiduoRafaga2; //Carga el valor del quantum aun no consumido
     int ResiduoRafaga;  //Carga el valor del quantum aun no consumido
-    public ArrayList<Proceso> colaES;
     
     public Planificador() {
         this.iRR = 0;
@@ -39,6 +38,10 @@ public class Planificador {
     public int getResiduo(){
         return ResiduoRafaga;
     }
+    
+    public int getResiduoES(){
+        return ResiduoRafaga2;
+    }
 
     public int getAlgorit() {
         return algorit;
@@ -55,8 +58,9 @@ public class Planificador {
     public ArrayList <Proceso> procesoTerminado(ArrayList <Proceso> colaListos){
        
         //Busca el proceso de duración 0
+        
+        Iterator<Proceso> ite = colaListos.iterator();
         if (!colaListos.isEmpty()){
-            Iterator<Proceso> ite = colaListos.iterator();
             int i = 0;
             int resguardo;
             Proceso p;
@@ -69,78 +73,88 @@ public class Planificador {
                 i++;
             }
         }
+        else{
+            Proceso p2;
+            while (ite.hasNext()) {
+                p2 = ite.next();
+                if (p2.getCicloCPU()==0){
+                    colaListos.remove(p2);
+                }
+            }
+        }
         return colaListos;
     }
     
     //Dentro de este método se definirán los algoritmos de planificación
-    public ArrayList <Proceso> elegirSiguiente (ArrayList<Proceso> colaListos, int tiempo){
-      
+    public ArrayList <Proceso> elegirSiguiente (ArrayList<Proceso> colaListos, ArrayList <Proceso> colaES, int tiempo){
+    
         ArrayList <Proceso> nuevaColaListos;
         nuevaColaListos = colaListos;
         Proceso proaux;
         if (!colaListos.isEmpty() || !colaES.isEmpty() ){
             switch(algorit){
                 case(1):    //Round Robin
-                    
+                   
                     if (!nuevaColaListos.isEmpty()) {
-                    if (nuevaColaListos.get(iRR).getCicloCPU()> 0){
-                        nuevaColaListos.get(iRR).setCicloCPU(nuevaColaListos.get(iRR).getCicloCPU()-1);
-                        JOptionPane.showMessageDialog(null, "Hasta aca llega");
-                        if (nuevaColaListos.get(iRR).getCicloCPU()==0 ) {
+                        if (nuevaColaListos.get(iRR).getCicloCPU()> 0){
+                        
+                            nuevaColaListos.get(iRR).setCicloCPU(nuevaColaListos.get(iRR).getCicloCPU()-1);
+                            if (nuevaColaListos.get(iRR).getCicloCPU()==0 ) {
                                 colaES.add(nuevaColaListos.get(iRR));
-                                nuevaColaListos.remove(iRR);
-                                JOptionPane.showMessageDialog(null, "Hasta aca llega tambien: " + String.valueOf(colaES));
                                 ResiduoRafaga = quantum;
                                 if (nuevaColaListos.size()== iRR){
                                     iRR = 0;
-                                    JOptionPane.showMessageDialog(null, "Reinició");
+                                    JOptionPane.showMessageDialog(null, "ALERTA: Puede que funque porque Reinició");
                                 }
-                            }else{
-                            if (ResiduoRafaga > 1){
-                                ResiduoRafaga--;
-                                JOptionPane.showMessageDialog(null, "Rafaga resto: " + ResiduoRafaga);
-                            }else {
-                            //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
-                            iRR++;
-                            JOptionPane.showMessageDialog(null, "iRR: " + iRR);
-                            if (nuevaColaListos.size()== iRR){
-                                iRR = 0;
                             }
-                            ResiduoRafaga = quantum;
-                            }
-                            }
-                            
-                    }else{           
-                       if (nuevaColaListos.get(iRR).getCicloCPU2()> 0){
-                           nuevaColaListos.get(iRR).setCicloCPU2(nuevaColaListos.get(iRR).getCicloCPU2()-1);
-                           if (nuevaColaListos.get(iRR).getCicloCPU2()==0) {
-                                    nuevaColaListos.remove(iRR);
-                                    ResiduoRafaga = quantum;
+                            else{
+                                if (ResiduoRafaga > 1){
+                                    ResiduoRafaga--;
+                                    JOptionPane.showMessageDialog(null, "Rafaga resto: " + ResiduoRafaga);
+                                }else {
+                                    //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
+                                    iRR++;
+                                    JOptionPane.showMessageDialog(null, "iRR: " + iRR);
                                     if (nuevaColaListos.size()== iRR){
-                                    iRR = 0;
+                                        iRR = 0;
                                     }
-                           }else{        
-                           if (ResiduoRafaga > 1){
-                                ResiduoRafaga--;
-                                JOptionPane.showMessageDialog(null, "Rafaga resto: " + ResiduoRafaga);
-                            }else {
-                            //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
-                                iRR++;
-                                JOptionPane.showMessageDialog(null, "iRR: " + iRR);
-                                if (nuevaColaListos.size()== iRR){
-                                    iRR = 0;
-                                }
-                                ResiduoRafaga = quantum;
-                           }
-                                
-                                }
+                                    ResiduoRafaga = quantum;
                                 }
                             }
                         }
-                        //ESTO NO SE SI CIERRA ACA, salu2
-                        //ENTRADA SALIDA
+                        else{           
+                            if (nuevaColaListos.get(iRR).getCicloCPU2()> 0){
+                               nuevaColaListos.get(iRR).setCicloCPU2(nuevaColaListos.get(iRR).getCicloCPU2()-1);
+                                if (nuevaColaListos.get(iRR).getCicloCPU2()==0) {
+                                    nuevaColaListos.remove(iRR);
+                                    ResiduoRafaga = quantum;
+                                    if (nuevaColaListos.size()== iRR){
+                                        iRR = 0;
+                                    }
+                                }
+                                else{        
+                                    if (ResiduoRafaga > 1){
+                                        ResiduoRafaga--;
+                                        JOptionPane.showMessageDialog(null, "Rafaga resto: " + ResiduoRafaga);
+                                    }
+                                    else {
+                                    //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
+                                        iRR++;
+                                        JOptionPane.showMessageDialog(null, "iRR: " + iRR);
+                                        if (nuevaColaListos.size()== iRR){
+                                            iRR = 0;
+                                        }
+                                        ResiduoRafaga = quantum;
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                    //ESTO NO SE SI CIERRA ACA, salu2
+                    //ENTRADA SALIDA
                     
-                        if (!colaES.isEmpty()) {
+                    if (!colaES.isEmpty()) {
                         if (colaES.get(iRR2).getCicloES()> 0){ 
                             colaES.get(iRR2).setCicloES(colaES.get(iRR2).getCicloES()-1);//restamos la entrada/salida
                             if(colaES.get(iRR2).getCicloES() == 0){ //si mi ciclo de entrada/salida ya TERMINO, lo mando a cola de LISTO
@@ -150,23 +164,24 @@ public class Planificador {
                                 if (colaES.size()== iRR2){
                                    iRR = 0;
                                 }
-                        }else{                        
-                        if (ResiduoRafaga2 > 1){  //si es mayor a 1, resto el quatum
-                             ResiduoRafaga2--;
-                            }else {
-                            //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
-                            iRR2++;   //aca lo muevo
-                            if (colaES.size()== iRR2){
-                                iRR2 = 0;
                             }
-                            //Como es un nuevo proceso reinicio el quantum
-                            ResiduoRafaga2 = quantum; //ACA BORRE EL -1. CALA LA BOCA MANITO. GUIDO
+                        else{                        
+                            if (ResiduoRafaga2 > 1){  //si es mayor a 1, resto el quatum
+                                ResiduoRafaga2--;
                             }
+                            else {
+                                //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
+                                iRR2++;   //aca lo muevo
+                                if (colaES.size()== iRR2){
+                                    iRR2 = 0;
+                                }
+                                //Como es un nuevo proceso reinicio el quantum
+                                ResiduoRafaga2 = quantum; //ACA BORRE EL -1. CALA LA BOCA MANITO. GUIDO
+                            }
+                        }
                             
-
                         }
-                        }
-                        }
+                    }
                     
              
            //Pero si no los tiene, nos fijamos si hay ciclos de ES y los consumimos
