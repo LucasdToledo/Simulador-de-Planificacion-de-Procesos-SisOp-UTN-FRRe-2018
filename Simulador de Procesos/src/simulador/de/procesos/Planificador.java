@@ -18,8 +18,10 @@ public class Planificador {
     boolean iniciaEjecucion;
     int quantum;
     int iRR;            // Numero de proceso en ejecucion
+    int iRR2;// Numero de proceso en ejecucion
+    int ResiduoRafaga2; //Carga el valor del quantum aun no consumido
     int ResiduoRafaga;  //Carga el valor del quantum aun no consumido
-
+    public ArrayList<Proceso> colaES;
     public Planificador() {
         this.iRR = 0;
     }
@@ -78,10 +80,13 @@ public class Planificador {
             switch(algorit){
                 case(1):    //Round Robin
                     
-                    proaux = nuevaColaListos.get(iRR);
+                    if (!nuevaColaListos.isEmpty()) {
+             
+                       proaux = nuevaColaListos.get(iRR);
+            
                     JOptionPane.showMessageDialog(null, "iRR: " + iRR);
-                    //Se llama SJF pero cumple la misma función en RR
-                    if (iniciaEjecucion && proaux.isSjf()){ 
+                    
+                    if (iniciaEjecucion && proaux.isSjf()){ //Se llama SJF pero cumple la misma función en RR
                         JOptionPane.showMessageDialog(null, "Inicio ejecución");
                         proaux.setInicioEjecucion(tiempo);
                         iniciaEjecucion = false;
@@ -95,33 +100,90 @@ public class Planificador {
                         }
                     }
                     
-                    //Si el proceso tiene ciclos CPU los consume de a uno
-                    if (proaux.getCicloCPU()> 0){
-                        proaux.setCicloCPU(proaux.getCicloCPU()-1);
+             
+                if (proaux.getCicloCPU()> 0){
+                proaux.setCicloCPU(proaux.getCicloCPU()-1);
+               if (proaux.getCicloCPU()==0) {
+                    colaES.add(proaux);
+                    nuevaColaListos.remove(proaux);
+                }
+            
+                                           }
+             
+             else{           
+             if (proaux.getCicloCPU2()> 0){
+                proaux.setCicloCPU2(proaux.getCicloCPU2()-1);
+                if (proaux.getCicloCPU2()==0) {
+                    proaux.setFinEjecución(tiempo);
+                            iniciaEjecucion = true;
+                            //Puede que no se haya consumido todo el quantum
+                            //Pero como el proceso termina se lo reinicia
+                            ResiduoRafaga = quantum;
+                                            }
+                                        }
+                }
+             
+              if (ResiduoRafaga > 1){
+                        ResiduoRafaga--;
+                        JOptionPane.showMessageDialog(null, "Rafaga resto: " + ResiduoRafaga);
                     }
-                    //Pero si no los tiene, nos fijamos si hay ciclos de ES y los consumimos
-                    else{
-                        if (proaux.getCicloES()> 0){
-                            proaux.setCicloES(proaux.getCicloES()-1);
+                    else {
+                        //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
+                        iRR++;
+                        JOptionPane.showMessageDialog(null, "iRR: " + iRR);
+                        if (nuevaColaListos.size()== iRR){
+                            iRR = 0;
                         }
-                        else{
-                            if (proaux.getCicloCPU2()>0){
-                                proaux.setCicloCPU2(proaux.getCicloCPU2()-1);
-                                //Controlamos si se termino el proceso
-                                if (proaux.getCicloCPU2()==0){
-
-                                    //Se guarda el tiempo de fin
-                                    proaux.setFinEjecución(tiempo);
-                                    iniciaEjecucion = true;
-                                    //Puede que no se haya consumido todo el quantum
-                                    //Pero como el proceso termina se lo reinicia
-                                    ResiduoRafaga = quantum;
-                                    //La cola de listos tiene un elemento menos
-                                    JOptionPane.showMessageDialog(null, "Rafaga: " + ResiduoRafaga);
-                                }
-                            }
+                        //Como es un nuevo proceso reinicio el quantum
+                        ResiduoRafaga = quantum; //ACA BORRE EL -1. CALA LA BOCA MANITO. GUIDO
+                    }
+                   }//ESTO NO SE SI CIERRA ACA, salu2
+              //ENTRADA SALIDA
+              if (!colaES.isEmpty()) {
+                        colaES.get(iRR2).setCicloES(colaES.get(iRR2).getCicloES()-1);//restamos la entrada/salida
+                     if (ResiduoRafaga2 > 1){  //si es mayor a 1, resto el quatum
+                        ResiduoRafaga2--;
+                        if(colaES.get(iRR2).getCicloES() == 0){ //si mi ciclo de entrada/salida ya TERMINO, lo mando a cola de LISTO
+                             nuevaColaListos.add(colaES.get(iRR2));
+                             colaES.remove(iRR2);
+                             ResiduoRafaga2 = quantum;
+                        }
+                    }else {
+                        //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
+                        iRR2++;   //aca lo muevo
+                        if (colaES.size()== iRR2){
+                            iRR2 = 0;
+                        }
+                        //Como es un nuevo proceso reinicio el quantum
+                        ResiduoRafaga2 = quantum; //ACA BORRE EL -1. CALA LA BOCA MANITO. GUIDO
+                    }
+                }
+                    
+             
+           //Pero si no los tiene, nos fijamos si hay ciclos de ES y los consumimos
+            /*else{
+                if (proaux.getCicloES()> 0){
+                    proaux.setCicloES(proaux.getCicloES()-1);
+                    
+                }
+                else{
+                    if (proaux.getCicloCPU2()>0){
+                        proaux.setCicloCPU2(proaux.getCicloCPU2()-1);
+                        //Controlamos si se termino el proceso
+                        if (proaux.getCicloCPU2()==0){
+                            
+                            //Se guarda el tiempo de fin
+                            proaux.setFinEjecución(tiempo);
+                            iniciaEjecucion = true;
+                            //Puede que no se haya consumido todo el quantum
+                            //Pero como el proceso termina se lo reinicia
+                            ResiduoRafaga = quantum;
+                            //La cola de listos tiene un elemento menos
+                            JOptionPane.showMessageDialog(null, "Rafaga: " + ResiduoRafaga);
                         }
                     }
+                }
+            }
                     
                     //Si todavía no se termina el quantum decrece el ResiduoRafaga
                     if (ResiduoRafaga > 1){
@@ -137,7 +199,8 @@ public class Planificador {
                         }
                         //Como es un nuevo proceso reinicio el quantum
                         ResiduoRafaga = quantum; //ACA BORRE EL -1. CALA LA BOCA MANITO. GUIDO
-                    }
+                    }*/
+
                     
                     break;
                 case(2):    //SRTF
