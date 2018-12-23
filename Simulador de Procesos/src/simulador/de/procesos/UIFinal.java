@@ -663,9 +663,12 @@ public class UIFinal extends javax.swing.JFrame {
         Object[] tabla = new Object[5];
         //Creo un proceso y particion auxiliares para mejorar la legibilidad del código
         Proceso process;
-        ArrayList <Proceso> listaListos = new ArrayList <>(colaListos);
+        ArrayList <Proceso> listaListos;
+        listaListos = (ArrayList <Proceso>) colaListos.clone();
         Iterator<Proceso> it = listaListos.iterator();
         colaListos = new ArrayList();
+        JOptionPane.showMessageDialog(null, colaListos);
+        JOptionPane.showMessageDialog(null, listaListos);
         if (!listaListos.isEmpty()){
     
             while (it.hasNext()) {
