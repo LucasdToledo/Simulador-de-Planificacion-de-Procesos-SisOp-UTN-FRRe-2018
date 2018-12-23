@@ -452,7 +452,7 @@ public class UIFinal extends javax.swing.JFrame {
                 hacerUnaVuelta();
                 cargarParticiones();
                 //Se carga de nuevo para actualizar
-                Collections.sort(colaListos, (Proceso p1, Proceso p2)-> new Integer(p1.getIdProceso()).compareTo(p2.getIdProceso()));
+                Collections.sort(colaListos, (Proceso p1, Proceso p2)-> new Integer(p1.getTarribo()).compareTo(p2.getTarribo()));
                 colaListos = planificador.elegirSiguiente(colaListos, colaES, acumul);
                 cargarQuantum();
                 cargarColaTerminados();

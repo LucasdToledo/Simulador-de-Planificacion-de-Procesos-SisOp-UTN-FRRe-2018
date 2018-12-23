@@ -28,6 +28,7 @@ public class Planificador {
 
     public void setQuantum(int quantum) {
         ResiduoRafaga = quantum;
+         ResiduoRafaga2 = quantum;
         this.quantum = quantum;
     }
 
@@ -177,7 +178,7 @@ public class Planificador {
                                 colaES.get(iRR2).setES(false);//---------------------------------------------------------------------------------7777777777777777777777777777
                                 nuevaColaListos.add(colaES.get(iRR2));
                                 colaES.remove(iRR2);
-                                ResiduoRafaga2 = quantum;
+                                ResiduoRafaga2 = quantum-1;
                                 
                                 if (colaES.size()== iRR2){
                                    iRR = 0;
