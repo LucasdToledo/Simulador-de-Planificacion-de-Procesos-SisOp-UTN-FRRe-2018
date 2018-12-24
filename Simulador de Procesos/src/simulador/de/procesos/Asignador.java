@@ -13,6 +13,7 @@ public class Asignador {
      int contadorProcesos = 1;
      boolean Juanlucas;
      int idMax;
+     String mapaMemoria= "";
     public boolean isJuanlucas() {
         return Juanlucas;
     }
@@ -188,6 +189,7 @@ public class Asignador {
                                 contadorProcesos++;
                                 }
                         listaParticionesNueva.get(resg2).setProces(_proceso);
+                       
                         banderita = false; //bandera para que no vuelva a entrar en el while
                     }
                     memoria = _mem;

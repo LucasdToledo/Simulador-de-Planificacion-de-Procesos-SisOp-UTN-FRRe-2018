@@ -147,7 +147,7 @@ public class Proceso {
 
     @Override
     public String toString() {
-        return "ID:" + idProceso + ", Proceso: " +descripcion +  ", Tamaño=" +tamaño;}
+        return descripcion;}
     }
     
     

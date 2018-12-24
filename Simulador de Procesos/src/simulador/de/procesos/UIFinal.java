@@ -24,6 +24,7 @@ public class UIFinal extends javax.swing.JFrame {
     int contT;
     int contCL; //contador de los procesos en Cola de Listos según cómo van llegando
     int quantum;
+    String mapaMemoria = "";
     
     public Memoria mema;
     public ArrayList<Proceso> colaNuevo;
@@ -567,19 +568,27 @@ public class UIFinal extends javax.swing.JFrame {
                 modelo.addRow(tabla);
             }
         }
+        mapaMemoria = mapaMemoria + String.valueOf(mema.getListaParticiones());
+        JOptionPane.showMessageDialog(null, mapaMemoria);
     }
     
     public final void hacerGantt(){
         
         
         for(String a : planificador.getGant1()){
-        gantt.append(a + "    ");
+        gantt.append("[  "+a+"  ]");
             }
         
-        gantt.append("\n");
+        gantt.append("\n");gantt.append("\n");
         for(String a : planificador.getGant2()){
-        gantt.append(a+"    ");
+        gantt.append("[  "+a+"  ]");
             }
+        gantt.append("\n"); gantt.append("\n");
+           
+        
+        
+        gantt.append(mapaMemoria);
+            
            gantt.append("\n");   gantt.append("\n");
         
     }

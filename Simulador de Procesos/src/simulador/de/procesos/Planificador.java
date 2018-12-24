@@ -230,26 +230,13 @@ public class Planificador {
                                 nuevaColaListos.add(colaES.get(iRR2));
                                 Juanlucas = true;
                                 colaES.remove(iRR2);
-                                ResiduoRafaga2 = quantum-1;
+                                
                                 
                                 if (colaES.size()== iRR2){
                                    iRR2 = 0;
                                 }
                             }
-                            else{                        
-                                if (ResiduoRafaga2 > 1){  //si es mayor a 1, resto el quatum
-                                    ResiduoRafaga2--;
-                                }
-                                else {
-                                    //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
-                                    iRR2++;   //aca lo muevo
-                                    if (colaES.size()== iRR2){
-                                        iRR2 = 0;
-                                    }
-                                    //Como es un nuevo proceso reinicio el quantum
-                                    ResiduoRafaga2 = quantum; //ACA BORRE EL -1. CALA LA BOCA MANITO. GUIDO
-                                }
-                            }
+                            
                             
                         }
                         else{
