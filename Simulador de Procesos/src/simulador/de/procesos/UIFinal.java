@@ -139,8 +139,6 @@ public class UIFinal extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         TablaColaES = new javax.swing.JTable();
         label7 = new java.awt.Label();
-        jLabel5 = new javax.swing.JLabel();
-        valorQuantumES = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         gantt = new javax.swing.JTextArea();
 
@@ -299,15 +297,6 @@ public class UIFinal extends javax.swing.JFrame {
         label7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label7.setText("Cola de ES");
 
-        jLabel5.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel5.setText("Quantum ES");
-
-        valorQuantumES.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                valorQuantumESActionPerformed(evt);
-            }
-        });
-
         gantt.setColumns(20);
         gantt.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         gantt.setRows(5);
@@ -351,10 +340,6 @@ public class UIFinal extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(valorQuantum, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(valorQuantumES, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
@@ -385,9 +370,7 @@ public class UIFinal extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(valorQuantum, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(valorQuantumES, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(valorQuantum, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -459,10 +442,6 @@ public class UIFinal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_valorQuantumActionPerformed
 
-    private void valorQuantumESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorQuantumESActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_valorQuantumESActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -504,11 +483,11 @@ public class UIFinal extends javax.swing.JFrame {
     public void cargarQuantum (){
         if (planificador.getAlgorit()==1){
             valorQuantum.setText(String.valueOf(planificador.getResiduo()));
-            valorQuantumES.setText(String.valueOf(planificador.getResiduoES()));
+            
         }
         else {
             valorQuantum.setText("No es RR");
-            valorQuantumES.setText("No es RR");
+           
         }
     }
     
@@ -719,7 +698,6 @@ public class UIFinal extends javax.swing.JFrame {
     public javax.swing.JTextArea gantt;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
@@ -734,6 +712,5 @@ public class UIFinal extends javax.swing.JFrame {
     private javax.swing.JTable tablaParticiones;
     private javax.swing.JTextField tiempoo;
     private javax.swing.JTextField valorQuantum;
-    private javax.swing.JTextField valorQuantumES;
     // End of variables declaration//GEN-END:variables
 }

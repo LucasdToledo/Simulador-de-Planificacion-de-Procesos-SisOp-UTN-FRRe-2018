@@ -64,10 +64,6 @@
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="valorQuantum" min="-2" pref="73" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="valorQuantumES" min="-2" pref="73" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -107,8 +103,6 @@
                                       <Component id="jLabel3" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                                       <Component id="jLabel4" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                                       <Component id="valorQuantum" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                                      <Component id="jLabel5" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                                      <Component id="valorQuantumES" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="label1" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -462,19 +456,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Cola de ES"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dubai" size="14" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Quantum ES"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="valorQuantumES">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="valorQuantumESActionPerformed"/>
-      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane6">
       <AuxValues>
