@@ -24,6 +24,9 @@ public class Planificador {
     int idMax;
     boolean Juanlucas = false;
     Proceso JuanGuidoLucas; 
+    ArrayList<String> gant1=new ArrayList <>();
+    ArrayList<String> gant2=new ArrayList <>();
+    ArrayList<Integer> ganttiempo = new ArrayList<Integer>();
     public Planificador() {
         this.iRR = 0;
     }
@@ -104,7 +107,7 @@ public class Planificador {
         if (!colaListos.isEmpty() || !colaES.isEmpty() ){
             switch(algorit){
                 case(1):    //Round Robin
-                   
+                    ganttiempo.add(tiempo);
                     if (!nuevaColaListos.isEmpty()) {
                         
                         
@@ -125,12 +128,13 @@ public class Planificador {
                         if (nuevaColaListos.get(iRR).getCicloCPU()> 0){
                         
                             nuevaColaListos.get(iRR).setCicloCPU(nuevaColaListos.get(iRR).getCicloCPU()-1);
+                            gant1.add(nuevaColaListos.get(iRR).getDescripcion());//----------------------------------------------------------------
                             JuanGuidoLucas = nuevaColaListos.get(iRR);
                             if (nuevaColaListos.get(iRR).getCicloCPU()==0 ) {
                                 
                                 colaES.add(nuevaColaListos.get(iRR));
                                 ResiduoRafaga = quantum;
-                                nuevaColaListos.get(iRR).setES(true);//---------------------------------------------------------------------------------77777777777
+                                nuevaColaListos.get(iRR).setES(true);
                                 
                                 nuevaColaListos.remove(iRR);
                                 
@@ -154,6 +158,7 @@ public class Planificador {
                         else{           
                             if (nuevaColaListos.get(iRR).getCicloCPU2()> 0){
                                 nuevaColaListos.get(iRR).setCicloCPU2(nuevaColaListos.get(iRR).getCicloCPU2()-1);
+                                gant1.add(nuevaColaListos.get(iRR).getDescripcion());
                                 JuanGuidoLucas = nuevaColaListos.get(iRR);
                                 if (nuevaColaListos.get(iRR).getCicloCPU2()==0) {
                                     
@@ -183,12 +188,15 @@ public class Planificador {
 
                                 }
                             }
-                            
+                            else{
+                                gant1.add("-");
+                            }
                             
                             
                         }
                     }
                     else{
+                        gant1.add("-");
                         JuanGuidoLucas = new Proceso();
                     
                 }
@@ -199,6 +207,7 @@ public class Planificador {
                         if (colaES.get(iRR2).getCicloES()> 0 && JuanGuidoLucas != colaES.get(iRR2)){ 
                             
                             colaES.get(iRR2).setCicloES(colaES.get(iRR2).getCicloES()-1);//restamos la entrada/salida
+                            gant2.add(colaES.get(iRR2).getDescripcion());
                             if(colaES.get(iRR2).getCicloES() == 0){ //si mi ciclo de entrada/salida ya TERMINO, lo mando a cola de LISTO                               
                                 colaES.get(iRR2).setES(false);//---------------------------------------------------------------------------------7777777777777777777777777777
                                 colaES.get(iRR2).setIdProceso(idMax + 1);
@@ -228,9 +237,14 @@ public class Planificador {
                             }
                             
                         }
+                        else{
+                        gant2.add("-");}
                     }
-                    
-             
+                     else{
+                        gant2.add("-");}
+                    System.out.println(ganttiempo);
+                    System.out.println(gant1);
+                    System.out.println(gant2);
            //Pero si no los tiene, nos fijamos si hay ciclos de ES y los consumimos
             /*else{
                 if (proaux.getCicloES()> 0){
