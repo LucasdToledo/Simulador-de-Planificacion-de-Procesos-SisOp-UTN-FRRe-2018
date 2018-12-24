@@ -93,6 +93,7 @@ public class UIEntrada extends javax.swing.JFrame {
         BotonProcesosAleatorios = new javax.swing.JButton();
         label11 = new java.awt.Label();
         ciclodeCPU = new javax.swing.JTextField();
+        BotonProcesosAleatorios1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -236,80 +237,87 @@ public class UIEntrada extends javax.swing.JFrame {
             }
         });
 
+        BotonProcesosAleatorios1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BotonProcesosAleatorios1.setText("Ejercicio");
+        BotonProcesosAleatorios1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonProcesosAleatorios1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(17, 17, 17)
-                                        .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(9, 9, 9)
-                                        .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(85, 85, 85)
-                                        .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(166, 166, 166))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(boxParticionamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(boxAsignacion, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(totMem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(entradaQuantum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(boxPlanificador, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(34, 34, 34)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tam, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(48, 48, 48)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tarribo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ciclodeCPU, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(label11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(NOM, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(349, 349, 349)
-                                        .addComponent(cicloES, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 8, Short.MAX_VALUE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ciclodeCPU2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(46, 46, 46)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(botonAgregarEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botonInicialEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(216, 216, 216)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane1)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(40, 40, 40)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(17, 17, 17)
+                                    .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(9, 9, 9)
+                                    .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(85, 85, 85)
+                                    .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(166, 166, 166))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(boxParticionamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(boxAsignacion, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(totMem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(entradaQuantum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(boxPlanificador, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(53, 53, 53)
+                            .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(34, 34, 34)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tam, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(48, 48, 48)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tarribo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(ciclodeCPU, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(label11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(NOM, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(349, 349, 349)
+                                    .addComponent(cicloES, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 8, Short.MAX_VALUE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ciclodeCPU2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(46, 46, 46)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(botonAgregarEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonInicialEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(BotonProcesosAleatorios1)
+                        .addGap(18, 18, 18)
                         .addComponent(BotonProcesosAleatorios)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,7 +373,9 @@ public class UIEntrada extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotonProcesosAleatorios)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotonProcesosAleatorios)
+                    .addComponent(BotonProcesosAleatorios1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -510,6 +520,12 @@ public class UIEntrada extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ciclodeCPUActionPerformed
 
+    private void BotonProcesosAleatorios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonProcesosAleatorios1ActionPerformed
+        CargarEjercicio();
+        fprocesos = true;
+        JOptionPane.showMessageDialog(null, "Procesos generados correctamente");
+    }//GEN-LAST:event_BotonProcesosAleatorios1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -613,6 +629,218 @@ public class UIEntrada extends javax.swing.JFrame {
 }
     
     
+    
+    public void CargarEjercicio(){ //Ingresar 5 procesos a la tabla
+        //Voy a crear 5 procesos, por ello creo un ciclo for
+        DefaultTableModel modelo=(DefaultTableModel) miTabla.getModel();
+        Contador ++;
+        Object[] tabla = new Object[7];
+        //Creo un nuevo proceso con datos aleatorios
+        Proceso proceso;
+        proceso = new Proceso();
+        tabla[0]= Contador;
+        tabla[1]= String.valueOf(Contador); 
+        
+        int tamp = 15;
+        int tarrib = 1;  //Tiempo de arribo
+        int cicloE = 2;  //CicloES
+        int cicloCP = 5; //CicloCPU
+        int cicloCP2 = 2; //CicloCPU2
+
+            //Ahora guardo los valores en la tabla
+        tabla[2]= tamp;
+        tabla[3]= tarrib;
+        tabla[4]= cicloE;
+        tabla[5]= cicloCP;
+        tabla[6]= cicloCP2;
+        modelo.addRow(tabla);
+            
+        //Y ahora creo el proceso con estos atributos
+        proceso.CrearProceso(String.valueOf(Contador), tarrib, tamp, cicloE, cicloCP, cicloCP2);
+
+        //Guardo el nuevo proceso en la cola de procesos
+        colaProcesos.add(proceso);
+        
+        //Nuevo
+        
+        Contador ++;
+        proceso = new Proceso();
+        tabla[0]= Contador;
+        tabla[1]= String.valueOf(Contador); 
+        
+        tamp = 20;
+        tarrib = 1;  //Tiempo de arribo
+        cicloCP = 4; //CicloCPU
+        cicloE = 1;  //CicloES
+        cicloCP2 = 2; //CicloCPU2
+
+        //Ahora guardo los valores en la tabla
+        tabla[2]= tamp;
+        tabla[3]= tarrib;
+        tabla[4]= cicloE;
+        tabla[5]= cicloCP;
+        tabla[6]= cicloCP2;
+        modelo.addRow(tabla);
+            
+        //Y ahora creo el proceso con estos atributos
+        proceso.CrearProceso(String.valueOf(Contador), tarrib, tamp, cicloE, cicloCP, cicloCP2);
+        //Guardo el nuevo proceso en la cola de procesos
+        colaProcesos.add(proceso);
+        
+        //Nuevo
+        Contador ++;
+        proceso = new Proceso();
+        tabla[0]= Contador;
+        tabla[1]= String.valueOf(Contador); 
+        
+        tamp = 12;
+        tarrib = 1;  //Tiempo de arribo
+        cicloCP = 10; //CicloCPU
+        cicloE = 3;  //CicloES
+        cicloCP2 = 2; //CicloCPU2
+
+        //Ahora guardo los valores en la tabla
+        tabla[2]= tamp;
+        tabla[3]= tarrib;
+        tabla[4]= cicloE;
+        tabla[5]= cicloCP;
+        tabla[6]= cicloCP2;
+        modelo.addRow(tabla);
+            
+        //Y ahora creo el proceso con estos atributos
+        proceso.CrearProceso(String.valueOf(Contador), tarrib, tamp, cicloE, cicloCP, cicloCP2);
+        //Guardo el nuevo proceso en la cola de procesos
+        colaProcesos.add(proceso);
+        
+        //Nuevo
+        Contador ++;
+        proceso = new Proceso();
+        tabla[0]= Contador;
+        tabla[1]= String.valueOf(Contador); 
+        
+        tamp = 5;
+        tarrib = 2;  //Tiempo de arribo
+        cicloCP = 3; //CicloCPU
+        cicloE = 2;  //CicloES
+        cicloCP2 = 1; //CicloCPU2
+
+        //Ahora guardo los valores en la tabla
+        tabla[2]= tamp;
+        tabla[3]= tarrib;
+        tabla[4]= cicloE;
+        tabla[5]= cicloCP;
+        tabla[6]= cicloCP2;
+        modelo.addRow(tabla);
+            
+        //Y ahora creo el proceso con estos atributos
+        proceso.CrearProceso(String.valueOf(Contador), tarrib, tamp, cicloE, cicloCP, cicloCP2);
+        //Guardo el nuevo proceso en la cola de procesos
+        colaProcesos.add(proceso);
+        
+        //Nuevo
+        Contador ++;
+        proceso = new Proceso();
+        tabla[0]= Contador;
+        tabla[1]= String.valueOf(Contador); 
+        
+        tamp = 3;
+        tarrib = 3;  //Tiempo de arribo
+        cicloCP = 2; //CicloCPU
+        cicloE = 1;  //CicloES
+        cicloCP2 = 2; //CicloCPU2
+
+        //Ahora guardo los valores en la tabla
+        tabla[2]= tamp;
+        tabla[3]= tarrib;
+        tabla[4]= cicloE;
+        tabla[5]= cicloCP;
+        tabla[6]= cicloCP2;
+        modelo.addRow(tabla);
+            
+        //Y ahora creo el proceso con estos atributos
+        proceso.CrearProceso(String.valueOf(Contador), tarrib, tamp, cicloE, cicloCP, cicloCP2);
+        //Guardo el nuevo proceso en la cola de procesos
+        colaProcesos.add(proceso);
+        
+        //Nuevo
+        Contador ++;
+        proceso = new Proceso();
+        tabla[0]= Contador;
+        tabla[1]= String.valueOf(Contador); 
+        
+        tamp = 70;
+        tarrib = 4;  //Tiempo de arribo
+        cicloCP = 10; //CicloCPU
+        cicloE = 1;  //CicloES
+        cicloCP2 = 2; //CicloCPU2
+
+        //Ahora guardo los valores en la tabla
+        tabla[2]= tamp;
+        tabla[3]= tarrib;
+        tabla[4]= cicloE;
+        tabla[5]= cicloCP;
+        tabla[6]= cicloCP2;
+        modelo.addRow(tabla);
+            
+        //Y ahora creo el proceso con estos atributos
+        proceso.CrearProceso(String.valueOf(Contador), tarrib, tamp, cicloE, cicloCP, cicloCP2);
+        //Guardo el nuevo proceso en la cola de procesos
+        colaProcesos.add(proceso);
+        
+        //Nuevo
+        Contador ++;
+        proceso = new Proceso();
+        tabla[0]= Contador;
+        tabla[1]= String.valueOf(Contador); 
+        
+        tamp = 25;
+        tarrib = 5;  //Tiempo de arribo
+        cicloCP = 5; //CicloCPU
+        cicloE = 2;  //CicloES
+        cicloCP2 = 2; //CicloCPU2
+
+        //Ahora guardo los valores en la tabla
+        tabla[2]= tamp;
+        tabla[3]= tarrib;
+        tabla[4]= cicloE;
+        tabla[5]= cicloCP;
+        tabla[6]= cicloCP2;
+        modelo.addRow(tabla);
+            
+        //Y ahora creo el proceso con estos atributos
+        proceso.CrearProceso(String.valueOf(Contador), tarrib, tamp, cicloE, cicloCP, cicloCP2);
+        //Guardo el nuevo proceso en la cola de procesos
+        colaProcesos.add(proceso);
+        
+        //Nuevo
+        Contador ++;
+        proceso = new Proceso();
+        tabla[0]= Contador;
+        tabla[1]= String.valueOf(Contador); 
+        
+        tamp = 10;
+        tarrib = 6;  //Tiempo de arribo
+        cicloCP = 5; //CicloCPU
+        cicloE = 2;  //CicloES
+        cicloCP2 = 2; //CicloCPU2
+
+        //Ahora guardo los valores en la tabla
+        tabla[2]= tamp;
+        tabla[3]= tarrib;
+        tabla[4]= cicloE;
+        tabla[5]= cicloCP;
+        tabla[6]= cicloCP2;
+        modelo.addRow(tabla);
+            
+        //Y ahora creo el proceso con estos atributos
+        proceso.CrearProceso(String.valueOf(Contador), tarrib, tamp, cicloE, cicloCP, cicloCP2);
+        //Guardo el nuevo proceso en la cola de procesos
+        colaProcesos.add(proceso);
+}
+    
+    
+    
+    
     public void Iniciar(){ //Inicia la secuencia de procesos
         NOM.setVisible(false);
         cicloES.setVisible(false);
@@ -643,6 +871,7 @@ public class UIEntrada extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonProcesosAleatorios;
+    private javax.swing.JButton BotonProcesosAleatorios1;
     private javax.swing.JTextField NOM;
     private java.awt.Label Nombre;
     private java.awt.Button botonAgregarEntrada;

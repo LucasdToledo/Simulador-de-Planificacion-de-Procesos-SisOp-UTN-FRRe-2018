@@ -677,8 +677,6 @@ public class UIFinal extends javax.swing.JFrame {
         listaListos = (ArrayList <Proceso>) colaListos.clone();
         Iterator<Proceso> it = listaListos.iterator();
         colaListos = new ArrayList();
-        JOptionPane.showMessageDialog(null, colaListos);
-        JOptionPane.showMessageDialog(null, listaListos);
         if (!listaListos.isEmpty()){
     
             while (it.hasNext()) {

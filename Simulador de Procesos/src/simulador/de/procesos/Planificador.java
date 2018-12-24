@@ -23,7 +23,7 @@ public class Planificador {
     int ResiduoRafaga;  //Carga el valor del quantum aun no consumido
     int idMax;
     boolean Juanlucas = false;
-    
+    Proceso JuanGuidoLucas; 
     public Planificador() {
         this.iRR = 0;
     }
@@ -125,25 +125,25 @@ public class Planificador {
                         if (nuevaColaListos.get(iRR).getCicloCPU()> 0){
                         
                             nuevaColaListos.get(iRR).setCicloCPU(nuevaColaListos.get(iRR).getCicloCPU()-1);
+                            JuanGuidoLucas = nuevaColaListos.get(iRR);
                             if (nuevaColaListos.get(iRR).getCicloCPU()==0 ) {
+                                
                                 colaES.add(nuevaColaListos.get(iRR));
                                 ResiduoRafaga = quantum;
                                 nuevaColaListos.get(iRR).setES(true);//---------------------------------------------------------------------------------77777777777
+                                
                                 nuevaColaListos.remove(iRR);
                                 
-                                if (nuevaColaListos.size()< iRR){
+                                if (nuevaColaListos.size()<= iRR){
                                     iRR = 0;
-                                    JOptionPane.showMessageDialog(null, "ALERTA: Puede que funque porque Reinició");
                                 }
                             }
                             else{
                                 if (ResiduoRafaga > 1){
                                     ResiduoRafaga--;
-                                    JOptionPane.showMessageDialog(null, "Rafaga resto: " + ResiduoRafaga);
                                 }else {
                                     //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
                                     iRR++;
-                                    JOptionPane.showMessageDialog(null, "iRR: " + iRR);
                                     if (nuevaColaListos.size()== iRR){
                                         iRR = 0;
                                     }
@@ -153,12 +153,13 @@ public class Planificador {
                         }
                         else{           
                             if (nuevaColaListos.get(iRR).getCicloCPU2()> 0){
-                               nuevaColaListos.get(iRR).setCicloCPU2(nuevaColaListos.get(iRR).getCicloCPU2()-1);
+                                nuevaColaListos.get(iRR).setCicloCPU2(nuevaColaListos.get(iRR).getCicloCPU2()-1);
+                                JuanGuidoLucas = nuevaColaListos.get(iRR);
                                 if (nuevaColaListos.get(iRR).getCicloCPU2()==0) {
                                     
-                                    nuevaColaListos.remove(iRR);
                                     //Se guarda el tiempo de fin
                                     nuevaColaListos.get(iRR2).setFinEjecución(tiempo);
+                                    nuevaColaListos.remove(iRR);
                                     iniciaEjecucion = true;
                                     //Puede que no se haya consumido todo el quantum
                                     //Pero como el proceso termina se lo reinicia
@@ -170,12 +171,10 @@ public class Planificador {
                                 else{        
                                     if (ResiduoRafaga > 1){
                                         ResiduoRafaga--;
-                                        JOptionPane.showMessageDialog(null, "Rafaga resto: " + ResiduoRafaga);
                                     }
                                     else {
                                     //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
                                         iRR++;
-                                        JOptionPane.showMessageDialog(null, "iRR: " + iRR);
                                         if (nuevaColaListos.size()== iRR){
                                             iRR = 0;
                                         }
@@ -185,46 +184,51 @@ public class Planificador {
                                 }
                             }
                             
-                            if (!colaES.isEmpty()) {
-                                if (colaES.get(iRR2).getCicloES()> 0){ 
-                                    colaES.get(iRR2).setCicloES(colaES.get(iRR2).getCicloES()-1);//restamos la entrada/salida
-                                    if(colaES.get(iRR2).getCicloES() == 0){ //si mi ciclo de entrada/salida ya TERMINO, lo mando a cola de LISTO                               
-                                        colaES.get(iRR2).setES(false);//---------------------------------------------------------------------------------7777777777777777777777777777
-                                        colaES.get(iRR2).setIdProceso(idMax + 1);
-                                        idMax = idMax +1;
-                                        nuevaColaListos.add(colaES.get(iRR2));
-                                        Juanlucas = true;
-                                        colaES.remove(iRR2);
-                                        ResiduoRafaga2 = quantum-1;
-
-                                        if (colaES.size()== iRR2){
-                                           iRR = 0;
-                                        }
+                            
+                            
+                        }
+                    }
+                    else{
+                        JuanGuidoLucas = new Proceso();
+                    
+                }
+                    //ESTO NO SE SI CIERRA ACA, salu2
+                    //ENTRADA SALIDA
+                    
+                    if (!colaES.isEmpty()) {
+                        if (colaES.get(iRR2).getCicloES()> 0 && JuanGuidoLucas != colaES.get(iRR2)){ 
+                            
+                            colaES.get(iRR2).setCicloES(colaES.get(iRR2).getCicloES()-1);//restamos la entrada/salida
+                            if(colaES.get(iRR2).getCicloES() == 0){ //si mi ciclo de entrada/salida ya TERMINO, lo mando a cola de LISTO                               
+                                colaES.get(iRR2).setES(false);//---------------------------------------------------------------------------------7777777777777777777777777777
+                                colaES.get(iRR2).setIdProceso(idMax + 1);
+                                idMax = idMax +1;
+                                nuevaColaListos.add(colaES.get(iRR2));
+                                Juanlucas = true;
+                                colaES.remove(iRR2);
+                                ResiduoRafaga2 = quantum-1;
+                                
+                                if (colaES.size()== iRR2){
+                                   iRR2 = 0;
+                                }
+                            }
+                            else{                        
+                                if (ResiduoRafaga2 > 1){  //si es mayor a 1, resto el quatum
+                                    ResiduoRafaga2--;
+                                }
+                                else {
+                                    //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
+                                    iRR2++;   //aca lo muevo
+                                    if (colaES.size()== iRR2){
+                                        iRR2 = 0;
                                     }
-                                    else{                        
-                                        if (ResiduoRafaga2 > 1){  //si es mayor a 1, resto el quatum
-                                            ResiduoRafaga2--;
-                                        }
-                                        else {
-                                            //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
-                                            iRR2++;   //aca lo muevo
-                                            if (colaES.size()== iRR2){
-                                                iRR2 = 0;
-                                            }
-                                            //Como es un nuevo proceso reinicio el quantum
-                                            ResiduoRafaga2 = quantum; //ACA BORRE EL -1. CALA LA BOCA MANITO. GUIDO
-                                        }
-                                    }
-
+                                    //Como es un nuevo proceso reinicio el quantum
+                                    ResiduoRafaga2 = quantum; //ACA BORRE EL -1. CALA LA BOCA MANITO. GUIDO
                                 }
                             }
                             
                         }
                     }
-                    //ESTO NO SE SI CIERRA ACA, salu2
-                    //ENTRADA SALIDA
-                    
-                    
                     
              
            //Pero si no los tiene, nos fijamos si hay ciclos de ES y los consumimos
