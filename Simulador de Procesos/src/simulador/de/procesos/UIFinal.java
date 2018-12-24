@@ -178,14 +178,14 @@ public class UIFinal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Tamaño", "CPU", "E/S", "CPU2"
+                "ID", "Nombre", "Tamaño", "CPU", "E/S", "CPU2"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -272,14 +272,14 @@ public class UIFinal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Tamaño", "CPU", "E/S", "CPU2"
+                "ID", "Nombre", "Tamaño", "CPU", "E/S", "CPU2"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -291,6 +291,9 @@ public class UIFinal extends javax.swing.JFrame {
             }
         });
         jScrollPane5.setViewportView(TablaColaES);
+        if (TablaColaES.getColumnModel().getColumnCount() > 0) {
+            TablaColaES.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         label7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label7.setText("Cola de ES");
@@ -567,18 +570,7 @@ public class UIFinal extends javax.swing.JFrame {
     
     public final void hacerGantt(){
         
-        for(int a : planificador.getGanttiempo()){
-            if(a > 9){
-                if(a > 35){
-        gantt.append(a + " ");
-            }else{
-                    gantt.append(a + "  ");}}
-            
-            else{
-        gantt.append(a + "    ");}
-        }
         
-        gantt.append("\n");
         for(String a : planificador.getGant1()){
         gantt.append(a + "    ");
             }
@@ -618,18 +610,18 @@ public class UIFinal extends javax.swing.JFrame {
         contCL = reiniciarTabla(TablaColaListos);
         //Creación de la tabla
         DefaultTableModel modelo=(DefaultTableModel) TablaColaListos.getModel();
-        Object[] tabla = new Object[5];
+        Object[] tabla = new Object[6];
         //Creo un proceso y particion auxiliares para mejorar la legibilidad del código
         Proceso process;
         Iterator<Proceso> it = colaListos.iterator();
         while (it.hasNext()) {
             process = it.next();
-            
-            tabla[0]= process.getDescripcion();
-            tabla[1]= process.getTamaño();
-            tabla[2]= process.getCicloCPU();
-            tabla[3]= process.getCicloES();
-            tabla[4]= process.getCicloCPU2();
+            tabla[0]= process.getIdProceso();
+            tabla[1]= process.getDescripcion();
+            tabla[2]= process.getTamaño();
+            tabla[3]= process.getCicloCPU();
+            tabla[4]= process.getCicloES();
+            tabla[5]= process.getCicloCPU2();
             modelo.addRow(tabla);
         }
     }
@@ -638,17 +630,18 @@ public class UIFinal extends javax.swing.JFrame {
         contCL = reiniciarTabla(TablaColaES);
         //Creación de la tabla
         DefaultTableModel modelo=(DefaultTableModel) TablaColaES.getModel();
-        Object[] tabla = new Object[5];
+        Object[] tabla = new Object[6];
         //Creo un proceso y particion auxiliares para mejorar la legibilidad del código
         Proceso process;
         Iterator<Proceso> it = colaES.iterator();
         while (it.hasNext()) {
             process = it.next();
-            tabla[0]= process.getDescripcion();
-            tabla[1]= process.getTamaño();
-            tabla[2]= process.getCicloCPU();
-            tabla[3]= process.getCicloES();
-            tabla[4]= process.getCicloCPU2();
+            tabla[0]= process.getIdProceso();
+            tabla[1]= process.getDescripcion();
+            tabla[2]= process.getTamaño();
+            tabla[3]= process.getCicloCPU();
+            tabla[4]= process.getCicloES();
+            tabla[5]= process.getCicloCPU2();
             modelo.addRow(tabla);
         }
     }
@@ -713,7 +706,7 @@ public class UIFinal extends javax.swing.JFrame {
     private javax.swing.JTable TablaColaListos;
     private java.awt.Button botonGantt;
     private java.awt.Button botonSiguiente;
-    private javax.swing.JTextArea gantt;
+    public javax.swing.JTextArea gantt;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
