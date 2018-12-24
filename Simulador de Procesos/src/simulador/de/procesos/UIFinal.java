@@ -598,7 +598,7 @@ public class UIFinal extends javax.swing.JFrame {
     
     public final void hacerGantt(){
         
-        /*for(int a : planificador.getGanttiempo()){
+        for(int a : planificador.getGanttiempo()){
             if(a > 9){
                 if(a > 35){
         gantt.append(a + " ");
@@ -608,8 +608,8 @@ public class UIFinal extends javax.swing.JFrame {
             else{
         gantt.append(a + "    ");}
         }
-        */
-        //gantt.append("\n");
+        
+        gantt.append("\n");
         for(String a : planificador.getGant1()){
         gantt.append(a + "    ");
             }
