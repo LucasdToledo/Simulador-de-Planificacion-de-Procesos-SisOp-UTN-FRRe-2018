@@ -39,6 +39,20 @@ public class Planificador {
         this.idMax = idMax;
     }
 
+    public ArrayList<String> getGant1() {
+        return gant1;
+    }
+
+    public ArrayList<String> getGant2() {
+        return gant2;
+    }
+
+    public ArrayList<Integer> getGanttiempo() {
+        return ganttiempo;
+    }
+
+    
+    
     public boolean isJuanlucas() {
         return Juanlucas;
     }
@@ -128,6 +142,7 @@ public class Planificador {
                         if (nuevaColaListos.get(iRR).getCicloCPU()> 0){
                         
                             nuevaColaListos.get(iRR).setCicloCPU(nuevaColaListos.get(iRR).getCicloCPU()-1);
+                           
                             gant1.add(nuevaColaListos.get(iRR).getDescripcion());//----------------------------------------------------------------
                             JuanGuidoLucas = nuevaColaListos.get(iRR);
                             if (nuevaColaListos.get(iRR).getCicloCPU()==0 ) {
@@ -189,14 +204,14 @@ public class Planificador {
                                 }
                             }
                             else{
-                                gant1.add("-");
+                                gant1.add("#");
                             }
                             
                             
                         }
                     }
                     else{
-                        gant1.add("-");
+                        gant1.add("#");
                         JuanGuidoLucas = new Proceso();
                     
                 }
@@ -238,10 +253,10 @@ public class Planificador {
                             
                         }
                         else{
-                        gant2.add("-");}
+                        gant2.add("#");}
                     }
                      else{
-                        gant2.add("-");}
+                        gant2.add("#");}
                     System.out.println(ganttiempo);
                     System.out.println(gant1);
                     System.out.println(gant2);
