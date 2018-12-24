@@ -438,8 +438,8 @@ public class UIFinal extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(botonGantt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(81, 81, 81)))
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
 
         pack();
@@ -598,14 +598,27 @@ public class UIFinal extends javax.swing.JFrame {
     
     public final void hacerGantt(){
         
+        /*for(int a : planificador.getGanttiempo()){
+            if(a > 9){
+                if(a > 35){
+        gantt.append(a + " ");
+            }else{
+                    gantt.append(a + "  ");}}
+            
+            else{
+        gantt.append(a + "    ");}
+        }
+        */
+        //gantt.append("\n");
         for(String a : planificador.getGant1()){
-        gantt.append(a + "   ");
+        gantt.append(a + "    ");
             }
         
         gantt.append("\n");
         for(String a : planificador.getGant2()){
-        gantt.append(a+"   ");
+        gantt.append(a+"    ");
             }
+           gantt.append("\n");   gantt.append("\n");
         
     }
     
