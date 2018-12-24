@@ -11,6 +11,22 @@ public class Asignador {
      int finalparticion =0;
      int cont =0;
      int contadorProcesos = 1;
+     boolean Juanlucas;
+     int idMax;
+    public boolean isJuanlucas() {
+        return Juanlucas;
+    }
+
+    public void setJuanlucas(boolean Juanlucas) {
+        this.Juanlucas = Juanlucas;
+    }
+
+    public int getIdMax() {
+        return idMax;
+    }
+     
+     
+     
      
     public int getAlgoritmo() {
         return algoritmo;
@@ -54,7 +70,8 @@ public class Asignador {
     }
     
     //Asigna un proceso a una partición creada
-    ArrayList <Particion> Asignar (Memoria _mem, Proceso _proceso){
+    ArrayList <Particion> Asignar (Memoria _mem, Proceso _proceso, int _idMax){
+        idMax = _idMax;
         Memoria memoria = new Memoria();
         ArrayList <Particion> listaParticionesNueva;
         listaParticionesNueva = _mem.getListaParticiones();//auxiliar de la lista de particion, creada porque saltaba errores. 
@@ -200,9 +217,16 @@ public class Asignador {
                            
                             if(partaux.isEstado()&& partaux.Tamaño()>= _proceso.getTamaño()){ //Si la particion esta vacia, y el proceso entra ahi hace lo siguiente
                                 //aca preguntamos si lo que tenemos en el resguardo, es de tamaño mayor a la actual
+                                if(Juanlucas){
+                                  _proceso.setIdProceso(idMax);  
+                                  idMax = idMax +1;
+                                }
+                                else{
                                 _proceso.setIdProceso(contadorProcesos);
-                                listaParticionesNueva.get(posicion).setProces(_proceso); //Pone el proceso en la lista de particiones
                                 contadorProcesos++;
+                                }
+                                listaParticionesNueva.get(posicion).setProces(_proceso); //Pone el proceso en la lista de particiones
+                                
                                 banderita = false; //bandera para que no vuelva a entrar en el while
                             }
                             posicion ++; //aumentamos la variable que indica en que posicion de la lista de particiones asignar el proceso

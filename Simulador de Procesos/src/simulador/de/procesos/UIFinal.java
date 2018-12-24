@@ -24,6 +24,7 @@ public class UIFinal extends javax.swing.JFrame {
     int contT;
     int contCL; //contador de los procesos en Cola de Listos según cómo van llegando
     int quantum;
+    
     public Memoria mema;
     public ArrayList<Proceso> colaNuevo;
     public ArrayList<Proceso> colaListos;
@@ -69,6 +70,7 @@ public class UIFinal extends javax.swing.JFrame {
         contM=1;
         contT = 1;
         contadorColaListosParaNoEquivocarseDeProceso = 1;
+        
         initComponents();
     }
 
@@ -90,8 +92,13 @@ public class UIFinal extends javax.swing.JFrame {
         planificador.setInicio();
     }
 
+   
+
+    
+    
     public void setColaProcesos(ArrayList<Proceso> _colaProcesos) {
         this.colaProcesos = _colaProcesos;//Mostramos los procesos cargados en la lista
+        planificador.setIdMax(colaProcesos.size()); 
         Iterator<Proceso> it = colaProcesos.iterator();
         String enLista = "";
         int i = 0;
@@ -452,7 +459,7 @@ public class UIFinal extends javax.swing.JFrame {
                 hacerUnaVuelta();
                 cargarParticiones();
                 //Se carga de nuevo para actualizar
-                Collections.sort(colaListos, (Proceso p1, Proceso p2)-> new Integer(p1.getTarribo()).compareTo(p2.getTarribo()));
+                Collections.sort(colaListos, (Proceso p1, Proceso p2)-> new Integer(p1.getIdProceso()).compareTo(p2.getIdProceso()));
                 colaListos = planificador.elegirSiguiente(colaListos, colaES, acumul);
                 cargarQuantum();
                 cargarColaTerminados();
@@ -533,7 +540,9 @@ public class UIFinal extends javax.swing.JFrame {
        if (!colaNuevo.isEmpty()){
            while (it.hasNext()) {
                Proceso pross = it.next();
-               lista = asignador.Asignar(mema, pross);
+               asignador.setJuanlucas(planificador.isJuanlucas());
+               lista = asignador.Asignar(mema, pross, planificador.getIdMax());
+               planificador.setIdMax(asignador.getIdMax());
            }
            mema.setListaParticiones(lista);
         }
