@@ -97,23 +97,30 @@ public class Memoria {
     public void desfragmentar(){
         Iterator<Particion> ite = ListaParticiones.iterator();
         boolean anterior = false;
-        Particion part;
         int i = 0;
-        while (ite.hasNext()) {
-            part = ite.next();
-            if (part.isEstado()){
-                if (anterior){
-                    ListaParticiones.get(i-1).CrearParticion(ListaParticiones.get(i).Tamaño()+ListaParticiones.get(i-1).Tamaño());
-                    ListaParticiones.remove(i);
+        boolean juntoMemo;
+        juntoMemo = false;
+        if (!ListaParticiones.isEmpty()) {
+          
+            while (ite.hasNext() && !juntoMemo ) {
+                if (ite.next().isEstado()){
+                    if (anterior){
+                        ListaParticiones.get(i-1).CrearParticion(ListaParticiones.get(i).Tamaño()+ListaParticiones.get(i-1).Tamaño());
+                        ListaParticiones.remove(i);
+                        desfragmentar();
+                        juntoMemo=true;
+                        i--; 
+                    }
+                    else{
+                        anterior = true;
+                    }
                 }
-                else{
-                    anterior = true;
+                else {
+                    anterior = false;
                 }
+                i++;
             }
-            else {
-                anterior = false;
-            }
-            i++;
+           
         }
     }
     

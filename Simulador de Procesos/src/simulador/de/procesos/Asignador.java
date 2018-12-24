@@ -90,7 +90,7 @@ public class Asignador {
                     Particion resg3 = null;
                     int memdisp = 0;
                    
-                    //Este codigo verifica si hay particiones contiguas libres en memoria VARIABLE para juntarlas
+                    /*//Este codigo verifica si hay particiones contiguas libres en memoria VARIABLE para juntarlas
                     if(_mem.isTipo()){ //Si es Variable
                         boolean flag = true; //Bandera para saber cuando es la primera vez que entra al codigo
                         Particion resguardo = null; //resguardo de la particion
@@ -112,7 +112,7 @@ public class Asignador {
                          resguardo = partaux;//resguardamos la particion actual antes de que termine el ciclo while
                          contpos= contpos +1;    //actualizamos el contador con la posicion del siguiente    
                         }
-                    }
+                    }*/
                     
          switch (algoritmo){
                 case(1): //Algoritmos bf
@@ -198,7 +198,14 @@ public class Asignador {
                                     Nuevaparticion.CrearParticion(a); //creo una nueva particion con el sobrante de memoria
                                         
                                     partaux.CrearParticion(_proceso.getTamaño()); //modifico el tamaño de la particion original
-                                    
+                                    if(Juanlucas){
+                                    _proceso.setIdProceso(idMax);  
+                                    idMax = idMax +1;
+                                        }
+                                    else{
+                                        _proceso.setIdProceso(contadorProcesos);
+                                        contadorProcesos++;
+                                        }
                                     listaParticionesNueva.get(posicion).setProces(_proceso); //meto el proceso en la particion
                                        
                                     listaParticionesNueva.add(Nuevaparticion); //añado esa particion a la lista de particiones
