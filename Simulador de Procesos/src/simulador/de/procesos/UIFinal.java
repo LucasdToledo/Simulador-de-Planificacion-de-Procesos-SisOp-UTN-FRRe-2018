@@ -548,7 +548,7 @@ public class UIFinal extends javax.swing.JFrame {
             }
         }
         mapaMemoria = mapaMemoria + String.valueOf(mema.getListaParticiones());
-        JOptionPane.showMessageDialog(null, mapaMemoria);
+        
     }
     
     public final void hacerGantt(){
