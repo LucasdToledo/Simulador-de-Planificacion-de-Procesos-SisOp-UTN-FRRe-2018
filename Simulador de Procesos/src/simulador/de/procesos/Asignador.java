@@ -141,10 +141,18 @@ public class Asignador {
                             //--------------------------- SUPONGATRES QUE FUNCIONA
                           if(resg1!=99999) {  
                             Particion Nuevaparticion = new Particion();
-                            cont=resg3.Tamaño();
-                            resg3.CrearParticion(_proceso.getTamaño()); //modifico el tamaño de la particion original
-                            listaParticionesNueva.get(resg2).setProces(_proceso); //meto el proceso en la particion
-                            int a = resg3.Tamaño() - _proceso.getTamaño();
+                             int a = listaParticionesNueva.get(resg2).Tamaño() - _proceso.getTamaño();
+                            resg3.CrearParticion(_proceso.getTamaño()); //modifico el tamaño de la particion original  15
+                            if(Juanlucas){
+                                    _proceso.setIdProceso(idMax);  
+                                    idMax = idMax +1;
+                                        }
+                                    else{
+                                        _proceso.setIdProceso(contadorProcesos);
+                                        contadorProcesos++;
+                                        }
+                            listaParticionesNueva.get(resg2).setProces(_proceso); //meto el proceso en la particion  15
+                           
                                     Nuevaparticion.CrearParticion(a); //creo una nueva particion con el sobrante de memoria
                             listaParticionesNueva.add(resg2+1,Nuevaparticion); //añado esa particion a la lista de particiones
                             banderita = false;
@@ -179,6 +187,14 @@ public class Asignador {
                     if(resg1!=99999) {//aca entra solo si encontro un lugar.
                         //Pone el proceso en la lista de particiones
                         _proceso.setIdProceso(contadorProcesos);
+                        if(Juanlucas){
+                                  _proceso.setIdProceso(idMax);  
+                                  idMax = idMax +1;
+                                }
+                                else{
+                                _proceso.setIdProceso(contadorProcesos);
+                                contadorProcesos++;
+                                }
                         listaParticionesNueva.get(resg2).setProces(_proceso);
                         contadorProcesos++;
                         banderita = false; //bandera para que no vuelva a entrar en el while
@@ -274,9 +290,18 @@ public class Asignador {
                           if(resg1!=99999) {  
                             Particion Nuevaparticion = new Particion();
                             cont=resg3.Tamaño();
-                            resg3.CrearParticion(_proceso.getTamaño()); //modifico el tamaño de la particion original
-                            listaParticionesNueva.get(resg2).setProces(_proceso); //meto el proceso en la particion
                             int a = resg3.Tamaño() - _proceso.getTamaño();
+                            resg3.CrearParticion(_proceso.getTamaño()); //modifico el tamaño de la particion original
+                            if(Juanlucas){
+                                    _proceso.setIdProceso(idMax);  
+                                    idMax = idMax +1;
+                                        }
+                                    else{
+                                        _proceso.setIdProceso(contadorProcesos);
+                                        contadorProcesos++;
+                                        }
+                            listaParticionesNueva.get(resg2).setProces(_proceso); //meto el proceso en la particion
+                          
                                     Nuevaparticion.CrearParticion(a); //creo una nueva particion con el sobrante de memoria
                             listaParticionesNueva.add(resg2+1,Nuevaparticion); //añado esa particion a la lista de particiones
                             banderita = false;
@@ -310,6 +335,14 @@ public class Asignador {
                     if(resg1!=99999) {
                         //Pone el proceso en la lista de particiones
                         _proceso.setIdProceso(contadorProcesos);
+                        if(Juanlucas){
+                                  _proceso.setIdProceso(idMax);  
+                                  idMax = idMax +1;
+                                }
+                                else{
+                                _proceso.setIdProceso(contadorProcesos);
+                                contadorProcesos++;
+                                }
                         listaParticionesNueva.get(resg2).setProces(_proceso);
                         contadorProcesos++;
                         banderita = false; //bandera para que no vuelva a entrar en el while
