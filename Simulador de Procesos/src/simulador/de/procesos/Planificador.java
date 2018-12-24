@@ -359,7 +359,7 @@ public class Planificador {
                     
                     
                 case (4):   //FCFS
-                    proaux = nuevaColaListos.get(0);
+                   /* proaux = nuevaColaListos.get(0);
                     if (iniciaEjecucion){ 
                         proaux.setInicioEjecucion(tiempo);
                         iniciaEjecucion = false;
@@ -377,7 +377,109 @@ public class Planificador {
                                 iniciaEjecucion = true;
                             }
                         }
+                    }*/
+                     ganttiempo.add(tiempo);
+                    if (!nuevaColaListos.isEmpty()) {
+                        
+                        
+                        //Ahora, guardo el inicio de ejecución si es el primer proceso
+                    
+                        if (iniciaEjecucion && nuevaColaListos.get(iRR).isSjf()){ 
+                            nuevaColaListos.get(iRR).setInicioEjecucion(tiempo);
+                            iniciaEjecucion = false;
+                            nuevaColaListos.get(iRR).setSjf(false);
+                        }
+                        else{
+                            if (nuevaColaListos.get(iRR).isSjf()){
+                                nuevaColaListos.get(iRR).setInicioEjecucion(tiempo);
+                                nuevaColaListos.get(iRR).setSjf(false);
+                            }
+                        }
+                        
+                        if (nuevaColaListos.get(iRR).getCicloCPU()> 0){
+                        
+                            nuevaColaListos.get(iRR).setCicloCPU(nuevaColaListos.get(iRR).getCicloCPU()-1);
+                           
+                            gant1.add(nuevaColaListos.get(iRR).getDescripcion());//----------------------------------------------------------------
+                            JuanGuidoLucas = nuevaColaListos.get(iRR);
+                            if (nuevaColaListos.get(iRR).getCicloCPU()==0 ) {
+                                
+                                colaES.add(nuevaColaListos.get(iRR));
+                                ResiduoRafaga = quantum;
+                                nuevaColaListos.get(iRR).setES(true);
+                                
+                                nuevaColaListos.remove(iRR);
+                                
+                                if (nuevaColaListos.size()<= iRR){
+                                    iRR = 0;
+                                }
+                            }
+                            
+                        }
+                        else{           
+                            if (nuevaColaListos.get(iRR).getCicloCPU2()> 0){
+                                nuevaColaListos.get(iRR).setCicloCPU2(nuevaColaListos.get(iRR).getCicloCPU2()-1);
+                                gant1.add(nuevaColaListos.get(iRR).getDescripcion());
+                                JuanGuidoLucas = nuevaColaListos.get(iRR);
+                                if (nuevaColaListos.get(iRR).getCicloCPU2()==0) {
+                                    
+                                    //Se guarda el tiempo de fin
+                                    nuevaColaListos.get(iRR2).setFinEjecución(tiempo);
+                                    nuevaColaListos.remove(iRR);
+                                    iniciaEjecucion = true;
+                                    //Puede que no se haya consumido todo el quantum
+                                    //Pero como el proceso termina se lo reinicia
+                                   
+                                    if (nuevaColaListos.size()== iRR){
+                                        iRR = 0;
+                                    }
+                                }
+                                
+                            }
+                            else{
+                                gant1.add("#");
+                            }
+                            
+                            
+                        }
                     }
+                    else{
+                        gant1.add("#");
+                        JuanGuidoLucas = new Proceso();
+                    
+                }
+                    //ESTO NO SE SI CIERRA ACA, salu2
+                    //ENTRADA SALIDA
+                    
+                    if (!colaES.isEmpty()) {
+                        if (colaES.get(iRR2).getCicloES()> 0 && JuanGuidoLucas != colaES.get(iRR2)){ 
+                            
+                            colaES.get(iRR2).setCicloES(colaES.get(iRR2).getCicloES()-1);//restamos la entrada/salida
+                            gant2.add(colaES.get(iRR2).getDescripcion());
+                            if(colaES.get(iRR2).getCicloES() == 0){ //si mi ciclo de entrada/salida ya TERMINO, lo mando a cola de LISTO                               
+                                colaES.get(iRR2).setES(false);//---------------------------------------------------------------------------------7777777777777777777777777777
+                                colaES.get(iRR2).setIdProceso(idMax + 1);
+                                idMax = idMax +1;
+                                nuevaColaListos.add(colaES.get(iRR2));
+                                Juanlucas = true;
+                                colaES.remove(iRR2);
+                                
+                                
+                                if (colaES.size()== iRR2){
+                                   iRR2 = 0;
+                                }
+                            }
+                            
+                            
+                        }
+                        else{
+                        gant2.add("#");}
+                    }
+                     else{
+                        gant2.add("#");}
+                    System.out.println(ganttiempo);
+                    System.out.println(gant1);
+                    System.out.println(gant2);
                     break;
             }
         }
