@@ -261,123 +261,119 @@ public class Planificador {
                     System.out.println(gant1);
                     System.out.println(gant2);
            //Pero si no los tiene, nos fijamos si hay ciclos de ES y los consumimos
-            /*else{
-                if (proaux.getCicloES()> 0){
-                    proaux.setCicloES(proaux.getCicloES()-1);
-                    
-                }
-                else{
-                    if (proaux.getCicloCPU2()>0){
-                        proaux.setCicloCPU2(proaux.getCicloCPU2()-1);
-                        //Controlamos si se termino el proceso
-                        if (proaux.getCicloCPU2()==0){
-                            
-                            //Se guarda el tiempo de fin
-                            proaux.setFinEjecución(tiempo);
-                            iniciaEjecucion = true;
-                            //Puede que no se haya consumido todo el quantum
-                            //Pero como el proceso termina se lo reinicia
-                            ResiduoRafaga = quantum;
-                            //La cola de listos tiene un elemento menos
-                            JOptionPane.showMessageDialog(null, "Rafaga: " + ResiduoRafaga);
-                        }
-                    }
-                }
-            }
-                    
-                    //Si todavía no se termina el quantum decrece el ResiduoRafaga
-                    if (ResiduoRafaga > 1){
-                        ResiduoRafaga--;
-                        JOptionPane.showMessageDialog(null, "Rafaga resto: " + ResiduoRafaga);
-                    }
-                    else {
-                        //Si el contador es mayor al tamaño de la lista lo pongo a cero para que reinicie
-                        iRR++;
-                        JOptionPane.showMessageDialog(null, "iRR: " + iRR);
-                        if (nuevaColaListos.size()== iRR){
-                            iRR = 0;
-                        }
-                        //Como es un nuevo proceso reinicio el quantum
-                        ResiduoRafaga = quantum; //ACA BORRE EL -1. CALA LA BOCA MANITO. GUIDO
-                    }*/
-
+            
                     
                     break;
                 case(2):    //SRTF
                     break;
                     
                     
-                    
                 case (3):   //SJF
                     //Busca el proceso con menor duración
-                    Iterator<Proceso> it = colaListos.iterator();
-                    int i = 0;
-                    int resguardo = 0;
-                    Proceso p1;
-                    while (it.hasNext()) {
-                        p1 = it.next();
-                        if (p1.getDuracion()< colaListos.get(resguardo).getDuracion()&& p1.getCicloES()>0){
-                            resguardo = i;
-                        }
-                        i++;
-                    }
-                    proaux = colaListos.get(resguardo);
-                    //Ahora, guardo el inicio de ejecución si es el primer proceso
                     
-                    if (iniciaEjecucion && proaux.isSjf()){ 
-                        proaux.setInicioEjecucion(tiempo);
-                        iniciaEjecucion = false;
-                        proaux.setSjf(false);
-                    }
-                    else{
-                        if (proaux.isSjf()){
-                            proaux.setInicioEjecucion(tiempo);
-                            proaux.setSjf(false);
+                    ganttiempo.add(tiempo);
+                    if (!nuevaColaListos.isEmpty()) {
+                        
+                        Iterator<Proceso> it = colaListos.iterator();
+                        iRR = 0;
+                        int resguardo = 0;
+                        Proceso p1;
+                        while (it.hasNext()) {
+                            p1 = it.next();
+                            if (p1.getDuracion()< nuevaColaListos.get(resguardo).getDuracion()){
+                                resguardo = iRR;
+                            }
+                            iRR++;
                         }
-                    }
-                   
-                    //Si el proceso tiene ciclos CPU los consume de a uno
-                    if (proaux.getCicloCPU()> 0){
-                        proaux.setCicloCPU(proaux.getCicloCPU()-1);
-                    }
-                    //Pero si no los tiene, nos fijamos si hay ciclos de ES y los consumimos
-                    else{
-                        if (proaux.getCicloES()> 0){
-                            proaux.setCicloES(proaux.getCicloES()-1);
-                            
-                            //Controlamos si no se termino el proceso
-                            if (proaux.getCicloES()==0){
-                                
-                                //Se guarda el tiempo de fin
-                                proaux.setFinEjecución(tiempo);
-                                iniciaEjecucion = true;
+                        iRR = resguardo;
+                        
+                        //Ahora, guardo el inicio de ejecución si es el primer proceso
+                    
+                        if (iniciaEjecucion && nuevaColaListos.get(iRR).isSjf()){ 
+                            nuevaColaListos.get(iRR).setInicioEjecucion(tiempo);
+                            iniciaEjecucion = false;
+                            nuevaColaListos.get(iRR).setSjf(false);
+                        }
+                        else{
+                            if (nuevaColaListos.get(iRR).isSjf()){
+                                nuevaColaListos.get(iRR).setInicioEjecucion(tiempo);
+                                nuevaColaListos.get(iRR).setSjf(false);
                             }
                         }
+                        
+                        if (nuevaColaListos.get(iRR).getCicloCPU()> 0){
+                        
+                            nuevaColaListos.get(iRR).setCicloCPU(nuevaColaListos.get(iRR).getCicloCPU()-1);
+                           
+                            gant1.add(nuevaColaListos.get(iRR).getDescripcion());//----------------------------------------------------------------
+                            JuanGuidoLucas = nuevaColaListos.get(iRR);
+                            if (nuevaColaListos.get(iRR).getCicloCPU()==0 ) {
+                                
+                                colaES.add(nuevaColaListos.get(iRR));
+                                ResiduoRafaga = quantum;
+                                nuevaColaListos.get(iRR).setES(true);
+                                
+                                nuevaColaListos.remove(iRR);
+                            }
+                            
+                        }
+                        else{           
+                            if (nuevaColaListos.get(iRR).getCicloCPU2()> 0){
+                                nuevaColaListos.get(iRR).setCicloCPU2(nuevaColaListos.get(iRR).getCicloCPU2()-1);
+                                gant1.add(nuevaColaListos.get(iRR).getDescripcion());
+                                JuanGuidoLucas = nuevaColaListos.get(iRR);
+                                if (nuevaColaListos.get(iRR).getCicloCPU2()==0) {
+                                    
+                                    //Se guarda el tiempo de fin
+                                    nuevaColaListos.get(iRR2).setFinEjecución(tiempo);
+                                    nuevaColaListos.remove(iRR);
+                                    iniciaEjecucion = true;
+                                }
+                                
+                            }
+                            else{
+                                gant1.add("#");
+                            }
+                            
+                            
+                        }
                     }
+                    else{
+                        gant1.add("#");
+                        JuanGuidoLucas = new Proceso();
+                    
+                }
+                    //ESTO NO SE SI CIERRA ACA, salu2
+                    //ENTRADA SALIDA
+                    
+                    if (!colaES.isEmpty()) {
+                        if (colaES.get(iRR2).getCicloES()> 0 && JuanGuidoLucas != colaES.get(iRR2)){ 
+                            
+                            colaES.get(iRR2).setCicloES(colaES.get(iRR2).getCicloES()-1);//restamos la entrada/salida
+                            gant2.add(colaES.get(iRR2).getDescripcion());
+                            if(colaES.get(iRR2).getCicloES() == 0){ //si mi ciclo de entrada/salida ya TERMINO, lo mando a cola de LISTO                               
+                                colaES.get(iRR2).setES(false);//---------------------------------------------------------------------------------7777777777777777777777777777
+                                colaES.get(iRR2).setIdProceso(idMax + 1);
+                                idMax = idMax +1;
+                                nuevaColaListos.add(colaES.get(iRR2));
+                                Juanlucas = true;
+                                colaES.remove(iRR2);
+                            }
+                            
+                        }
+                        else{
+                        gant2.add("#");}
+                    }
+                     else{
+                        gant2.add("#");}
+                    System.out.println(ganttiempo);
+                    System.out.println(gant1);
+                    System.out.println(gant2);
                     break;
                     
                     
                     
                 case (4):   //FCFS
-                   /* proaux = nuevaColaListos.get(0);
-                    if (iniciaEjecucion){ 
-                        proaux.setInicioEjecucion(tiempo);
-                        iniciaEjecucion = false;
-                    }
-                    if (proaux.getCicloCPU()> 0){
-                        proaux.setCicloCPU(proaux.getCicloCPU()-1);
-                    }
-                    else{
-                        if (proaux.getCicloES()> 0){
-                            proaux.setCicloES(proaux.getCicloES()-1);
-                            //Controlamos si no se termino el proceso
-                            if (proaux.getCicloES()==0){
-                                proaux.setFinEjecución(tiempo);
-                                //Si hay mas procesos seteamos el tiempo de inicio del siguiente proceso
-                                iniciaEjecucion = true;
-                            }
-                        }
-                    }*/
                      ganttiempo.add(tiempo);
                     if (!nuevaColaListos.isEmpty()) {
                         

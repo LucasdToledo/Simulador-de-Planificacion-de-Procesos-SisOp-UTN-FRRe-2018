@@ -182,7 +182,7 @@ public class UIEntrada extends javax.swing.JFrame {
             }
         });
 
-        boxPlanificador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RoundRobin+Q", "SRTF", "SJF", "FCFS" }));
+        boxPlanificador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RoundRobin+Q", "-", "SJF", "FCFS" }));
         boxPlanificador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxPlanificadorActionPerformed(evt);
